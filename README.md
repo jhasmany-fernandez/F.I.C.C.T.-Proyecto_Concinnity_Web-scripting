@@ -15,7 +15,7 @@ F.I.C.C.T. | Materia: Sistemas de Informacion I | Docente: Angelica Garzon Cuell
 >> [+ LARAVEL DOCS](https://laravel.com/docs/8.x)
 
 > DOCUMENTACION ONLINE 
-> [PERFIL GRUPO](https://docs.google.com/document/d/1vOSXMI-mekdiEx1ccgsdRv7zl9ptdE7l8jRExSe5moE/edit) <br>
+>> [PERFIL GRUPO](https://docs.google.com/document/d/1vOSXMI-mekdiEx1ccgsdRv7zl9ptdE7l8jRExSe5moE/edit) <br>
 
 >  COMANDOS AYUDA:
 >> [+ GIST](https://gist.github.com/jhasmany-jhunnior/9ccd3b29c580f4b5ce9f00f084d26c93) <br>
