@@ -33,5 +33,12 @@ F.I.C.C.T. | Materia: Sistemas de Informacion I | Docente: Angelica Garzon Cuell
 >  COMANDOS AYUDA:
 >> [+ GIST](https://gist.github.com/jhasmany-jhunnior/9ccd3b29c580f4b5ce9f00f084d26c93) <br>
 
+## TUTORIALES MULTIMEDIA:
+> NORMALIZACION
+>> [- Normalizacion (1FN, 2FN, 3FN)](https://drive.google.com/file/d/1nFKKbJkxWn_MU4ZVxO1EWiSOTkY_lwgN/view?usp=sharing) <br>
+>> [- Normalizacion 3FN](https://drive.google.com/file/d/1q6iX6HKCNOaP_W5ZG5pQK07KiC_RNqOf/view?usp=sharing) <br>
+
+> 
+
 ## REPOSITORIO.
 ![github ficct](https://user-images.githubusercontent.com/36086876/119494544-69bc6900-bd2f-11eb-8c42-810b19ede512.png)
