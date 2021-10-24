@@ -11,12 +11,24 @@ CREATE TABLE PERSONAL(
     DOMICILIO VARCHAR (60),
     PRIMARY KEY (ID)
 );
+GO
+
+INSERT INTO PERSONAL VALUES (1, 12345678, 'jhasmany fernandez', 'M', 12345678, 'jhasmany@gmail.com', 'calle los pinos'),
+                            (2, 45623154, 'pedro characayo', 'M', 69696585, 'pedro@gmail.com', 'avenida los andes'),
+                            (3, 65256556, 'jose laime', 'M', 69563255, 'jose@gmail.com', 'avenida los andes'),
+                            (4, 69659547, 'natalia quiroga', 'F', 78744454, 'natalia@gmail.com', 'avenida florida'),
+                            (5, 15478555, 'melanie yupanqui', 'F', 96589655, 'melanie@gmail.com', 'avenida florida');
+GO
+
+SELECT * FROM PERSONAL
+GO
 
 CREATE TABLE ROL(
 	ID INTEGER NOT NULL,
     NOMBRE VARCHAR (20) NOT NULL,
     PRIMARY KEY (ID)
 );
+GO
 
 CREATE TABLE USUARIO(
 	ID INTEGER NOT NULL,
