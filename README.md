@@ -6,6 +6,10 @@ F.I.C.C.T. | Materia: Sistemas de Informacion I | Docente: Angelica Garzon Cuell
 >> [+ COMPOSER](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos) <br>
 >> [+ NODEJS](https://nodejs.org/es/download/current/) <br>
 
+> RECURSOS GIT - GITHUB
+>> [+ GIT](https://git-scm.com/downloads) <br>
+>> [+ GITHUB DESKTOP](https://desktop.github.com/) <br>
+
 ## DOCUMENTACION LARAVEL:
 >> [+ PACKAGIST](https://packagist.org/) <br>
 >> [+ LARAVEL DOCS](https://laravel.com/docs/8.x)
