@@ -11,24 +11,18 @@ CREATE TABLE PERSONAL(
     DOMICILIO VARCHAR (60),
     PRIMARY KEY (ID)
 );
-GO
 
-INSERT INTO PERSONAL VALUES (1, 12345678, 'jhasmany fernandez', 'M', 12345678, 'jhasmany@gmail.com', 'calle los pinos'),
-                            (2, 45623154, 'pedro characayo', 'M', 69696585, 'pedro@gmail.com', 'avenida los andes'),
-                            (3, 65256556, 'jose laime', 'M', 69563255, 'jose@gmail.com', 'avenida los andes'),
-                            (4, 69659547, 'natalia quiroga', 'F', 78744454, 'natalia@gmail.com', 'avenida florida'),
-                            (5, 15478555, 'melanie yupanqui', 'F', 96589655, 'melanie@gmail.com', 'avenida florida');
-GO
-
-SELECT * FROM PERSONAL
-GO
+insert into PERSONAL values(1,12820956, 'Carla Romina Cardozo Gallardo','F', 76521338,'Carla2Cardozo@gmail.com',null);
+insert into PERSONAL values(2,15286978, 'Joaquin Torrez Mamani','M', 77859648,'JoaquinTorrz34@gmail.com',' Av. santos dumont');
 
 CREATE TABLE ROL(
 	ID INTEGER NOT NULL,
     NOMBRE VARCHAR (20) NOT NULL,
     PRIMARY KEY (ID)
 );
-GO
+
+insert into Rol values(1, 'Administrador');
+insert into Rol values(2, 'Vendedor');
 
 CREATE TABLE USUARIO(
 	ID INTEGER NOT NULL,
@@ -45,12 +39,16 @@ CREATE TABLE USUARIO(
 	ON UPDATE CASCADE
 );
 
+insert into Usuario values(1,'Carla C.G.','12820956',1,1) ;
+insert into Usuario values(2,'Torrez','0000',2,2) ;
+
+
 CREATE TABLE BITACORA(
 	ID INTEGER NOT NULL,
     ID_USUARIO INTEGER NOT NULL,
     FECHA_HORA DATETIME NOT NULL,
     ACCION VARCHAR (20),
-    PRIMARY  KEY (ID),
+    PRIMARY  KEY (ID, ID_USUARIO),
 	FOREIGN KEY(ID_USUARIO) REFERENCES USUARIO(ID)
 	ON DELETE NO ACTION
 	ON UPDATE CASCADE
@@ -61,9 +59,15 @@ CREATE TABLE PROVEEDOR(
     NOMBRE VARCHAR  (50) NOT NULL,
     DIRECCION VARCHAR (60),
     TELEFONO INTEGER NOT NULL,
-    CORREO VARCHAR (25) NOT NULL,
+    CORREO VARCHAR (30) NOT NULL,
     PRIMARY KEY (ID)
 );
+
+insert into PROVEEDOR values(1,'SHEIN','China', 75456896, 'shain@gmail.com');
+insert into PROVEEDOR values(2,'FASHION NOVA', 'EEUU', 69855221, 'fashionNova@gmail.com');
+insert into PROVEEDOR values(3,'Lucrecia da Silva','Rio de Janeiro', 75456896, 'lucrecia2importa@gmail.com');
+
+DROP DATABASE CONCINNITY
 
 CREATE TABLE NOTA_COMPRA(
 	ID INTEGER NOT NULL,
@@ -80,11 +84,9 @@ CREATE TABLE NOTA_COMPRA(
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE TALLA(
-	ID INTEGER NOT NULL,
-    NRO_TALLA VARCHAR (3) NOT NULL,
-    PRIMARY KEY (ID)
-);
+insert into NOTA_COMPRA values(1, '16:50:06 2021/7/15', 0,1,1);
+insert into NOTA_COMPRA values(2, '16:30 2021/8/14', 0,1,3) ;
+insert into NOTA_COMPRA values(3, '16:30 2021/9/25', 0,1,2) ;
 
 CREATE TABLE CATEGORIA(
 	ID INTEGER NOT NULL,
@@ -92,17 +94,38 @@ CREATE TABLE CATEGORIA(
     PRIMARY KEY (ID)
 );
 
+insert into CATEGORIA values(1,'Vestido') ;
+insert into CATEGORIA values(2,'Falda') ;
+insert into CATEGORIA values(3,'Blusa') ;
+insert into CATEGORIA values(4,'Short') ;
+insert into CATEGORIA values(5,'Top') ;
+insert into CATEGORIA values(6,'Enterizo') ;
+insert into CATEGORIA values(7,'Blazer') ;
+insert into CATEGORIA values(8,'Body') ;
+insert into CATEGORIA values(9,'Pantalon') ;
+insert into CATEGORIA values(10,'accesorios') ;
+
 CREATE TABLE MATERIAL(
 	ID INTEGER NOT NULL,
     NOMBRE VARCHAR (20) NOT NULL,
     PRIMARY KEY (ID)
 );
 
+insert into MATERIAL values(1,'Algodon') ;
+insert into MATERIAL values(2,'Cuero') ;
+insert into MATERIAL values(3,'Satin') ;
+insert into MATERIAL values(4,'Seda') ;
+insert into MATERIAL values(5,'Jean') ;
+
 CREATE TABLE MARCA(
 	ID INTEGER NOT NULL,
     NOMBRE VARCHAR (20) NOT NULL,
     PRIMARY KEY (ID)
 );
+
+insert into MARCA values(1,'SHEIN') ;
+insert into MARCA values(2,'FASHION NOVA') ;
+insert into Marca values(3, 'COLORITTA') ;
 
 CREATE TABLE PRODUCTO(
 	ID INTEGER NOT NULL,
@@ -111,15 +134,10 @@ CREATE TABLE PRODUCTO(
     COSTO DECIMAL NOT NULL,
     PRECIO DECIMAL NOT NULL,
 	DESCRIPCION VARCHAR (50) NOT NULL,
-	STOCK INTEGER NOT NULL,
-	ID_TALLA INTEGER NOT NULL,
 	ID_CATEGORIA INTEGER NOT NULL,
 	ID_MATERIAL INTEGER NOT NULL,
 	ID_MARCA INTEGER NOT NULL,
     PRIMARY KEY (ID),
-	FOREIGN KEY(ID_TALLA) REFERENCES TALLA(ID)
-	ON DELETE NO ACTION
-	ON UPDATE CASCADE,
 	FOREIGN KEY(ID_CATEGORIA) REFERENCES CATEGORIA(ID)
 	ON DELETE NO ACTION
 	ON UPDATE CASCADE,
@@ -127,6 +145,23 @@ CREATE TABLE PRODUCTO(
 	ON DELETE NO ACTION
 	ON UPDATE CASCADE,
 	FOREIGN KEY(ID_MARCA) REFERENCES MARCA(ID)
+	ON DELETE NO ACTION
+	ON UPDATE CASCADE
+);
+--MODIFICAR DATOS
+insert into producto values(1,'Cinturon', 100, 50, 0.30 ,10, 'cinturon negro de cuero', 7,10,2,1);
+insert into producto values(2,'vestido otoñal', 200, 100, 0 ,5, 'vestido corto con estampado de hojas',1,1,1,3);
+insert into producto values(3,'body casual', 140, 60,  0 ,1, 'body blanco con escote en V',4,8,1,2);
+insert into producto values(4,'short', 190, 80, 0 ,10, 'short negro a rayas', 3,4,5,1);
+insert into producto values(5,'falda de porrista ', 120, 50, 0.50 ,15, 'falda tableada color roja', 2,2,4,1);
+
+CREATE TABLE TALLA_STOCK_PRODUCTO
+(
+	ID_PRODUCTO INTEGER NOT NULL,
+	TALLA VARCHAR(8) NOT NULL,
+	STOCK INTEGER NOT NULL,
+	PRIMARY KEY(ID_PRODUCTO, TALLA),
+	FOREIGN KEY(ID_PRODUCTO) REFERENCES PRODUCTO(ID)
 	ON DELETE NO ACTION
 	ON UPDATE CASCADE
 );
@@ -145,6 +180,11 @@ CREATE TABLE DETALLE_NOTACOMPRA(
 	ON DELETE NO ACTION
 	ON UPDATE CASCADE
 );
+
+insert into DETALLE_NOTACOMPRA values(1,1,50,8,400);
+insert into DETALLE_NOTACOMPRA values(1,2,100,8,800);
+insert into DETALLE_NOTACOMPRA values(1,4,80,8,640);
+insert into DETALLE_NOTACOMPRA values(2,3,60,180);
 
 CREATE TABLE NOTA_SALIDA(
 	ID INTEGER NOT NULL,
