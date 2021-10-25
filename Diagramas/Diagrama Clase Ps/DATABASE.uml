@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>9ffbb419-3ae8-44c7-8ae2-de354c36b826.DATABASE:CONCINNITY</OriginalElement>
+  <nodes>
+    <node x="552.5" y="0.0">9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.CATEGORIA</node>
+    <node x="0.0" y="55.0">9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.ROL</node>
+    <node x="884.5" y="0.0">9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.MARCA</node>
+    <node x="250.0" y="434.0">9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.NOTA_COMPRA</node>
+    <node x="705.5" y="129.0">9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.PRODUCTO</node>
+    <node x="72.0" y="445.0">9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.BITACORA</node>
+    <node x="56.5" y="239.0">9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.USUARIO</node>
+    <node x="166.0" y="0.0">9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.PERSONAL</node>
+    <node x="718.5" y="0.0">9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.MATERIAL</node>
+    <node x="281.5" y="239.0">9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.PROVEEDOR</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.USUARIO" target="9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.PERSONAL" relationship="REFERENCES">
+      <point x="51.25" y="-72.5" />
+      <point x="210.25" y="214.0" />
+      <point x="245.0" y="214.0" />
+      <point x="0.0" y="94.5" />
+    </edge>
+    <edge source="9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.BITACORA" target="9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.USUARIO" relationship="REFERENCES">
+      <point x="0.0" y="-61.5" />
+      <point x="151.0" y="409.0" />
+      <point x="159.0" y="409.0" />
+      <point x="0.0" y="72.5" />
+    </edge>
+    <edge source="9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.NOTA_COMPRA" target="9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.PROVEEDOR" relationship="REFERENCES">
+      <point x="39.5" y="-72.5" />
+      <point x="368.5" y="409.0" />
+      <point x="360.5" y="409.0" />
+      <point x="0.0" y="72.5" />
+    </edge>
+    <edge source="9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.PRODUCTO" target="9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.CATEGORIA" relationship="REFERENCES">
+      <point x="-57.33333333333337" y="-116.5" />
+      <point x="734.1666666666666" y="104.0" />
+      <point x="625.5" y="104.0" />
+      <point x="0.0" y="39.5" />
+    </edge>
+    <edge source="9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.PRODUCTO" target="9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.MARCA" relationship="REFERENCES">
+      <point x="57.33333333333337" y="-116.5" />
+      <point x="848.8333333333334" y="104.0" />
+      <point x="957.5" y="104.0" />
+      <point x="0.0" y="39.5" />
+    </edge>
+    <edge source="9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.NOTA_COMPRA" target="9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.USUARIO" relationship="REFERENCES">
+      <point x="-39.5" y="-72.5" />
+      <point x="289.5" y="409.0" />
+      <point x="159.0" y="409.0" />
+      <point x="0.0" y="72.5" />
+    </edge>
+    <edge source="9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.PRODUCTO" target="9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.MATERIAL" relationship="REFERENCES">
+      <point x="0.0" y="-116.5" />
+      <point x="0.0" y="39.5" />
+    </edge>
+    <edge source="9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.USUARIO" target="9ffbb419-3ae8-44c7-8ae2-de354c36b826.TABLE:CONCINNITY.dbo.ROL" relationship="REFERENCES">
+      <point x="-51.25" y="-72.5" />
+      <point x="107.75" y="214.0" />
+      <point x="73.0" y="214.0" />
+      <point x="0.0" y="39.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.6811352253756261" showDependencies="false" x="518.5" y="289.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

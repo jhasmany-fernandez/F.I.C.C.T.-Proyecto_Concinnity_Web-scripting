@@ -14,6 +14,7 @@ CREATE TABLE PERSONAL(
 
 insert into PERSONAL values(1,12820956, 'Carla Romina Cardozo Gallardo','F', 76521338,'Carla2Cardozo@gmail.com',null);
 insert into PERSONAL values(2,15286978, 'Joaquin Torrez Mamani','M', 77859648,'JoaquinTorrz34@gmail.com',' Av. santos dumont');
+SELECT *FROM PERSONAL;
 
 CREATE TABLE ROL(
 	ID INTEGER NOT NULL,
@@ -23,35 +24,36 @@ CREATE TABLE ROL(
 
 insert into Rol values(1, 'Administrador');
 insert into Rol values(2, 'Vendedor');
+SELECT *FROM ROL;
 
 CREATE TABLE USUARIO(
-	ID INTEGER NOT NULL,
-    NOMBRE_USUARIO VARCHAR (20),
-    CONTRASEÑA VARCHAR (20),
-    ID_ROL INTEGER NOT NULL,
-	ID_PERSONAL INTEGER NOT NULL,
-    PRIMARY KEY (ID),
-	FOREIGN KEY(ID_ROL) REFERENCES ROL(ID)
-	ON DELETE NO ACTION
-	ON UPDATE CASCADE,
-	FOREIGN KEY(ID_PERSONAL) REFERENCES PERSONAL(ID)
-	ON DELETE NO ACTION
-	ON UPDATE CASCADE
+ID INTEGER NOT NULL,
+NOMBRE_USUARIO VARCHAR (20),
+CONTRASEÑA VARCHAR (20),
+ID_ROL INTEGER NOT NULL,
+ID_PERSONAL INTEGER NOT NULL,
+PRIMARY KEY (ID),
+FOREIGN KEY(ID_ROL) REFERENCES ROL(ID)
+ON DELETE NO ACTION
+ON UPDATE CASCADE,
+FOREIGN KEY(ID_PERSONAL) REFERENCES PERSONAL(ID)
+ON DELETE NO ACTION
+ON UPDATE CASCADE
 );
 
 insert into Usuario values(1,'Carla C.G.','12820956',1,1) ;
 insert into Usuario values(2,'Torrez','0000',2,2) ;
-
+SELECT *FROM USUARIO;
 
 CREATE TABLE BITACORA(
-	ID INTEGER NOT NULL,
-    ID_USUARIO INTEGER NOT NULL,
-    FECHA_HORA DATETIME NOT NULL,
-    ACCION VARCHAR (20),
-    PRIMARY  KEY (ID, ID_USUARIO),
-	FOREIGN KEY(ID_USUARIO) REFERENCES USUARIO(ID)
-	ON DELETE NO ACTION
-	ON UPDATE CASCADE
+ID INTEGER NOT NULL,
+ID_USUARIO INTEGER NOT NULL,
+FECHA_HORA DATETIME NOT NULL,
+ACCION VARCHAR (20),
+PRIMARY  KEY (ID, ID_USUARIO),
+FOREIGN KEY(ID_USUARIO) REFERENCES USUARIO(ID)
+ON DELETE NO ACTION
+ON UPDATE CASCADE
 );
 
 CREATE TABLE PROVEEDOR(
@@ -66,8 +68,8 @@ CREATE TABLE PROVEEDOR(
 insert into PROVEEDOR values(1,'SHEIN','China', 75456896, 'shain@gmail.com');
 insert into PROVEEDOR values(2,'FASHION NOVA', 'EEUU', 69855221, 'fashionNova@gmail.com');
 insert into PROVEEDOR values(3,'Lucrecia da Silva','Rio de Janeiro', 75456896, 'lucrecia2importa@gmail.com');
+SELECT *FROM PROVEEDOR;
 
-DROP DATABASE CONCINNITY
 
 CREATE TABLE NOTA_COMPRA(
 	ID INTEGER NOT NULL,
@@ -87,6 +89,7 @@ CREATE TABLE NOTA_COMPRA(
 insert into NOTA_COMPRA values(1, '16:50:06 2021/7/15', 0,1,1);
 insert into NOTA_COMPRA values(2, '16:30 2021/8/14', 0,1,3) ;
 insert into NOTA_COMPRA values(3, '16:30 2021/9/25', 0,1,2) ;
+SELECT *FROM NOTA_COMPRA;
 
 CREATE TABLE CATEGORIA(
 	ID INTEGER NOT NULL,
@@ -104,6 +107,7 @@ insert into CATEGORIA values(7,'Blazer') ;
 insert into CATEGORIA values(8,'Body') ;
 insert into CATEGORIA values(9,'Pantalon') ;
 insert into CATEGORIA values(10,'accesorios') ;
+SELECT *FROM CATEGORIA;
 
 CREATE TABLE MATERIAL(
 	ID INTEGER NOT NULL,
@@ -116,6 +120,7 @@ insert into MATERIAL values(2,'Cuero') ;
 insert into MATERIAL values(3,'Satin') ;
 insert into MATERIAL values(4,'Seda') ;
 insert into MATERIAL values(5,'Jean') ;
+SELECT *FROM MATERIAL;
 
 CREATE TABLE MARCA(
 	ID INTEGER NOT NULL,
@@ -126,6 +131,7 @@ CREATE TABLE MARCA(
 insert into MARCA values(1,'SHEIN') ;
 insert into MARCA values(2,'FASHION NOVA') ;
 insert into Marca values(3, 'COLORITTA') ;
+SELECT *FROM MARCA;
 
 CREATE TABLE PRODUCTO(
 	ID INTEGER NOT NULL,
@@ -154,6 +160,7 @@ insert into producto values(2,'vestido otoñal', 200, 100, 0 ,5, 'vestido corto 
 insert into producto values(3,'body casual', 140, 60,  0 ,1, 'body blanco con escote en V',4,8,1,2);
 insert into producto values(4,'short', 190, 80, 0 ,10, 'short negro a rayas', 3,4,5,1);
 insert into producto values(5,'falda de porrista ', 120, 50, 0.50 ,15, 'falda tableada color roja', 2,2,4,1);
+SELECT *FROM PRODUCTO;
 
 CREATE TABLE TALLA_STOCK_PRODUCTO
 (
@@ -185,6 +192,7 @@ insert into DETALLE_NOTACOMPRA values(1,1,50,8,400);
 insert into DETALLE_NOTACOMPRA values(1,2,100,8,800);
 insert into DETALLE_NOTACOMPRA values(1,4,80,8,640);
 insert into DETALLE_NOTACOMPRA values(2,3,60,180);
+SELECT *FROM DETALLE_NOTACOMPRA;
 
 CREATE TABLE NOTA_SALIDA(
 	ID INTEGER NOT NULL,
