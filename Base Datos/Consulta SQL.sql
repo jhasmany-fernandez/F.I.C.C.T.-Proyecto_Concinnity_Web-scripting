@@ -7,6 +7,28 @@ USE CONCINITY;
 -- 6. Listar  las  personas  que  aún  no  hicieron  pedidos  en  el  restaurante
 -- 7. Listar  las  facturas  con  monto  mayor  a  100  y  que  tengan  CI
 -- 8. Listar las personas que aún no hicieron compras en el tienda
+-- 9. 
+-- 10. 
+-- 11. 
+-- 12. 
+-- 13. 
+-- 14. Mostrar tofos los nombres y precios de los productos de la categoria short
+-- 15. Mostrar todos los nombres y precios de los productos de la marca coloritta y material de jean
+-- 16. Mostrar todas las notas de ventas con productos de material de cuero
+-- 17. 
+-- 18. 
+-- 19. 
+-- 20. 
+-- 21. 
+-- 22. 
+-- 23. 
+-- 24. 
+-- 25. 
+-- 26. 
+-- 27. 
+-- 28. 
+-- 29. 
+-- 30. 
 
 SELECT *FROM PERSONAL;
 SELECT *FROM ROL;
