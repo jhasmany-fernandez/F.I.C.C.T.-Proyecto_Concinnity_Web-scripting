@@ -16,7 +16,7 @@ USE CONCINITY;
 -- 15. Mostrar todos los nombres y precios de los productos de la marca coloritta y material de jean
 -- 16. Mostrar todas las notas de ventas con productos de material de cuero
 -- 17. 
--- 18. 
+-- 18. Listar los clientes que compraron productos con el monto total mayor a 200
 -- 19. 
 -- 20. 
 -- 21. 
