@@ -8,7 +8,7 @@ USE CONCINITY;
 -- 7. Listar  las  facturas  con  monto  mayor  a  100  y  que  tengan  CI
 -- 8. Listar las personas que aún no hicieron compras en el tienda
 -- 9. 
--- 10. 
+-- 10. Mostrar los nombres de los productos de la nota de salida de 2020/12/1
 -- 11. 
 -- 12. 
 -- 13. 
