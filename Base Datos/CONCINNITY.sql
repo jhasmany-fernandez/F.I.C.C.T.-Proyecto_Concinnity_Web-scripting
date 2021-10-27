@@ -19,6 +19,8 @@ insert into PERSONAL values(2,15286978, 'Joaquin Torrez Mamani','M', 77859648,'J
 insert into PERSONAL values(3,33456321, 'Luciana Barroso','F', 78645192,'Luciana_work@gmail.com',null);
 insert into PERSONAL values(4,45678904, 'Hugo Torrez Mamani','M', 77569845,'Garciahugo@gmail.com','Plan 3000');
 
+select *from PERSONAL;
+
 CREATE TABLE ROL(
 	ID VARCHAR(3) NOT NULL,
     NOMBRE VARCHAR (20) NOT NULL,
@@ -575,3 +577,33 @@ AS
 	SELECT @monto_pago=MONTO_PAGO, @descuento=DESCUENTO FROM NOTA_VENTA WHERE ID=@nvta
 	SET @monto_total= @monto_pago-@monto_pago*@descuento
 	UPDATE NOTA_VENTA SET MONTO_TOTAL=@monto_total WHERE ID=@nvta
+
+--PROCEDIMIENTOS ALMACENADOS
+
+--Devuelve la cantidad vendida de un producto en especifico
+CREATE PROCEDURE GetCantProducto(@id_producto integer)
+AS
+BEGIN
+   declare @cant integer;
+   select @cant = isnull(sum(CANTIDAD),0)
+   from DETALLE_NOTAVENTA
+   where ID_PRODUCTO=@id_producto
+   print @cant;
+END
+GO
+
+execute dbo.GetCantProducto 4;
+
+--Devuelve la ganancia generada de un producto en especifico
+CREATE PROCEDURE GetGantProducto(@id_product integer)
+AS
+BEGIN
+   declare @gan DECIMAL(7,2);
+   select @gan = isnull(sum(TOTAL),0)
+   from DETALLE_NOTAVENTA
+   where ID_PRODUCTO=@id_product
+   print @gan;
+END
+GO
+
+execute dbo.GetGantProducto 3;
