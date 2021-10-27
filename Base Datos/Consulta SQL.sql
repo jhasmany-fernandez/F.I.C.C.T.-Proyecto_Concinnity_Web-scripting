@@ -1,22 +1,60 @@
-USE CONCINITY;
+USE CONCINNITY
 -- 1. Listar de administradores que se registraron el 25 de junio
--- 2. Listar  los  nombres  de  las  personas  que  hicieron  una  compra  el  25  de  octubre  del 2021
--- 3. Listar  las  personas  que  no  tienen  CI
+-- 2. Listar  los  nombres  de  las  personas  que  hicieron  una  compra  el  20  de  octubre  del 2021
+SELECT CLIENTE.NOMBRE
+FROM NOTA_VENTA, CLIENTE
+WHERE NOTA_VENTA.ID_CLIENTE=CLIENTE.ID AND NOTA_VENTA.FECHA_HORA BETWEEN '00:00:00 2021/10/20' AND '23:59:59 2021/10/20'
+-- 3. Listar  las  personas  que  no  tienen  CI SELECT PERSONAL.NOMBRE
+FROM PERSONAL
+WHERE CI=NULL
 -- 4. Listar las personas que hicieron más de 3 compras
+SELECT CLIENTE.NOMBRE, COUNT(NOTA_VENTA.ID_CLIENTE) AS CANTIDAD_DE_COMPRAS
+FROM CLIENTE, NOTA_VENTA
+WHERE CLIENTE.ID=NOTA_VENTA.ID_CLIENTE
+GROUP BY CLIENTE.NOMBRE
+HAVING COUNT(NOTA_VENTA.ID_CLIENTE)>3
 -- 5. Listar las personas que aun registran movimientos en la tienda
--- 6. Listar  las  personas  que  aún  no  hicieron  pedidos  en  el  restaurante
+
+-- 6. Listar las personas que aún no hicieron compras en el tienda
+SELECT CLIENTE.NOMBRE
+FROM CLIENTE
+WHERE CLIENTE.ID NOT IN (SELECT NOTA_VENTA.ID_CLIENTE FROM NOTA_VENTA)
 -- 7. Listar  las  facturas  con  monto  mayor  a  100  y  que  tengan  CI
--- 8. Listar las personas que aún no hicieron compras en el tienda
+
+-- 8. 
 -- 9. 
--- 10. Mostrar los nombres de los productos de la nota de salida de 2020/12/1
--- 11. Listar la nota de venta con mayor monto ingresado
+-- 10. Mostrar los nombres de los productos de la nota de salida de 2021/10/14
+SELECT DISTINCT PRODUCTO.NOMBRE
+FROM NOTA_SALIDA, DETALLE_NOTASALIDA, PRODUCTO_TALLA, PRODUCTO
+WHERE NOTA_SALIDA.ID=DETALLE_NOTASALIDA.ID_NOTASALIDA AND DETALLE_NOTASALIDA.ID_PRODUCTO=PRODUCTO_TALLA.ID_PRODUCTO 
+AND PRODUCTO_TALLA.ID_PRODUCTO=PRODUCTO.ID AND NOTA_SALIDA.FECHA_HORA BETWEEN '00:00:00 2021/10/14' AND '23:59:59 2021/10/14'
+
+-- 11. Mostrar el mayor monto_total ingresado por una nota de venta
+SELECT MAX(NOTA_VENTA.MONTO_TOTAL)
+FROM NOTA_VENTA
+
 -- 12. 
 -- 13. 
--- 14. Mostrar tofos los nombres y precios de los productos de la categoria short
+-- 14. Mostrar todos los nombres y precios de los productos de la categoria falda
+SELECT PRODUCTO.NOMBRE, PRODUCTO.PRECIO
+FROM CATEGORIA, PRODUCTO 
+WHERE CATEGORIA.ID=PRODUCTO.ID_CATEGORIA AND CATEGORIA.NOMBRE='Falda'
+
 -- 15. Mostrar todos los nombres y precios de los productos de la marca coloritta y material de jean
--- 16. Mostrar todas las notas de ventas con productos de material de cuero
+SELECT PRODUCTO.NOMBRE, PRODUCTO.PRECIO
+FROM MARCA, MATERIAL, PRODUCTO
+WHERE MARCA.ID=PRODUCTO.ID_MARCA AND MATERIAL.ID=PRODUCTO.ID_MATERIAL AND MARCA.NOMBRE='coloritta' AND MATERIAL.NOMBRE='jean'
+
+-- 16. Mostrar todas las notas de ventas que compraronc los productos de material de cuero
+SELECT NOTA_VENTA.*
+FROM  NOTA_VENTA, DETALLE_NOTAVENTA, PRODUCTO_TALLA, PRODUCTO, MATERIAL
+WHERE NOTA_VENTA.ID= DETALLE_NOTAVENTA.ID_NOTAVENTA AND DETALLE_NOTAVENTA.ID_PRODUCTO=PRODUCTO_TALLA.ID_PRODUCTO 
+AND PRODUCTO_TALLA.ID_PRODUCTO=PRODUCTO.ID AND PRODUCTO.ID_MATERIAL=MATERIAL.ID AND MATERIAL.NOMBRE='cuero'
 -- 17. 
 -- 18. Listar los clientes que compraron productos con el monto total mayor a 200
+SELECT CLIENTE.NOMBRE
+FROM CLIENTE, NOTA_VENTA
+WHERE CLIENTE.ID=NOTA_VENTA.ID_CLIENTE AND NOTA_VENTA.MONTO_TOTAL>200
 -- 19. 
 -- 20. 
 -- 21. 
