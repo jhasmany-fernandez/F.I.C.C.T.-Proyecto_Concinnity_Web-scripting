@@ -9,7 +9,7 @@ USE CONCINITY;
 -- 8. Listar las personas que aún no hicieron compras en el tienda
 -- 9. 
 -- 10. Mostrar los nombres de los productos de la nota de salida de 2020/12/1
--- 11. 
+-- 11. Listar la nota de venta con mayor monto ingresado
 -- 12. 
 -- 13. 
 -- 14. Mostrar tofos los nombres y precios de los productos de la categoria short
