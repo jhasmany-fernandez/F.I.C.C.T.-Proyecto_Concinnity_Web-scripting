@@ -579,7 +579,7 @@ AS
 	UPDATE NOTA_VENTA SET MONTO_TOTAL=@monto_total WHERE ID=@nvta
 
 --PROCEDIMIENTOS ALMACENADOS
-
+SELECT *FROM DETALLE_NOTAVENTA;
 --Devuelve la cantidad vendida de un producto en especifico
 CREATE PROCEDURE GetCantProducto(@id_producto integer)
 AS
@@ -592,7 +592,7 @@ BEGIN
 END
 GO
 
-execute dbo.GetCantProducto 4;
+execute dbo.GetCantProducto 5;
 
 --Devuelve la ganancia generada de un producto en especifico
 CREATE PROCEDURE GetGantProducto(@id_product integer)
