@@ -1,0 +1,26 @@
+CREATE TRIGGER CANTIDAD_DECOMPRA_AL_STOCK
+ON DETALLE_NOTACOMPRA
+AFTER INSERT
+AS
+	DECLARE @cant INT,
+			@stock INT,
+			@id_producto INT,
+			@id_talla INT
+	SELECT  @id_producto=ID_PRODUCTO, @id_talla=ID_TALLA, @cant=CANTIDAD FROM INSERTED
+	SELECT @stock=STOCK FROM PRODUCTO_TALLA WHERE @id_producto=ID_PRODUCTO AND @id_talla=ID_TALLA
+	SET @stock=@stock+@cant
+	UPDATE PRODUCTO_TALLA SET STOCK=@stock WHERE ID_PRODUCTO=@id_producto AND ID_TALLA=@id_talla
+
+CREATE TRIGGER ACTUALIZAR_MONTO_TOTAL
+ON DETALLE_NOTAVENTA
+AFTER INSERT
+AS
+	DECLARE @total DECIMAL(8,2),
+			@monto_pago DECIMAL(8,2),
+			@descuento DECIMAL(3,2),
+			@monto_total DECIMAL(8,2),
+			@nvta INT
+	SELECT @nvta=ID_NOTAVENTA, @total=TOTAL FROM INSERTED
+	SELECT @monto_pago=MONTO_PAGO, @descuento=DESCUENTO FROM NOTA_VENTA WHERE ID=@nvta
+	SET @monto_total= @monto_pago-@monto_pago*@descuento
+	UPDATE NOTA_VENTA SET MONTO_TOTAL=@monto_total WHERE ID=@nvta
