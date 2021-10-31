@@ -5,8 +5,9 @@ F.I.C.C.T. | Materia: Sistemas de Informacion I | Docente: Angelica Garzon Cuell
 
 ## PHPSTORM.
 
-## ENTERPRISE ARCHITECT.
-![images](https://user-images.githubusercontent.com/36086876/113877933-26119e00-9787-11eb-8722-9d26beb0752e.png)
+## DATAGRIP.
+
+## MYSQL.
 
 ## INSTALADORES:
 >  RECURSOS LARAVEL - INSTALADORES:
@@ -23,22 +24,23 @@ F.I.C.C.T. | Materia: Sistemas de Informacion I | Docente: Angelica Garzon Cuell
 >> [+ VISUAL STUDIO CODE](https://code.visualstudio.com/download) <br>
 >> [+ ENTERPRICE ARCHITECT -> Código de extracción: uym6](https://terabox.com/s/1hMZsGYrJTHrjDdKXVYmbQQ ) <br>
 
-## DOCUMENTACION LARAVEL:
->> [+ PACKAGIST](https://packagist.org/) <br>
->> [+ LARAVEL DOCS](https://laravel.com/docs/8.x)
-
-> DOCUMENTACION ONLINE 
->> [+ PERFIL GRUPO -> DOCS GOOGLE](https://docs.google.com/document/d/1vOSXMI-mekdiEx1ccgsdRv7zl9ptdE7l8jRExSe5moE/edit) <br>
-
 >  COMANDOS AYUDA:
 >> [+ GIST](https://gist.github.com/jhasmany-jhunnior/9ccd3b29c580f4b5ce9f00f084d26c93) <br>
 
-## TUTORIALES MULTIMEDIA:
-> NORMALIZACION
->> [- Normalizacion (1FN, 2FN, 3FN)](https://drive.google.com/file/d/1nFKKbJkxWn_MU4ZVxO1EWiSOTkY_lwgN/view?usp=sharing) <br>
->> [- Normalizacion 3FN](https://drive.google.com/file/d/1q6iX6HKCNOaP_W5ZG5pQK07KiC_RNqOf/view?usp=sharing) <br>
+## DOCUMENTACION LARAVEL:
+>> [+ PACKAGIST](https://packagist.org/) <br>
+>> [+ LARAVEL DOCS](https://laravel.com/docs/8.x) <br>
 
-> 
+##  PROYECTO AYUDA:
+>> [+ PROYECTO ROMOTO AYUDA](http://ventas-online-ficct.herokuapp.com/)
+>> - ADMINISTRADOR:
+>>> usuario: invitado@gmail.com <br>
+>>> contraseña: invitadosi123 <br>
+>>> perfil: vendedor <br>
+>> - VENDEDOR:
+>>> usuario: jhasmany.jhunnior@gmail.com <br>
+>>> contraseña: adminsi1 <br>
+>>> perfil: admin <br>
 
 ## REPOSITORIO.
 ![github ficct](https://user-images.githubusercontent.com/36086876/119494544-69bc6900-bd2f-11eb-8c42-810b19ede512.png)
