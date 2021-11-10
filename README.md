@@ -9,6 +9,8 @@ F.I.C.C.T. | Materia: Sistemas de Informacion I | Docente: Angelica Garzon Cuell
 
 ## MYSQL.
 
+## GOOGLE CLOUD PLATFORM.
+
 ## INSTALADORES:
 >  RECURSOS LARAVEL - INSTALADORES:
 >> [+ XAMPP](https://www.apachefriends.org/es/download.html) <br>
@@ -31,8 +33,21 @@ F.I.C.C.T. | Materia: Sistemas de Informacion I | Docente: Angelica Garzon Cuell
 >> [+ PACKAGIST](https://packagist.org/) <br>
 >> [+ LARAVEL DOCS](https://laravel.com/docs/8.x) <br>
 
+## SERVIDOR GOOGLE CLOUD PLATFORM:
+>🖥️ Google Cloud Platform: <a href="console.cloud.google.com" target="_blank">Click Aqui</a>
+
+>💻 Servidor Phpmyadmin: <a href="http://34.151.209.177/phpmyadmin/" target="_blank">Click Aqui</a> <br>
+Usuario: root <br>
+Password: 12345
+
+>📒 Documentacion: <a href="example.com" target="_blank">Click Aqui</a>
+
+>☁ Hosting: <a href="http://34.151.209.177/" target="_blank">Click Aqui</a> ️
+
+>📲 Descargar Concinity apk: <a href="https://github.com/jhasmany-jhunnior/F.I.C.C.T.-Proyecto_Concinnity_App-Dart/tree/main/Recursos" target="_blank">Click Aqui</a>
+
 ##  PROYECTO AYUDA:
->> [+ PROYECTO ROMOTO AYUDA](http://ventas-online-ficct.herokuapp.com/)
+>> [+ PROYECTO ROMOTO AYUDA ] (http://ventas-online-ficct.herokuapp.com/)
 >> - ADMINISTRADOR:
 >>> usuario: invitado@gmail.com <br>
 >>> contraseña: invitadosi123 <br>
