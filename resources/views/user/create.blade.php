@@ -67,6 +67,16 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-12 col-sm-12">
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                                    <form runat="server">
+                                    <input type='file' id="imgInp"  accept="image/jpg, image/jpeg"> 
+                                    <div>
+                                        <img id="blah" width="150" height="70" src="#" alt="Imagen" />
+                                    </div>
+                                    </form>
+                            </div>
+                            <div class="form-group row"  style="padding-left: 15px; padding-right: 15px;">
+                                <div class="col-md-12 col-sm-12">
                                     <button type="submit" class="btn btn-primary">Guardar</button>
                                 </div>
                             </div>
@@ -76,4 +86,23 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+    <script>
+        function readURL(input) {
+    if (input.files && input.files[0]) { //Revisamos que el input tenga contenido
+        var reader = new FileReader(); //Leemos el contenido
+        
+        reader.onload = function(e) { //Al cargar el contenido lo pasamos como atributo de la imagen de arriba
+        $('#blah').attr('src', e.target.result);
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInp").change(function() { //Cuando el input cambie (se cargue un nuevo archivo) se va a ejecutar de nuevo el cambio de imagen y se verá reflejado.
+    readURL(this);
+    });
+    </script>
+    @endpush
 @endsection

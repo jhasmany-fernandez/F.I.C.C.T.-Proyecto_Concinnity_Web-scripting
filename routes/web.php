@@ -3,6 +3,10 @@
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\MarcaController;
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\TallaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,3 +46,35 @@ Route::post('cliente/create', [ClienteController::class, 'store']);
 Route::get('cliente/edit/{id}', [ClienteController::class, 'edit']);
 Route::post('cliente/update', [ClienteController::class, 'update']);
 Route::get('cliente/busqueda', [ClienteController::class, 'busqueda']);
+
+//Marcas
+Route::get('marcas', [MarcaController::class, 'index']);
+Route::get('marca/create', [MarcaController::class, 'create']);
+Route::post('marca/create', [MarcaController::class, 'store']);
+Route::get('marca/edit/{id}', [MarcaController::class, 'edit']);
+Route::post('marca/update', [MarcaController::class, 'update']);
+Route::get('marca/busqueda', [MarcaController::class, 'busqueda']);
+
+//Categorias
+Route::get('categorias', [CategoriaController::class, 'index']);
+Route::get('categoria/create', [CategoriaController::class, 'create']);
+Route::post('categoria/create', [CategoriaController::class, 'store']);
+Route::get('categoria/edit/{id}', [CategoriaController::class, 'edit']);
+Route::post('categoria/update', [CategoriaController::class, 'update']);
+Route::get('categoria/busqueda', [CategoriaController::class, 'busqueda']);
+
+//Materiales
+Route::get('materiales', [MaterialController::class, 'index']);
+Route::get('material/create', [MaterialController::class, 'create']);
+Route::post('material/create', [MaterialController::class, 'store']);
+Route::get('material/edit/{id}', [MaterialController::class, 'edit']);
+Route::post('material/update', [MaterialController::class, 'update']);
+Route::get('material/busqueda', [MaterialController::class, 'busqueda']);
+
+//Tallas
+Route::get('tallas', [TallaController::class, 'index']);
+Route::get('talla/create', [TallaController::class, 'create']);
+Route::post('talla/create', [TallaController::class, 'store']);
+Route::get('talla/edit/{id}', [TallaController::class, 'edit']);
+Route::post('talla/update', [TallaController::class, 'update']);
+Route::get('talla/busqueda', [TallaController::class, 'busqueda']);

@@ -13,7 +13,7 @@
                                 </a>
                                 &nbsp;&nbsp;&nbsp;
                                 <div style="display:table; text-align: center;">
-                                    <h4 class="text-primary" style="display:table-cell; vertical-align:middle;">Editando Usuario</h4>
+                                    <h4 class="text-primary" style="display:table-cell; vertical-align:middle;">Editando Cliente</h4>
                                 </div>
                         </div>
                     </div>

@@ -44,8 +44,8 @@
                     <nav class="sidebar-wrapper">
                         <ul class="nav">
                             <li class="logo">
-                                <a href="#" class="simple-text logo-mini">BD</a>
-                                <a href="#" class="simple-text logo-normal">Concinnity</a>
+                                <img class="rounded mx-auto d-block" class="avatar" src="{{asset('img/Imagen.jpeg')}}" width="150" height="70"></img>
+                                <div>&nbsp;</div>
                             </li>
                             <li>
                                 <a href="#">
@@ -85,25 +85,25 @@
                                 <div class="collapse" id="desplegar">
                                     <ul class="nav pl-4">
                                         <li >
-                                            <a href="#">
+                                            <a href="{{url('categorias')}}">
                                                 <i class="tim-icons icon-notes"></i>
                                                 <p>Categoría</p>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="{{url('marcas')}}">
                                                 <i class="tim-icons icon-bold"></i>
                                                 <p>Marca</p>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="{{url('materiales')}}">
                                                 <i class="tim-icons icon-puzzle-10"></i>
                                                 <p>Material</p>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="{{url('tallas')}}">
                                                 <i class="tim-icons icon-caps-small"></i>
                                                 <p>Talla</p>
                                             </a>
