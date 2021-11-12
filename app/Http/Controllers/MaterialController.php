@@ -52,7 +52,6 @@ class MaterialController extends Controller
     }
     
     public function update(Request $request){
-        
         try {
             DB::beginTransaction();
             Material::actualizar($request);

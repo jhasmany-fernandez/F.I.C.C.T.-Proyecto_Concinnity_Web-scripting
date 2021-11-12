@@ -29,6 +29,9 @@
                         <a type="button" title="Editar información del Usuario" class="btn btn-primary btn-sm" href="{{url('user/edit/'.$user->id)}}">
                             <i class="tim-icons icon-pencil"></i>
                         </a>
+                        <a type="button" title="Ver foto del Usuario" class="btn btn-success btn-sm" href="#">
+                            <i class="tim-icons icon-camera-18"></i>
+                        </a>
                     </td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->ci}}</td>

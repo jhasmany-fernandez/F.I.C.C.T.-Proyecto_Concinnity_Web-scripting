@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class TallaController extends Controller
 {
     public function index(){
-        $tallas = Talla::Paginate(3);
+        $tallas = Talla::get();
         return view('talla.index', ['tallas' => $tallas]);
     }
 

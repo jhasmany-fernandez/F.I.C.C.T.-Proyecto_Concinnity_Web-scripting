@@ -73,6 +73,12 @@
                                 <div class="col-sm-6 col-md-6">
                                 </div>
                             </div>
+                            <div>
+                                <div class="col-md-12 col-sm-12" style="padding-left: 0px;">
+                                    <button title="Seleccionar foto para el usuario" class="btn btn-primary">Seleccionar imagen</button>
+                                    <button class="btn btn-primary">Tomar foto</button>
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <div class="col-sm-12 col-md-12">
                                     <button type="submit" class="btn btn-primary">Editar</button>
