@@ -34,7 +34,7 @@ F.I.C.C.T. | Materia: Sistemas de Informacion I | Docente: Angelica Garzon Cuell
 >> [+ LARAVEL DOCS](https://laravel.com/docs/8.x) <br>
 
 ## SERVIDOR GOOGLE CLOUD PLATFORM:
->🖥️ Google Cloud Platform: <a href="console.cloud.google.com" target="_blank">Click Aqui</a>
+>🖥️ Google Cloud Platform: <a href="https://console.cloud.google.com/home/dashboard?project=my-project-m-dev" target="_blank">Click Aqui</a>
 
 >💻 Servidor Phpmyadmin: <a href="http://34.151.209.177/phpmyadmin/" target="_blank">Click Aqui</a> <br>
 Usuario: root <br>
