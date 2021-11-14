@@ -23,4 +23,7 @@
             @endforeach
         </tbody>
     </table>
+    <div>
+        {{$tallas->links()}}
+    </div>
 </div>

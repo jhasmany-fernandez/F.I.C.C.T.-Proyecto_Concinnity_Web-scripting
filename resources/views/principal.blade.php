@@ -40,201 +40,26 @@
 <body>
     <div id="app">
         <div class="wrapper">
-            <div class="sidebar">
-                    <nav class="sidebar-wrapper">
-                        <ul class="nav">
-                            <li class="logo">
-                                <img class="rounded mx-auto d-block" class="avatar" src="{{asset('img/Imagen.jpeg')}}" width="150" height="70"></img>
-                                <div>&nbsp;</div>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="tim-icons icon-chart-pie-36"></i>
-                                    <p>Escritorio</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a data-toggle="collapse" data-target="#bajar" aria-expanded="false" aria-controls="bajar">
-                                    <i class="tim-icons icon-double-right"></i>
-                                    <span class="nav-link-text" >Acceso</span>
-                                    <b class="caret mt-1"></b>
-                                </a>
-                                <div class="collapse" id="bajar">
-                                    <ul class="nav pl-4">
-                                        <li >
-                                            <a href="{{url('users')}}">
-                                                <i class="tim-icons icon-badge"></i>
-                                                <p>Usuario</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{url('roles')}}">
-                                                <i class="tim-icons icon-bullet-list-67"></i>
-                                                <p>Rol</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <a data-toggle="collapse" data-target="#desplegar" aria-expanded="false" aria-controls="desplegar">
-                                    <i class="tim-icons icon-vector"></i>
-                                    <span class="nav-link-text" >Características</span>
-                                    <b class="caret mt-1"></b>
-                                </a>
-                                <div class="collapse" id="desplegar">
-                                    <ul class="nav pl-4">
-                                        <li >
-                                            <a href="{{url('categorias')}}">
-                                                <i class="tim-icons icon-notes"></i>
-                                                <p>Categoría</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{url('marcas')}}">
-                                                <i class="tim-icons icon-bold"></i>
-                                                <p>Marca</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{url('materiales')}}">
-                                                <i class="tim-icons icon-puzzle-10"></i>
-                                                <p>Material</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{url('tallas')}}">
-                                                <i class="tim-icons icon-caps-small"></i>
-                                                <p>Talla</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <a data-toggle="collapse" data-target="#desplegar2" aria-expanded="false" aria-controls="desplegar2">
-                                    <i class="tim-icons icon-cart"></i>
-                                    <span class="nav-link-text">Venta</span>
-                                    <b class="caret mt-1"></b>
-                                </a>
-                                <div class="collapse" id="desplegar2">
-                                    <ul class="nav pl-4">
-                                        <li >
-                                            <a href="{{url('clientes')}}">
-                                                <i class="tim-icons icon-single-02"></i>
-                                                <p>Cliente</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="tim-icons icon-paper"></i>
-                                                <p>Nota de Venta</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <a data-toggle="collapse" data-target="#desplegar3" aria-expanded="false" aria-controls="desplegar3">
-                                    <i class="tim-icons icon-bag-16"></i>
-                                    <span class="nav-link-text">Compra</span>
-                                    <b class="caret mt-1"></b>
-                                </a>
-                                <div class="collapse" id="desplegar3">
-                                    <ul class="nav pl-4">
-                                        <li >
-                                            <a href="#">
-                                                <i class="tim-icons icon-single-02"></i>
-                                                <p>Proveedor</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="tim-icons icon-book-bookmark"></i>
-                                                <p>Nota de Compra</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li >
-                                <a href="#">
-                                    <i class="tim-icons icon-world"></i>
-                                    <p>{{ _('RTL Support') }}</p>
-                                </a>
-                            </li>
-                            <li>&nbsp;</li>
-                            <li>&nbsp;</li>
-                            <li>&nbsp;</li>
-                            <li>&nbsp;</li>
-                        </ul>
-                    </nav>
-            </div>
+
+            @if (Auth::check())
+                @if (Auth::user()->idrol == 1)
+                    @include('sidebar.administrador')
+                @else
+                    @include('sidebar.vendedor')
+                @endif
+                
+            @endif
+            
                                 
             <div class="main-panel">
-                <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
-                        <div class="container-fluid">
-                            <div class="navbar-wrapper">
-                                <div class="navbar-toggle d-inline">
-                                    <button type="button" class="navbar-toggler">
-                                        <span class="navbar-toggler-bar bar1"></span>
-                                        <span class="navbar-toggler-bar bar2"></span>
-                                        <span class="navbar-toggler-bar bar3"></span>
-                                    </button>
-                                </div>
-                                <a class="navbar-brand" href="#">{{ $page ?? __('Dashboard') }}</a>
-                            </div>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                                <span class="navbar-toggler-bar navbar-kebab"></span>
-                                <span class="navbar-toggler-bar navbar-kebab"></span>
-                                <span class="navbar-toggler-bar navbar-kebab"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navigation">
-                                <ul class="navbar-nav ml-auto">
-                                    <li class="dropdown nav-item">
-                                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                            <span class="badge badge-pill badge-danger">5</span>
-                                            <i class="tim-icons icon-bell-55"></i>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
-                                            <div class="dropdown-header text-center">
-                                                <strong>Notificaciones</strong>
-                                            </div>
-                                            <a class="dropdown-item" href="#">
-                                                <i class="tim-icons icon-bus-front-12"></i> Ingresos
-                                                <span class="badge badge-success">3</span>
-                                            </a>
-                                            <a class="dropdown-item" href="#">
-                                                <i class="tim-icons icon-bullet-list-67"></i> Ventas
-                                                <span class="badge badge-danger">2</span>
-                                            </a>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown nav-item">
-                                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                            <div class="photo">
-                                                <img src="{{asset('img/anime3.png')}}" alt="{{ __('Profile Photo') }}">
-                                            </div>
-                                            <b class="caret d-none d-lg-block d-xl-block"></b>
-                                            <p class="d-lg-none">{{ __('Log out') }}</p>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-navbar">
-                                            <li class="nav-link">
-                                                <a href="#" class="nav-item dropdown-item">{{ __('Profile') }}</a>
-                                            </li>
-                                            <li class="nav-link">
-                                                <a href="#" class="nav-item dropdown-item">{{ __('Settings') }}</a>
-                                            </li>
-                                            <li class="dropdown-divider"></li>
-                                            <li class="nav-link">
-                                                <a href="#" class="nav-item dropdown-item" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">{{ __('Log out') }}</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                </nav>
+                @if (Auth::check())
+                    @if (Auth::user()->idrol == 1)
+                        @include('header.administrador')
+                    @else
+                        @include('header.vendedor')
+                    @endif
+                
+                @endif
             
                 <!--Contenido principal-->     
                 @yield('contenido')

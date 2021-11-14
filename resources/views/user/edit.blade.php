@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="{{url('user/update')}}" method="POST">
+                        <form action="{{url('user/update')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" value="{{$user->id}}">
                             <div class="form-group row">
@@ -66,17 +66,15 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-sm-6 col-md-6">
+                                <div class="col-sm-4 col-md-4">
                                     <label class="text-info">Email: </label>
                                     <input name="email" class="form-control" type="email" value="{{$user->email}}" placeholder="Email..." required>
                                 </div>
-                                <div class="col-sm-6 col-md-6">
+                                <div class="col-md-4 col-sm-4">
+                                    <label class="text-info">Foto: </label>
+                                    <input name="imagen" class="form-control" style="position: inherit !important; height: 43% !important" type="file" accept="image/png, image/jpg, image/jpeg">
                                 </div>
-                            </div>
-                            <div>
-                                <div class="col-md-12 col-sm-12" style="padding-left: 0px;">
-                                    <button title="Seleccionar foto para el usuario" class="btn btn-primary">Seleccionar imagen</button>
-                                    <button class="btn btn-primary">Tomar foto</button>
+                                <div class="col-sm-4 col-md-4">
                                 </div>
                             </div>
                             <div class="form-group row">

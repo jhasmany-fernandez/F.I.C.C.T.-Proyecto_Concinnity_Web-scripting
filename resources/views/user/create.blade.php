@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="{{url('user/create')}}" method="POST">
+                        <form action="{{url('user/create')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
                                 <div class="col-md-4 col-sm-4">
@@ -56,21 +56,20 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-md-6 col-sm-6">
+                                <div class="col-md-4 col-sm-4">
                                     <label class="text-info">Email: </label>
                                     <input name="email" class="form-control" type="email" placeholder="Email..." required>
                                 </div>
-                                <div class="col-md-6 col-sm-6">
+                                <div class="col-md-4 col-sm-4">
                                     <label class="text-info">Password: </label>
                                     <input name="password" class="form-control" type="password" placeholder="Password..." required>
                                 </div>
-                            </div>
-                            <div>
-                                <div class="col-md-12 col-sm-12" style="padding-left: 0px;">
-                                    <button title="Seleccionar foto para el usuario" class="btn btn-primary">Seleccionar imagen</button>
-                                    <button class="btn btn-primary">Tomar foto</button>
+                                <div class="col-md-4 col-sm-4">
+                                    <label class="text-info">Foto: </label>
+                                    <input name="imagen" class="form-control" style="position: inherit !important; height: 43% !important" type="file" accept="image/png, image/jpg, image/jpeg">
                                 </div>
                             </div>
+                            
                             <div class="form-group row"  style="padding-right: 15px;">
                                 <div class="col-md-12 col-sm-12">
                                     <button type="submit" class="btn btn-primary">Guardar</button>

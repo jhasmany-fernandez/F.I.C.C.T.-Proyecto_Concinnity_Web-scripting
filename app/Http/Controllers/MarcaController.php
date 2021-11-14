@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class MarcaController extends Controller
 {
     public function index(){
-        $marcas = Marca::get();
+        $marcas = Marca::paginate(4);
         return view('marca.index', ['marcas' => $marcas]);
     }
 
@@ -18,7 +18,7 @@ class MarcaController extends Controller
             if($request->input('opcion') == 'nombre'){
                 $marcas = Marca::select('marca.id', 'marca.nombre')
                 ->where('marca.nombre', 'LIKE', '%'.$request->input('texto').'%')
-                ->get();
+                ->paginate(4);
                 $view = view('marca.datos', compact('marcas'))->render();
                 return response()->json(['view' => $view], 200);
             }

@@ -9,13 +9,14 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        'email', 'password','idpersonal','idrol'
+        'email', 'password','idpersonal','idrol','imagen'
     ];
 
     protected $hidden = [
@@ -47,6 +48,15 @@ class User extends Authenticatable
         $user->idpersonal = $personal->id;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+        if($request->hasFile('imagen')){
+            $extension = $request->imagen->extension();
+            if($extension == "png" || $extension == "jpg" || $extension == "jpeg"){
+                $nombre = round(microtime(true)) . '.' . $extension;
+                Storage::disk('public')->putFileAs('users', $request->imagen, $nombre);
+                $path = 'users/' . $nombre;
+                $user->imagen = $path;
+            }
+        }
         $user->idrol = $request->idrol;
         $user->save();
     }
@@ -54,6 +64,18 @@ class User extends Authenticatable
     public static function actualizar(Request $request){
         $user = User::findOrFail($request->id);
         $user->email = $request->email;
+        if($request->hasFile('imagen')){
+            if($user->imagen){
+                Storage::disk('public')->delete($user->imagen);
+            }
+            $extension = $request->imagen->extension();
+            if($extension == "png" || $extension == "jpg" || $extension == "jpeg"){
+                $nombre = round(microtime(true)) . '.' . $extension;
+                Storage::disk('public')->putFileAs('users', $request->imagen, $nombre);
+                $path = 'users/' . $nombre;
+                $user->imagen = $path;
+            }
+        }
         $user->idrol = $request->idrol;
         $user->update();
 

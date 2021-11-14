@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class CategoriaController extends Controller
 {
     public function index(){
-        $categorias = Categoria::get();
+        $categorias = Categoria::paginate(4);
         return view('categoria.index', ['categorias' => $categorias]);
     }
 
@@ -18,7 +18,7 @@ class CategoriaController extends Controller
             if($request->input('opcion') == 'nombre'){
                 $categorias = Categoria::select('categoria.id', 'categoria.nombre')
                 ->where('categoria.nombre', 'LIKE', '%'.$request->input('texto').'%')
-                ->get();
+                ->paginate(4);
                 $view = view('categoria.datos', compact('categorias'))->render();
                 return response()->json(['view' => $view], 200);
             }

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class MaterialController extends Controller
 {
     public function index(){
-        $materiales = Material::get();
+        $materiales = Material::paginate(4);
         return view('material.index', ['materiales' => $materiales]);
     }
 
@@ -18,7 +18,7 @@ class MaterialController extends Controller
             if($request->input('opcion') == 'nombre'){
                 $materiales = Material::select('material.id', 'material.nombre')
                 ->where('material.nombre', 'LIKE', '%'.$request->input('texto').'%')
-                ->get();
+                ->paginate(4);;
                 $view = view('material.datos', compact('materiales'))->render();
                 return response()->json(['view' => $view], 200);
             }

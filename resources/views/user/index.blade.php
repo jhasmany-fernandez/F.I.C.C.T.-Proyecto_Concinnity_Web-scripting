@@ -129,6 +129,39 @@
         }
 
         jQuery(document).ready(function () {
+            var page = 1;
+
+            $(document).on('click', '.pagination a', function (e) {
+                e.preventDefault();
+                var page = $(this).attr('href').split('page=')[1];
+                paginar(page);
+            });
+
+            function paginar(page){
+                var texto = $('#texto').val();
+                var opcion = $('#opcion').val();
+                $.ajax({
+                    type: "GET",
+                    url: "{{url('user/busqueda')}}" + '?page=' + page,
+                    data: {
+                        texto: texto,
+                        opcion: opcion
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    dataType: 'JSON',
+                    success: function (response) {
+                        // console.log(response);
+                        $("#tabla").html(response.view);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown ) {
+                        console.log('ERROR');
+                        console.log(jqXHR);
+                    }
+                });
+            }
+
             $("#texto").keyup(function() {
                 let texto = $("#texto").val();
                 let opcion = $("#opcion").val();

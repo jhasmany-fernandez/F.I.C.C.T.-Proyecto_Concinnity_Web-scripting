@@ -12,8 +12,8 @@ class UserController extends Controller
     public function index(){
         $users = User::join('personal', 'users.idpersonal', 'personal.id')
         ->join('rol', 'users.idrol', 'rol.id')
-        ->select('users.id', 'users.email', 'personal.ci', 'personal.nombre', 'personal.sexo', 'personal.telefono', 'personal.direccion', 'rol.nombre as rol_nombre', 'users.condicion')
-        ->get();
+        ->select('users.id', 'users.email', 'personal.ci', 'personal.nombre', 'personal.sexo', 'personal.telefono', 'personal.direccion', 'rol.nombre as rol_nombre', 'users.condicion' , 'users.imagen')
+        ->paginate(1);
 
         // $users2 = User::with('rol')->with('personal')->get();
         // dd(json_decode(json_encode($users)),json_decode(json_encode($users2)));
@@ -25,9 +25,9 @@ class UserController extends Controller
             if($request->input('opcion') == 'nombre'){
                 $users = User::join('personal', 'users.idpersonal', 'personal.id')
                 ->join('rol', 'users.idrol', 'rol.id')
-                ->select('users.id', 'users.email', 'personal.ci', 'personal.nombre', 'personal.sexo', 'personal.telefono', 'personal.direccion', 'rol.nombre as rol_nombre', 'users.condicion')
+                ->select('users.id', 'users.email', 'personal.ci', 'personal.nombre', 'personal.sexo', 'personal.telefono', 'personal.direccion', 'rol.nombre as rol_nombre', 'users.condicion', 'users.imagen')
                 ->where('personal.nombre', 'LIKE', '%'.$request->input('texto').'%')
-                ->get();
+                ->paginate(1);
 
                 $view = view('user.datos', compact('users'))->render();
                 return response()->json(['view' => $view], 200);
@@ -35,9 +35,9 @@ class UserController extends Controller
             if($request->input('opcion') == 'telefono'){
                 $users = User::join('personal', 'users.idpersonal', 'personal.id')
                 ->join('rol', 'users.idrol', 'rol.id')
-                ->select('users.id', 'users.email', 'personal.ci', 'personal.nombre', 'personal.sexo', 'personal.telefono', 'personal.direccion', 'rol.nombre as rol_nombre', 'users.condicion')
+                ->select('users.id', 'users.email', 'personal.ci', 'personal.nombre', 'personal.sexo', 'personal.telefono', 'personal.direccion', 'rol.nombre as rol_nombre', 'users.condicion', 'users.imagen')
                 ->where('personal.telefono', 'LIKE', '%'.$request->input('texto').'%')
-                ->get();
+                ->paginate(1);
 
                 $view = view('user.datos', compact('users'))->render();
                 return response()->json(['view' => $view], 200);
@@ -45,9 +45,9 @@ class UserController extends Controller
             if($request->input('opcion') == 'direccion'){
                 $users = User::join('personal', 'users.idpersonal', 'personal.id')
                 ->join('rol', 'users.idrol', 'rol.id')
-                ->select('users.id', 'users.email', 'personal.ci', 'personal.nombre', 'personal.sexo', 'personal.telefono', 'personal.direccion', 'rol.nombre as rol_nombre', 'users.condicion')
+                ->select('users.id', 'users.email', 'personal.ci', 'personal.nombre', 'personal.sexo', 'personal.telefono', 'personal.direccion', 'rol.nombre as rol_nombre', 'users.condicion', 'users.imagen')
                 ->where('personal.direccion', 'LIKE', '%'.$request->input('texto').'%')
-                ->get();
+                ->paginate(1);
                 
                 $view = view('user.datos', compact('users'))->render();
                 return response()->json(['view' => $view], 200);

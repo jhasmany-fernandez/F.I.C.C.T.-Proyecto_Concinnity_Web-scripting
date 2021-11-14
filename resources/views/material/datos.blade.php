@@ -23,4 +23,7 @@
             @endforeach
         </tbody>
     </table>
+    <div>
+        {{$materiales->links()}}
+    </div>
 </div>

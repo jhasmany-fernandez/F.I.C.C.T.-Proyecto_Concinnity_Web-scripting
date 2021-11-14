@@ -27,4 +27,7 @@
             @endforeach
         </tbody>
     </table>
+    <div>
+        {{$clientes->links()}}
+    </div>
 </div>

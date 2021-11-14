@@ -23,4 +23,7 @@
             @endforeach
         </tbody>
     </table>
+    <div>
+        {{$marcas->links()}}
+    </div>
 </div>

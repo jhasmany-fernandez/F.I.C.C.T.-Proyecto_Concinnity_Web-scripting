@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class TallaController extends Controller
 {
     public function index(){
-        $tallas = Talla::get();
+        $tallas = Talla::paginate(4);
         return view('talla.index', ['tallas' => $tallas]);
     }
 
@@ -18,7 +18,7 @@ class TallaController extends Controller
             if($request->input('opcion') == 'nombre'){
                 $tallas = Talla::select('talla.id', 'talla.nombre')
                 ->where('talla.nombre', 'LIKE', '%'.$request->input('texto').'%')
-                ->get();
+                ->paginate(4);
                 $view = view('talla.datos', compact('tallas'))->render();
                 return response()->json(['view' => $view], 200);
             }

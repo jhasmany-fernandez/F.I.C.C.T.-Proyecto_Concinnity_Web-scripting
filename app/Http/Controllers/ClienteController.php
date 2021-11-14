@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class ClienteController extends Controller
 {
     public function index(){
-        $clientes = Cliente::get();
+        $clientes = Cliente::paginate(4);
         return view('cliente.index', ['clientes' => $clientes]);
     }
 
@@ -18,14 +18,14 @@ class ClienteController extends Controller
             if($request->input('opcion') == 'nombre'){
                 $clientes = Cliente::select('cliente.id', 'cliente.nombre', 'cliente.telefono', 'cliente.correo')
                 ->where('cliente.nombre', 'LIKE', '%'.$request->input('texto').'%')
-                ->get();
+                ->paginate(4);
                 $view = view('cliente.datos', compact('clientes'))->render();
                 return response()->json(['view' => $view], 200);
             }
             if($request->input('opcion') == 'telefono'){
                 $clientes = Cliente::select('cliente.id', 'cliente.nombre', 'cliente.telefono', 'cliente.correo')
                 ->where('cliente.telefono', 'LIKE', '%'.$request->input('texto').'%')
-                ->get();
+                ->paginate(4);
 
                 $view = view('cliente.datos', compact('clientes'))->render();
                 return response()->json(['view' => $view], 200);
