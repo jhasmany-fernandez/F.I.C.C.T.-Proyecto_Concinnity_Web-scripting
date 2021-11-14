@@ -44,7 +44,7 @@
 
             <div class="card card-login card-white">
                 <div class="card-header">
-                    <img src="img/card-primary.jpeg" alt="Profile Photo">
+                    <img src="/public/img/card-primary.png" alt="Profile Photo">
                     <h1 class="card-title">{{ __('Inicia sesión') }}</h1>
                 </div>
                 <div class="card-body">
