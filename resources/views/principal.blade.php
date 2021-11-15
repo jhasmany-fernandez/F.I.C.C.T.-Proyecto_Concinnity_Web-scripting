@@ -24,7 +24,7 @@
     <title>{{ config('app.name', 'Black Dashboard Laravel - Free Laravel Preset') }}</title>
         <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png">
-    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="icon" type="image/png" href="/public/img/favicon.png">
         <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -47,10 +47,10 @@
                 @else
                     @include('sidebar.vendedor')
                 @endif
-                
+
             @endif
-            
-                                
+
+
             <div class="main-panel">
                 @if (Auth::check())
                     @if (Auth::user()->idrol == 1)
@@ -58,10 +58,10 @@
                     @else
                         @include('header.vendedor')
                     @endif
-                
+
                 @endif
-            
-                <!--Contenido principal-->     
+
+                <!--Contenido principal-->
                 @yield('contenido')
                 <!--Fin contenido principal-->
                 <footer class="footer" style="padding-top: 0px">
@@ -113,7 +113,7 @@
         }
                 toastr.success("{{ session('message') }}");
         @endif
-      
+
         @if(Session::has('error'))
         toastr.options =
         {
@@ -122,7 +122,7 @@
         }
                 toastr.error("{{ session('error') }}");
         @endif
-      
+
         @if(Session::has('info'))
         toastr.options =
         {
@@ -131,7 +131,7 @@
         }
                 toastr.info("{{ session('info') }}");
         @endif
-      
+
         @if(Session::has('warning'))
         toastr.options =
         {

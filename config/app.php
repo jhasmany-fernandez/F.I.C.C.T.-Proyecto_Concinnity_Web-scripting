@@ -7,9 +7,9 @@ return [
     | Application Name
     |--------------------------------------------------------------------------
     |
-    | This value is the name of your application. This value is used when the
-    | framework needs to place the application's name in a notification or
-    | any other location as required by the application or its packages.
+    | Este valor es el nombre de su aplicación. Este valor se utiliza cuando
+    | framework necesita colocar el nombre de la aplicación en una notificación o
+    | cualquier otra ubicación según lo requiera la aplicación o sus paquetes
     |
     */
 
