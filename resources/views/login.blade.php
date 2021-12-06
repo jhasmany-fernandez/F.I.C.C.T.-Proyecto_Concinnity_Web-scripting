@@ -44,11 +44,11 @@
 
             <div class="card card-login card-white">
                 <div class="card-header">
-                    <img src="/public/img/card-primary.png" alt="Profile Photo">
-                    <h1 class="card-title">{{ __('Inicia sesión') }}</h1>
+                    <img src="public/img/card-primary.png" alt="Profile Photo">
+                    <h1 class="card-title"><strong>Iniciar Sesión</strong></h1>
                 </div>
                 <div class="card-body">
-                    <p class="text-dark mb-2">Inicie sesión con <strong>tuusuario@concinnity.com</strong> y el secreto de <strong>contraseña</strong></p>
+                    <p class="text-dark mb-2">Inicie sesion con el e-mail y la contraseña entregada</p>
                     <div class="input-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -56,7 +56,6 @@
                             </div>
                         </div>
                         <input type="email" required name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}">
-
                     </div>
                     <div class="input-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                         <div class="input-group-prepend">

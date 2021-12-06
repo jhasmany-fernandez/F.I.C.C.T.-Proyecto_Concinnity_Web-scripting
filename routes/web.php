@@ -9,6 +9,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\TallaController;
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\TallaProductoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -87,4 +89,20 @@ Route::middleware(['auth'])->group(function () {
     Route::get('talla/edit/{id}', [TallaController::class, 'edit']);
     Route::post('talla/update', [TallaController::class, 'update']);
     Route::get('talla/busqueda', [TallaController::class, 'busqueda']);
+
+    //Productos
+    Route::get('productos', [ProductoController::class, 'index']);
+    Route::get('producto/create', [ProductoController::class, 'create']);
+    Route::post('producto/create', [ProductoController::class, 'store']);
+    Route::get('producto/edit/{id}', [ProductoController::class, 'edit']);
+    Route::get('producto/ver/{id}', [ProductoController::class, 'ver']);
+    Route::post('producto/update', [ProductoController::class, 'update']);
+    Route::post('producto/desactivar', [ProductoController::class, 'desactivar']);
+    Route::post('producto/activar', [ProductoController::class, 'activar']);
+    Route::get('producto/busqueda', [ProductoController::class, 'busqueda']);
+
+    //TallaProductos
+    Route::post('tallaproducto/update', [ProductoController::class, 'updateTallaProducto']);
+    Route::get('tallaproducto/ver/{id}', [TallaProductoController::class, 'ver']);
+    Route::post('tallaproducto/updatestock', [TallaProductoController::class, 'update']);
 });

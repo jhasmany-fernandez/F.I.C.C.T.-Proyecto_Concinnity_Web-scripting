@@ -70,6 +70,23 @@
                 </div>
             </li>
             <li>
+                <a data-toggle="collapse" data-target="#desplegar1" aria-expanded="false" aria-controls="desplegar1">
+                    <i class="tim-icons icon-components"></i>
+                    <span class="nav-link-text">Inventario</span>
+                    <b class="caret mt-1"></b>
+                </a>
+                <div class="collapse" id="desplegar1">
+                    <ul class="nav pl-4">
+                        <li >
+                            <a href="{{url('productos')}}">
+                                <i class="tim-icons icon-basket-simple"></i>
+                                <p>Producto</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
                 <a data-toggle="collapse" data-target="#desplegar2" aria-expanded="false" aria-controls="desplegar2">
                     <i class="tim-icons icon-cart"></i>
                     <span class="nav-link-text">Venta</span>

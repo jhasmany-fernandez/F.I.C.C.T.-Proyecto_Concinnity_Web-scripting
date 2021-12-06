@@ -13,6 +13,11 @@ class Marca extends Model
     protected $fillable = ['nombre'];
     public $timestamps = false;
 
+    public function producto()
+    {
+        return $this->hasMany('App\Models\Producto','idproducto','id');
+    }
+
     public static function store(Request $request){
         $marca = new Marca();
         $marca->nombre = $request->nombre;
