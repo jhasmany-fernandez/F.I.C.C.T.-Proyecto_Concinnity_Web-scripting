@@ -8,8 +8,12 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\NotaCompraController;
+use App\Http\Controllers\NotaVentaController;
+use App\Http\Controllers\NotaSalidaController;
 use App\Http\Controllers\TallaController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\TallaProductoController;
 use Illuminate\Support\Facades\Route;
 
@@ -105,4 +109,36 @@ Route::middleware(['auth'])->group(function () {
     Route::post('tallaproducto/update', [ProductoController::class, 'updateTallaProducto']);
     Route::get('tallaproducto/ver/{id}', [TallaProductoController::class, 'ver']);
     Route::post('tallaproducto/updatestock', [TallaProductoController::class, 'update']);
+
+    //Notas de ventas
+    Route::get('notasventas', [NotaVentaController::class, 'index']);
+    Route::get('notaventa/create', [NotaVentaController::class, 'create']);
+    Route::post('notaventa/store', [NotaVentaController::class, 'store']);
+    Route::get('notaventa/ver/{id}', [NotaVentaController::class, 'ver']);
+    Route::post('notaventa/desactivar', [NotaVentaController::class, 'desactivar']);
+    Route::get('notaventa/busqueda', [NotaVentaController::class, 'busqueda']);
+
+    //Notas de salida
+    Route::get('notassalidas', [NotaSalidaController::class, 'index']);
+    Route::get('notasalida/create', [NotaSalidaController::class, 'create']);
+    Route::post('notasalida/store', [NotaSalidaController::class, 'store']);
+    Route::get('notasalida/ver/{id}', [NotaSalidaController::class, 'ver']);
+    Route::post('notasalida/desactivar', [NotaSalidaController::class, 'desactivar']);
+    Route::get('notasalida/busqueda', [NotaSalidaController::class, 'busqueda']);
+
+    //Proveedores
+    Route::get('proveedores', [ProveedorController::class, 'index']);
+    Route::get('proveedor/create', [ProveedorController::class, 'create']);
+    Route::post('proveedor/create', [ProveedorController::class, 'store']);
+    Route::get('proveedor/edit/{id}', [ProveedorController::class, 'edit']);
+    Route::post('proveedor/update', [ProveedorController::class, 'update']);
+    Route::get('proveedor/busqueda', [ProveedorController::class, 'busqueda']);
+
+    //Notas de ventas
+    Route::get('notascompras', [NotaCompraController::class, 'index']);
+    Route::get('notacompra/create', [NotaCompraController::class, 'create']);
+    Route::post('notacompra/store', [NotaCompraController::class, 'store']);
+    Route::get('notacompra/ver/{id}', [NotaCompraController::class, 'ver']);
+    Route::post('notacompra/desactivar', [NotaCompraController::class, 'desactivar']);
+    Route::get('notacompra/busqueda', [NotaCompraController::class, 'busqueda']);
 });

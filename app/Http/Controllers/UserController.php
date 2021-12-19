@@ -13,7 +13,7 @@ class UserController extends Controller
         $users = User::join('personal', 'users.idpersonal', 'personal.id')
         ->join('rol', 'users.idrol', 'rol.id')
         ->select('users.id', 'users.email', 'personal.ci', 'personal.nombre', 'personal.sexo', 'personal.telefono', 'personal.direccion', 'rol.nombre as rol_nombre', 'users.condicion' , 'users.imagen')
-        ->paginate(1);
+        ->paginate(2);
 
         // $users2 = User::with('rol')->with('personal')->get();
         // dd(json_decode(json_encode($users)),json_decode(json_encode($users2)));
@@ -27,7 +27,7 @@ class UserController extends Controller
                 ->join('rol', 'users.idrol', 'rol.id')
                 ->select('users.id', 'users.email', 'personal.ci', 'personal.nombre', 'personal.sexo', 'personal.telefono', 'personal.direccion', 'rol.nombre as rol_nombre', 'users.condicion', 'users.imagen')
                 ->where('personal.nombre', 'LIKE', '%'.$request->input('texto').'%')
-                ->paginate(1);
+                ->paginate(2);
 
                 $view = view('user.datos', compact('users'))->render();
                 return response()->json(['view' => $view], 200);
@@ -37,7 +37,7 @@ class UserController extends Controller
                 ->join('rol', 'users.idrol', 'rol.id')
                 ->select('users.id', 'users.email', 'personal.ci', 'personal.nombre', 'personal.sexo', 'personal.telefono', 'personal.direccion', 'rol.nombre as rol_nombre', 'users.condicion', 'users.imagen')
                 ->where('personal.telefono', 'LIKE', '%'.$request->input('texto').'%')
-                ->paginate(1);
+                ->paginate(2);
 
                 $view = view('user.datos', compact('users'))->render();
                 return response()->json(['view' => $view], 200);
@@ -47,7 +47,7 @@ class UserController extends Controller
                 ->join('rol', 'users.idrol', 'rol.id')
                 ->select('users.id', 'users.email', 'personal.ci', 'personal.nombre', 'personal.sexo', 'personal.telefono', 'personal.direccion', 'rol.nombre as rol_nombre', 'users.condicion', 'users.imagen')
                 ->where('personal.direccion', 'LIKE', '%'.$request->input('texto').'%')
-                ->paginate(1);
+                ->paginate(2);
                 
                 $view = view('user.datos', compact('users'))->render();
                 return response()->json(['view' => $view], 200);

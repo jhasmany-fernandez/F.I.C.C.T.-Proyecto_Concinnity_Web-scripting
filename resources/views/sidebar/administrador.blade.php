@@ -88,22 +88,22 @@
             </li>
             <li>
                 <a data-toggle="collapse" data-target="#desplegar2" aria-expanded="false" aria-controls="desplegar2">
-                    <i class="tim-icons icon-cart"></i>
-                    <span class="nav-link-text">Venta</span>
+                    <i class="tim-icons icon-bag-16"></i>
+                    <span class="nav-link-text">Compra</span>
                     <b class="caret mt-1"></b>
                 </a>
                 <div class="collapse" id="desplegar2">
                     <ul class="nav pl-4">
                         <li >
-                            <a href="{{url('clientes')}}">
+                            <a href="{{url('proveedores')}}">
                                 <i class="tim-icons icon-single-02"></i>
-                                <p>Cliente</p>
+                                <p>Proveedor</p>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <i class="tim-icons icon-paper"></i>
-                                <p>Nota de Venta</p>
+                            <a href="{{url('notascompras')}}">
+                                <i class="tim-icons icon-book-bookmark"></i>
+                                <p>Nota de Compra</p>
                             </a>
                         </li>
                     </ul>
@@ -111,22 +111,16 @@
             </li>
             <li>
                 <a data-toggle="collapse" data-target="#desplegar3" aria-expanded="false" aria-controls="desplegar3">
-                    <i class="tim-icons icon-bag-16"></i>
-                    <span class="nav-link-text">Compra</span>
+                    <i class="tim-icons icon-cart"></i>
+                    <span class="nav-link-text">Salida</span>
                     <b class="caret mt-1"></b>
                 </a>
                 <div class="collapse" id="desplegar3">
                     <ul class="nav pl-4">
-                        <li >
-                            <a href="#">
-                                <i class="tim-icons icon-single-02"></i>
-                                <p>Proveedor</p>
-                            </a>
-                        </li>
                         <li>
-                            <a href="#">
-                                <i class="tim-icons icon-book-bookmark"></i>
-                                <p>Nota de Compra</p>
+                            <a href="{{url('notassalidas')}}">
+                                <i class="tim-icons icon-paper"></i>
+                                <p>Nota de Salida</p>
                             </a>
                         </li>
                     </ul>

@@ -13,6 +13,11 @@ class Cliente extends Model
     protected $fillable = ['nombre','telefono','correo'];
     public $timestamps = false;
 
+    public function notaventa()
+    {
+        return $this->hasMany('App\Models\Notaventa','idcliente','id');
+    }
+
     public static function store(Request $request){
         $cliente = new Cliente();
         $cliente->nombre = $request->nombre;

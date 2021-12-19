@@ -11,37 +11,18 @@
                     <p>Escritorio</p>
                 </a>
             </li>
-        
             <li>
-                <a data-toggle="collapse" data-target="#desplegar" aria-expanded="false" aria-controls="desplegar">
-                    <i class="tim-icons icon-vector"></i>
-                    <span class="nav-link-text" >Características</span>
+                <a data-toggle="collapse" data-target="#desplegar1" aria-expanded="false" aria-controls="desplegar1">
+                    <i class="tim-icons icon-components"></i>
+                    <span class="nav-link-text">Inventario</span>
                     <b class="caret mt-1"></b>
                 </a>
-                <div class="collapse" id="desplegar">
+                <div class="collapse" id="desplegar1">
                     <ul class="nav pl-4">
                         <li >
-                            <a href="{{url('categorias')}}">
-                                <i class="tim-icons icon-notes"></i>
-                                <p>Categoría</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{url('marcas')}}">
-                                <i class="tim-icons icon-bold"></i>
-                                <p>Marca</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{url('materiales')}}">
-                                <i class="tim-icons icon-puzzle-10"></i>
-                                <p>Material</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{url('tallas')}}">
-                                <i class="tim-icons icon-caps-small"></i>
-                                <p>Talla</p>
+                            <a href="{{url('productos')}}">
+                                <i class="tim-icons icon-basket-simple"></i>
+                                <p>Producto</p>
                             </a>
                         </li>
                     </ul>
@@ -62,7 +43,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{url('notasventas')}}">
                                 <i class="tim-icons icon-paper"></i>
                                 <p>Nota de Venta</p>
                             </a>

@@ -35,6 +35,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Rol','idrol','id');
     }
 
+    public function notaventa()
+    {
+        return $this->hasMany('App\Models\Notaventa','idnotaventa','id');
+    }
+
     public static function store(Request $request){
         $personal = new Personal();
         $personal->ci = $request->ci;

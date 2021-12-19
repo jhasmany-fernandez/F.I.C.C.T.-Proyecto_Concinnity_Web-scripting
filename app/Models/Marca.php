@@ -15,7 +15,7 @@ class Marca extends Model
 
     public function producto()
     {
-        return $this->hasMany('App\Models\Producto','idproducto','id');
+        return $this->hasMany('App\Models\Producto','idmarca','id');
     }
 
     public static function store(Request $request){

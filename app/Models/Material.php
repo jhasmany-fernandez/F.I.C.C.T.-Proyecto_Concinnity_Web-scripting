@@ -15,7 +15,7 @@ class Material extends Model
 
     public function producto()
     {
-        return $this->hasMany('App\Models\Producto','idproducto','id');
+        return $this->hasMany('App\Models\Producto','idmaterial','id');
     }
 
     public static function store(Request $request){

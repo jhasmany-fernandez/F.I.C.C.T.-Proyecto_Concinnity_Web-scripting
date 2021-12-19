@@ -119,6 +119,13 @@ class ProductoController extends Controller
             $producto = Producto::findOrFail($request->input('id'));
             $producto->condicion = 0;
             $producto->update();
+
+            $tallasproductos = Tallaproducto::where('idproducto', $producto->id)->get();
+            foreach ($tallasproductos as $value) {
+                $tallaproducto = Tallaproducto::find($value->id);
+                $tallaproducto->condicion = 0;
+                $tallaproducto->update();
+            }
             DB::commit();
             return  response()->json(['mensaje' => 'Producto desactivado...'], 200);
         } catch (\Exception $e) {
@@ -134,6 +141,13 @@ class ProductoController extends Controller
             $producto = Producto::findOrFail($request->input('id'));
             $producto->condicion = 1;
             $producto->update();
+
+            $tallasproductos = Tallaproducto::where('idproducto', $producto->id)->get();
+            foreach ($tallasproductos as $value) {
+                $tallaproducto = Tallaproducto::find($value->id);
+                $tallaproducto->condicion = 1;
+                $tallaproducto->update();
+            }
             DB::commit();
             return  response()->json(['mensaje' => 'Producto activado...'], 200);
         } catch (\Exception $e) {
