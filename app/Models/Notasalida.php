@@ -33,8 +33,6 @@ class Notasalida extends Model
             $obtener_tallaproducto_de_db->stock = $obtener_tallaproducto_de_db->stock - $detalle->cantidad;
             $obtener_tallaproducto_de_db->update();
 
-            $productos = Producto::find($obtener_tallaproducto_de_db->idproducto); 
-
             $detallenotasalida->idtallaproducto = $detalle->id;
             $detallenotasalida->idnotasalida = $notasalida->id;
             $detallenotasalida->save();

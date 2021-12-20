@@ -18,7 +18,7 @@
                         <div class="row">
                             <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                                 <select class="form-control" id="opcion" name="opcion">
-                                    <option class="text-dark" value="cliente">Proveedor</option>
+                                    <option class="text-dark" value="proveedor">Proveedor</option>
                                 </select>
                             </div>
                             <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
@@ -93,6 +93,8 @@
             function paginar(page){
                 var texto = $('#texto').val();
                 var opcion = $('#opcion').val();
+                console.log('A '+texto);
+                console.log('B ' +opcion);
                 $.ajax({
                     type: "GET",
                     url: "{{url('notacompra/busqueda')}}" + '?page=' + page,
@@ -118,6 +120,7 @@
             $("#texto").keyup(function() {
                 let texto = $("#texto").val();
                 let opcion = $("#opcion").val();
+                console.log(texto, opcion);
                 $.ajax({
                     type: "GET",
                     url: "{{url('notacompra/busqueda')}}",

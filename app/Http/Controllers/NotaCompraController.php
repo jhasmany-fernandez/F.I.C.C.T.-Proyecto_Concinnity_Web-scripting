@@ -35,7 +35,7 @@ class NotaCompraController extends Controller
                     array_push($ids_proveedores, $value->idproveedor);
                 }
 
-                $notasventas = Notacompra::whereIn('idproveedor', $ids_proveedores)->with('proveedor')->with('user')
+                $notascompras = Notacompra::whereIn('idproveedor', $ids_proveedores)->with('proveedor')->with('user')
                 ->paginate(4);
 
                 $view = view('notacompra.datos', compact('notascompras'))->render();
