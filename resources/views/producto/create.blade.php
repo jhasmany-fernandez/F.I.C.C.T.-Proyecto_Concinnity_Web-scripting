@@ -37,7 +37,7 @@
                             <div class="form-group row">
                                 <div class="col-md-4 col-sm-4">
                                     <label class="text-info">Oferta: </label>
-                                    <input name="oferta" class="form-control" type="decimal" placeholder="Oferta...">
+                                    <input name="oferta" class="form-control" min="0" type="decimal" value="0" placeholder="Oferta..." required>
                                 </div>
                                 <div class="col-md-4 col-sm-4">
                                     <label class="text-info">Categoria: </label>

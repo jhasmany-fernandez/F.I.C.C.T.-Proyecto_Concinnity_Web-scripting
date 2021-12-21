@@ -23,6 +23,7 @@ class CreateDetallenotaventaTable extends Migration
             $table->unsignedBigInteger('idnotaventa');
             $table->foreign('idnotaventa')->references('id')->on('notaventa');
             $table->timestamps();
+
         });
     }
 

@@ -43,7 +43,9 @@
                                             <thead>
                                                 <tr>
                                                     <th>Nombre</th>
+                                                    <th>Precio</th>
                                                     <th>Cantidad</th>
+                                                    <th>Total</th>
                                                     <th>Opciones</th>
                                                 </tr>
                                             </thead>
@@ -77,6 +79,7 @@
         detalles.forEach(element => {
             if(element.id == id){
                 element.cantidad = elemento.value;
+                element.total =  element.cantidad * element.precio;
             }
         });
 
@@ -85,7 +88,9 @@
             $('#detalles').append(`
                 <tr>
                     <td>`+(element.nombre)+`</td>
+                    <td>`+(element.precio)+`</td>
                     <td><input class="form-control" type="text" id="cantidad-`+(element.id)+`" onchange="actualizarCantidad('`+element.id+`')" value="`+(element.cantidad)+`" required></td>
+                    <td>`+(element.total)+`</td>
                     <td>
                         <button type="button" onclick="eliminarDetalle(`+(element.id)+`)" class="btn btn-danger btn-sm">
                             <i class="tim-icons icon-trash-simple"></i>
@@ -108,7 +113,9 @@
             $('#detalles').append(`
                 <tr>
                     <td>`+(element.nombre)+`</td>
+                    <td>`+(element.precio)+`</td>
                     <td><input class="form-control" type="text" id="cantidad-`+(element.id)+`" onchange="actualizarCantidad('`+element.id+`')" value="`+(element.cantidad)+`" required></td>
+                    <td>`+(element.total)+`</td>
                     <td>
                         <button type="button" onclick="eliminarDetalle(`+(element.id)+`)" class="btn btn-danger btn-sm">
                             <i class="tim-icons icon-trash-simple"></i>
@@ -182,13 +189,14 @@
             // console.log(this.value);
             tallasproductos.forEach(element => {
                 if(this.value == element.id){
-                    let detalle = {id: element.id, nombre: element.producto.nombre + ' ' + element.talla.nombre, cantidad: 1};
-                    
+                    let detalle = {id: element.id, nombre: element.producto.nombre + ' ' + element.talla.nombre, precio: element.producto.precio, cantidad: 1, total: element.producto.precio};
+
                     var bandera = false;
                     detalles.forEach(element => {
                         if(element.id == this.value){
                             bandera = true;
                             element.cantidad++;
+                            element.total =  element.cantidad * element.precio;
                         }
                     });
                     if(!bandera){
@@ -200,7 +208,9 @@
                         $('#detalles').append(`
                             <tr>
                                 <td>`+(element.nombre)+`</td>
+                                <td>`+(element.precio)+`</td>
                                 <td><input class="form-control" type="text" id="cantidad-`+(element.id)+`" onchange="actualizarCantidad('`+element.id+`')" value="`+(element.cantidad)+`" required></td>
+                                <td>`+(element.total)+`</td>
                                 <td>
                                     <button type="button" onclick="eliminarDetalle(`+(element.id)+`)" class="btn btn-danger btn-sm">
                                         <i class="tim-icons icon-trash-simple"></i>

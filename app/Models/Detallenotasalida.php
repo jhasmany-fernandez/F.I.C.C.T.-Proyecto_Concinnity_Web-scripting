@@ -9,7 +9,7 @@ class Detallenotasalida extends Model
 {
     use HasFactory;
     protected $table = 'detallenotasalida';
-    protected $fillable = ['cantidad', 'idtallaproducto','idnotasalida'];
+    protected $fillable = ['precio', 'cantidad', 'total', 'idtallaproducto','idnotasalida'];
     public $timestamps = true;
 
     public function tallaproducto(){

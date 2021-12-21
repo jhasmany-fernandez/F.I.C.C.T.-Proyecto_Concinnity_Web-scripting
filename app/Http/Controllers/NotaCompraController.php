@@ -80,7 +80,7 @@ class NotaCompraController extends Controller
             
             $notascompras = Notacompra::find($notacompra->id);
             $detallesnotascompras = Detallenotacompra::whereIn('idnotacompra', $notascompras)->get();
-            //dd(json_decode(json_encode($detallesnotasventas)));
+            //dd(json_decode(json_encode($detallesnotascompras)));
             foreach ($detallesnotascompras as $detalle) {
                 $obtener_tallaproducto_de_db = Tallaproducto::find($detalle->idtallaproducto);
                 $obtener_tallaproducto_de_db->stock = $obtener_tallaproducto_de_db->stock - $detalle->cantidad;

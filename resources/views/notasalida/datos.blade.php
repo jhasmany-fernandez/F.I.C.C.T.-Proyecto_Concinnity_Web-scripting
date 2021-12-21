@@ -4,6 +4,7 @@
             <tr >
                 <th class="text-info" scope="col">Opciones</th>
                 <th class="text-info" scope="col">Fecha y Hora</th>
+                <th class="text-info" scope="col">Pérdida Total</th>
                 <th class="text-info" scope="col">Descripción</th>
                 <th class="text-info" scope="col">Estado</th>
             </tr>
@@ -22,6 +23,7 @@
                         </a>
                     </td>
                     <td>{{$notasalida->created_at}}</td>
+                    <td>{{$notasalida->pérdida_total}}</td>
                     <td>{{$notasalida->descripcion}}</td>
                     <td>
                         @if ($notasalida->condicion == 1)

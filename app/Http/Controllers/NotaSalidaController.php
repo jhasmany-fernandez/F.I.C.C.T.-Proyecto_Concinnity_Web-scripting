@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\DetalleNotaVenta as ControllersDetalleNotaVenta;
-use App\Models\Cliente;
 use App\Models\Detallenotasalida;
 use App\Models\Producto;
 use App\Models\Notasalida;
-use App\Models\Detallenotaventa;
 use App\Models\Tallaproducto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +28,7 @@ class NotaSalidaController extends Controller
     public function busqueda(Request $request){
         try {
             if($request->input('opcion') == 'created_at'){
-                $notassalidas = Notasalida::select('notasalida.id', 'notasalida.descripcion', 'notasalida.created_at', 'notasalida.condicion')
+                $notassalidas = Notasalida::select('notasalida.id', 'notasalida.pérdida_total', 'notasalida.descripcion', 'notasalida.created_at', 'notasalida.condicion')
                 ->where('notasalida.created_at', 'LIKE', '%'.$request->input('texto').'%')
                 ->paginate(4);
 
