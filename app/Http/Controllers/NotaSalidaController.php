@@ -28,7 +28,7 @@ class NotaSalidaController extends Controller
     public function busqueda(Request $request){
         try {
             if($request->input('opcion') == 'created_at'){
-                $notassalidas = Notasalida::select('notasalida.id', 'notasalida.pérdida_total', 'notasalida.descripcion', 'notasalida.created_at', 'notasalida.condicion')
+                $notassalidas = Notasalida::select('notasalida.id', 'notasalida.perdida_total', 'notasalida.descripcion', 'notasalida.created_at', 'notasalida.condicion')
                 ->where('notasalida.created_at', 'LIKE', '%'.$request->input('texto').'%')
                 ->paginate(4);
 

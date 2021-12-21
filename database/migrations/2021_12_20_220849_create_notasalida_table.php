@@ -16,7 +16,7 @@ class CreateNotasalidaTable extends Migration
         Schema::create('notasalida', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion', 50)->nullable();
-            $table->decimal('pérdida_total',7,2);
+            $table->decimal('perdida_total',7,2);
             $table->tinyInteger('condicion')->default(1);
             $table->timestamps();
         });

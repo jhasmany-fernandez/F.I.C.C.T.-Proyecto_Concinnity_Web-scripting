@@ -10,7 +10,7 @@ class Notasalida extends Model
 {
     use HasFactory;
     protected $table = 'notasalida';
-    protected $fillable = ['pérdida_total', 'descripcion','condicion','created_at'];
+    protected $fillable = ['perdida_total', 'descripcion','condicion','created_at'];
     public $timestamps = true;
 
     public static function store(Request $request){
@@ -18,7 +18,7 @@ class Notasalida extends Model
             return "Es necesario ingresar algunos detalles";
         }
         $notasalida = new Notasalida();
-        $notasalida->pérdida_total = 0;
+        $notasalida->perdida_total = 0;
         $notasalida->descripcion = $request->descripcion;
         $notasalida->save();
         // dd(json_decode($request->detalles));
@@ -46,7 +46,7 @@ class Notasalida extends Model
         }
 
         $notasalidaactualizado = Notasalida::find($notasalida->id);
-        $notasalidaactualizado->pérdida_total = $total_de_detalles;
+        $notasalidaactualizado->perdida_total = $total_de_detalles;
         $notasalidaactualizado->update();
 
         return '';

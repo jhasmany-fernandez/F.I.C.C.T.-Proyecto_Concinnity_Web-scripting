@@ -23,7 +23,7 @@
                         </a>
                     </td>
                     <td>{{$notasalida->created_at}}</td>
-                    <td>{{$notasalida->pérdida_total}}</td>
+                    <td>{{$notasalida->perdida_total}}</td>
                     <td>{{$notasalida->descripcion}}</td>
                     <td>
                         @if ($notasalida->condicion == 1)
