@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class Producto extends Model
@@ -61,6 +62,12 @@ class Producto extends Model
             $tallaproducto->save();
         }
 
+        $bitacora = new Bitacora();
+        $bitacora->accion = 'Registrar';
+        $bitacora->tabla = 'Producto';
+        $bitacora->nombre_implicado = $request->nombre;;
+        $bitacora->idusuario = Auth::user()->id;
+        $bitacora->save();
     }
 
     public static function actualizar(Request $request){
@@ -86,5 +93,12 @@ class Producto extends Model
         $producto->idmaterial = $request->idmaterial;
         $producto->idmarca = $request->idmarca;
         $producto->update();
+
+        $bitacora = new Bitacora();
+        $bitacora->accion = 'Actualizar';
+        $bitacora->tabla = 'Producto';
+        $bitacora->nombre_implicado = $request->nombre;;
+        $bitacora->idusuario = Auth::user()->id;
+        $bitacora->save();
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClienteController;
@@ -141,4 +142,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('notacompra/ver/{id}', [NotaCompraController::class, 'ver']);
     Route::post('notacompra/desactivar', [NotaCompraController::class, 'desactivar']);
     Route::get('notacompra/busqueda', [NotaCompraController::class, 'busqueda']);
+
+    //Bitacora
+    Route::get('bitacoras', [BitacoraController::class, 'index']);
+    Route::get('bitacora/busqueda', [BitacoraController::class, 'busqueda']);
 });

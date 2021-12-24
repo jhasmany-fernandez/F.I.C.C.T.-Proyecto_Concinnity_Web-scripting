@@ -14,7 +14,7 @@
             <li>
                 <a data-toggle="collapse" data-target="#bajar" aria-expanded="false" aria-controls="bajar">
                     <i class="tim-icons icon-double-right"></i>
-                    <span class="nav-link-text" >Acceso</span>
+                    <span class="nav-link-text" >Administración</span>
                     <b class="caret mt-1"></b>
                 </a>
                 <div class="collapse" id="bajar">
@@ -29,6 +29,12 @@
                             <a href="{{url('roles')}}">
                                 <i class="tim-icons icon-bullet-list-67"></i>
                                 <p>Rol</p>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="{{url('bitacoras')}}">
+                                <i class="tim-icons icon-link-72"></i>
+                                <p>Bitácora</p>
                             </a>
                         </li>
                     </ul>
@@ -125,12 +131,6 @@
                         </li>
                     </ul>
                 </div>
-            </li>
-            <li >
-                <a href="#">
-                    <i class="tim-icons icon-world"></i>
-                    <p>{{ _('RTL Support') }}</p>
-                </a>
             </li>
             <li>&nbsp;</li>
             <li>&nbsp;</li>

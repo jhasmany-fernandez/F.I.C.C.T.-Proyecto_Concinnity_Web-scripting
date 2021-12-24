@@ -62,6 +62,12 @@ class Notaventa extends Model
         $notaventaactualizado->monto_total = $total_de_detalles - $notaventa->descuento;
         $notaventaactualizado->update();
 
+        $bitacora = new Bitacora();
+        $bitacora->accion = 'Registrar';
+        $bitacora->tabla = 'Nota de venta';
+        $bitacora->idusuario = Auth::user()->id;
+        $bitacora->save();
+
         return '';
     }
 

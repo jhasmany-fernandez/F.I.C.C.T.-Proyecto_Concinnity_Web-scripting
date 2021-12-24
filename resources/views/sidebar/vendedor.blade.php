@@ -51,13 +51,6 @@
                     </ul>
                 </div>
             </li>
-            
-            <li >
-                <a href="#">
-                    <i class="tim-icons icon-world"></i>
-                    <p>{{ _('RTL Support') }}</p>
-                </a>
-            </li>
             <li>&nbsp;</li>
             <li>&nbsp;</li>
             <li>&nbsp;</li>

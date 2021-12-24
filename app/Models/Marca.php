@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Marca extends Model
 {
@@ -22,11 +23,25 @@ class Marca extends Model
         $marca = new Marca();
         $marca->nombre = $request->nombre;
         $marca->save();
+
+        $bitacora = new Bitacora();
+        $bitacora->accion = 'Registrar';
+        $bitacora->tabla = 'Marca';
+        $bitacora->nombre_implicado = $request->nombre;
+        $bitacora->idusuario = Auth::user()->id;
+        $bitacora->save();
     }
 
     public static function actualizar(Request $request){
         $marca = Marca::findOrFail($request->id);
         $marca->nombre = $request->nombre;
         $marca->update();
+
+        $bitacora = new Bitacora();
+        $bitacora->accion = 'Actualizar';
+        $bitacora->tabla = 'Marca';
+        $bitacora->nombre_implicado = $request->nombre;
+        $bitacora->idusuario = Auth::user()->id;
+        $bitacora->save();
     }
 }

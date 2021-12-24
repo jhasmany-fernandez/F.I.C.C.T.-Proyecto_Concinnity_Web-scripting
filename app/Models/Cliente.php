@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Cliente extends Model
 {
@@ -24,6 +25,13 @@ class Cliente extends Model
         $cliente->telefono = $request->telefono;
         $cliente->correo = $request->correo;
         $cliente->save();
+
+        $bitacora = new Bitacora();
+        $bitacora->accion = 'Registrar';
+        $bitacora->tabla = 'Cliente';
+        $bitacora->nombre_implicado = $request->nombre;
+        $bitacora->idusuario = Auth::user()->id;
+        $bitacora->save();
     }
 
     public static function actualizar(Request $request){
@@ -32,5 +40,12 @@ class Cliente extends Model
         $cliente->telefono = $request->telefono;
         $cliente->correo = $request->correo;
         $cliente->update();
+
+        $bitacora = new Bitacora();
+        $bitacora->accion = 'Actualizar';
+        $bitacora->tabla = 'Cliente';
+        $bitacora->nombre_implicado = $request->nombre;
+        $bitacora->idusuario = Auth::user()->id;
+        $bitacora->save();
     }
 }

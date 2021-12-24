@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -40,6 +41,16 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Notaventa','idnotaventa','id');
     }
 
+    public function notacompra()
+    {
+        return $this->hasMany('App\Models\Notacompra','idnotacompra','id');
+    }
+
+    public function bitacora()
+    {
+        return $this->hasMany('App\Models\Bitacora','idusuario','id');
+    }
+
     public static function store(Request $request){
         $personal = new Personal();
         $personal->ci = $request->ci;
@@ -64,6 +75,14 @@ class User extends Authenticatable
         }
         $user->idrol = $request->idrol;
         $user->save();
+
+        
+        $bitacora = new Bitacora();
+        $bitacora->accion = 'Registrar';
+        $bitacora->tabla = 'Usuario';
+        $bitacora->nombre_implicado = $request->nombre;;
+        $bitacora->idusuario = Auth::user()->id;
+        $bitacora->save();
     }
 
     public static function actualizar(Request $request){
@@ -91,5 +110,13 @@ class User extends Authenticatable
         $personal->telefono = $request->telefono;
         $personal->direccion = $request->direccion;
         $personal->update();
+
+        
+        $bitacora = new Bitacora();
+        $bitacora->accion = 'Actualizar';
+        $bitacora->tabla = 'Usuario';
+        $bitacora->nombre_implicado = $request->nombre;;
+        $bitacora->idusuario = Auth::user()->id;
+        $bitacora->save();
     }
 }

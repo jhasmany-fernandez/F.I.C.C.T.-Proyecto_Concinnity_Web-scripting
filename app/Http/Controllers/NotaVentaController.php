@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\DetalleNotaVenta as ControllersDetalleNotaVenta;
+use App\Models\Bitacora;
 use App\Models\Cliente;
 use App\Models\Producto;
 use App\Models\Notaventa;
 use App\Models\Detallenotaventa;
 use App\Models\Tallaproducto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class NotaVentaController extends Controller
@@ -80,7 +82,7 @@ class NotaVentaController extends Controller
             $notaventa->update();
             
             $notasventas = Notaventa::find($notaventa->id);
-            $detallesnotasventas = Detallenotaventa::whereIn('idnotaventa', $notasventas)->get();
+            $detallesnotasventas = Detallenotaventa::where('idnotaventa', $notasventas->id)->get();
             //dd(json_decode(json_encode($detallesnotasventas)));
             foreach ($detallesnotasventas as $detalle) {
                 $obtener_tallaproducto_de_db = Tallaproducto::find($detalle->idtallaproducto);
@@ -88,6 +90,12 @@ class NotaVentaController extends Controller
                 $obtener_tallaproducto_de_db->update();
             }
             
+            $bitacora = new Bitacora();
+            $bitacora->accion = 'Desactivar';
+            $bitacora->tabla = 'Nota de venta';
+            $bitacora->idusuario = Auth::user()->id;
+            $bitacora->save();
+
             DB::commit();
             return  response()->json(['mensaje' => 'Producto devuelto...'], 200);
         } catch (\Exception $e) {

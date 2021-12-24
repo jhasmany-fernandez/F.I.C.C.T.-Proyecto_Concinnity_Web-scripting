@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\Proveedor;
 use App\Models\Producto;
 use App\Models\Notacompra;
 use App\Models\Detallenotacompra;
 use App\Models\Tallaproducto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class NotaCompraController extends Controller
@@ -77,15 +79,22 @@ class NotaCompraController extends Controller
             $notacompra = Notacompra::findOrFail($request->input('id'));
             $notacompra->condicion = 0;
             $notacompra->update();
-            
+            //dd(json_decode(json_encode($notacompra->id)));
             $notascompras = Notacompra::find($notacompra->id);
-            $detallesnotascompras = Detallenotacompra::whereIn('idnotacompra', $notascompras)->get();
+            //dd(json_decode(json_encode($notascompras)));
+            $detallesnotascompras = Detallenotacompra::where('idnotacompra', $notascompras->id)->get();
             //dd(json_decode(json_encode($detallesnotascompras)));
             foreach ($detallesnotascompras as $detalle) {
                 $obtener_tallaproducto_de_db = Tallaproducto::find($detalle->idtallaproducto);
                 $obtener_tallaproducto_de_db->stock = $obtener_tallaproducto_de_db->stock - $detalle->cantidad;
                 $obtener_tallaproducto_de_db->update();
             }
+
+            $bitacora = new Bitacora();
+            $bitacora->accion = 'Desactivar';
+            $bitacora->tabla = 'Nota de compra';
+            $bitacora->idusuario = Auth::user()->id;
+            $bitacora->save();
             
             DB::commit();
             return  response()->json(['mensaje' => 'Producto quitado...'], 200);

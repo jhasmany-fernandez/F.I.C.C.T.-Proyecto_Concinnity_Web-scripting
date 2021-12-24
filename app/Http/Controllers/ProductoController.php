@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\Categoria;
 use App\Models\Material;
 use App\Models\Marca;
@@ -9,6 +10,7 @@ use App\Models\Producto;
 use App\Models\Talla;
 use App\Models\Tallaproducto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ProductoController extends Controller
@@ -126,6 +128,13 @@ class ProductoController extends Controller
                 $tallaproducto->condicion = 0;
                 $tallaproducto->update();
             }
+
+            $bitacora = new Bitacora();
+            $bitacora->accion = 'Desactivar';
+            $bitacora->tabla = 'Producto';
+            $bitacora->nombre_implicado = $producto->nombre;
+            $bitacora->idusuario = Auth::user()->id;
+            $bitacora->save();
             DB::commit();
             return  response()->json(['mensaje' => 'Producto desactivado...'], 200);
         } catch (\Exception $e) {
@@ -148,6 +157,13 @@ class ProductoController extends Controller
                 $tallaproducto->condicion = 1;
                 $tallaproducto->update();
             }
+
+            $bitacora = new Bitacora();
+            $bitacora->accion = 'Activar';
+            $bitacora->tabla = 'Producto';
+            $bitacora->nombre_implicado = $producto->nombre;
+            $bitacora->idusuario = Auth::user()->id;
+            $bitacora->save();
             DB::commit();
             return  response()->json(['mensaje' => 'Producto activado...'], 200);
         } catch (\Exception $e) {

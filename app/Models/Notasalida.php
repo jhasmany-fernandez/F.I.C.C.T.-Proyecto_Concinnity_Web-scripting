@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Notasalida extends Model
 {
@@ -48,6 +49,12 @@ class Notasalida extends Model
         $notasalidaactualizado = Notasalida::find($notasalida->id);
         $notasalidaactualizado->perdida_total = $total_de_detalles;
         $notasalidaactualizado->update();
+
+        $bitacora = new Bitacora();
+        $bitacora->accion = 'Registrar';
+        $bitacora->tabla = 'Nota de salida';
+        $bitacora->idusuario = Auth::user()->id;
+        $bitacora->save();
 
         return '';
     }

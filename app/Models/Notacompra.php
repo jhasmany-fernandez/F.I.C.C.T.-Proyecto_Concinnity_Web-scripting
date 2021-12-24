@@ -60,6 +60,12 @@ class Notacompra extends Model
         $notacompraactualizado->monto_total = $total_de_detalles;
         $notacompraactualizado->update();
 
+        $bitacora = new Bitacora();
+        $bitacora->accion = 'Registrar';
+        $bitacora->tabla = 'Nota de compra';
+        $bitacora->idusuario = Auth::user()->id;
+        $bitacora->save();
+
         return '';
     }
 }

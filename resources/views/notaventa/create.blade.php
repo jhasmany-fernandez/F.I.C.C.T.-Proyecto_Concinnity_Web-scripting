@@ -27,7 +27,7 @@
                                     <select class="form-control" id="idtallaproducto" name="idtallaproducto">
                                         <option value="vacio" disabled selected>Seleccione...</option>
                                         @foreach ($tallasproductos as $item)
-                                            <option class="text-dark" value="{{$item->id}}">{{$item->producto->nombre}} {{$item->talla->nombre}}</option>
+                                            <option class="text-dark" value="{{$item->id}}">{{$item->producto->nombre}} {{$item->talla->nombre}}-{{$item->stock}}</option>
                                         @endforeach
                                     </select>
                                 </div>
