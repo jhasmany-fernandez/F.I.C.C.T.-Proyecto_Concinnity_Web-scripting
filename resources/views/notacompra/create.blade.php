@@ -41,7 +41,10 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="text-info">Impuesto: </label>
-                                    <input name="impuesto" class="form-control" min="0" type="number" value="0" required>
+                                    <div class="input-group">
+                                        <input name="impuesto" class="form-control" min="0" type="number" value="0" required>
+                                        <span class="input-group-text">%</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row">

@@ -27,11 +27,7 @@
                             <strong>Notificaciones</strong>
                         </div>
                         <a class="dropdown-item" href="#">
-                            <i class="tim-icons icon-bus-front-12"></i> Ingresos
-                            <span class="badge badge-success">3</span>
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <i class="tim-icons icon-bullet-list-67"></i> Ventas
+                            <i class="tim-icons icon-bullet-list-67"></i> Nuevas Ventas
                             <span class="badge badge-danger">2</span>
                         </a>
                     </ul>

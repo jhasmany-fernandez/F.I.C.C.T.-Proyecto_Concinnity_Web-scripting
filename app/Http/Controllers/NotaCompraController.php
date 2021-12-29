@@ -11,6 +11,7 @@ use App\Models\Tallaproducto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Exports\NotacompraExport;
 
 class NotaCompraController extends Controller
 {
@@ -18,6 +19,12 @@ class NotaCompraController extends Controller
         $notascompras = Notacompra::with('proveedor')->with('user')->paginate(4);
         // dd(json_decode(json_encode($notascompras)));
         return view('notacompra.index', ['notascompras' => $notascompras]);
+    }
+
+    public function index_reporte(){
+        $notascompras = Notacompra::with('proveedor')->with('user')->paginate(4);
+        // dd(json_decode(json_encode($notascompras)));
+        return view('reportendc.index', ['notascompras' => $notascompras]);
     }
 
     public function create(){
@@ -48,6 +55,40 @@ class NotaCompraController extends Controller
         }
     }
 
+    public function busqueda_reporte(Request $request){
+        try {
+            if($request->input('opcion') == 'proveedor'){
+                if($request->input('texto') == ''){
+                    $notascompras = Notacompra::join('proveedor', 'notacompra.idproveedor', 'proveedor.id')->where('proveedor.nombre', 'LIKE', '%'.$request->input('texto').'%')->get();
+                    $ids_proveedores = array();
+                    foreach ($notascompras as $value) {
+                        array_push($ids_proveedores, $value->idproveedor);
+                    }
+
+                    $notascompras = Notacompra::whereIn('idproveedor', $ids_proveedores)->with('proveedor')->with('user')
+                    ->paginate(4);
+
+                    $view = view('reportendc.datos', compact('notascompras'))->render();
+                    return response()->json(['view' => $view], 200);
+                }else{
+                    $notascompras = Notacompra::join('proveedor', 'notacompra.idproveedor', 'proveedor.id')->where('proveedor.nombre', 'LIKE', '%'.$request->input('texto').'%')->get();
+                    $ids_proveedores = array();
+                    foreach ($notascompras as $value) {
+                        array_push($ids_proveedores, $value->idproveedor);
+                    }
+
+                    $notascompras = Notacompra::whereIn('idproveedor', $ids_proveedores)->whereBetween('created_at', [$request->desde, $request->hasta])->with('proveedor')->with('user')
+                    ->paginate(4);
+
+                    $view = view('reportendc.datos', compact('notascompras'))->render();
+                    return response()->json(['view' => $view], 200);
+                }
+            }
+        } catch (\Exception $e) {
+            return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+    }
+
     public function store(Request $request){
         try {
             DB::beginTransaction();
@@ -71,6 +112,14 @@ class NotaCompraController extends Controller
         $proveedores = Proveedor::get();
         $notascompras = Notacompra::find($idnotacompra);
         return view('notacompra.ver', ['proveedores' => $proveedores, 'detallesnotascompras' => $detallesnotascompras, 'notascompras' => $notascompras]);
+    }
+
+    public function ver_reporte($idnotacompra){
+        $detallesnotascompras = Detallenotacompra::where('idnotacompra', $idnotacompra)->with('tallaproducto')->get();
+        // dd(json_decode(json_encode($detallesnotascompras)));
+        $proveedores = Proveedor::get();
+        $notascompras = Notacompra::find($idnotacompra);
+        return view('reportendc.ver', ['proveedores' => $proveedores, 'detallesnotascompras' => $detallesnotascompras, 'notascompras' => $notascompras]);
     }
 
     public function desactivar(Request $request){
@@ -103,5 +152,10 @@ class NotaCompraController extends Controller
             return response()->json(['mensaje' => $e->getMessage()], 500);
         }
         
+    }
+
+    public function excel($year){
+        //return Excel::download(new NotaventaExport, 'lista_notaventa.xlsx');
+        return (new NotacompraExport)->forYear($year)->download('lista_notacompra_'.$year.'.xlsx');
     }
 }

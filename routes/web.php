@@ -39,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('logout', [LoginController::class, 'logout']);
     Route::get('dashboard', [DashboardController::class, 'index']);
+    Route::get('chartjs', [DashboardController::class, 'chartjs'])->name('chartjs.index');
 
    //Roles
     Route::get('roles', [RolController::class, 'index']);
@@ -113,11 +114,17 @@ Route::middleware(['auth'])->group(function () {
 
     //Notas de ventas
     Route::get('notasventas', [NotaVentaController::class, 'index']);
+    Route::get('reportesventas', [NotaVentaController::class, 'index_reporte']);
     Route::get('notaventa/create', [NotaVentaController::class, 'create']);
     Route::post('notaventa/store', [NotaVentaController::class, 'store']);
     Route::get('notaventa/ver/{id}', [NotaVentaController::class, 'ver']);
+    Route::get('notaventa/ver_reporte/{id}', [NotaVentaController::class, 'ver_reporte']);
     Route::post('notaventa/desactivar', [NotaVentaController::class, 'desactivar']);
     Route::get('notaventa/busqueda', [NotaVentaController::class, 'busqueda']);
+    Route::get('notaventa/busqueda_reporte', [NotaVentaController::class, 'busqueda_reporte']);
+    Route::get('notaventa/pdf/{id}', [NotaVentaController::class, 'pdf'])->name('pdfVenta');
+    Route::get('notaventa/excel/{year}', [NotaVentaController::class, 'excel']);
+    
 
     //Notas de salida
     Route::get('notassalidas', [NotaSalidaController::class, 'index']);
@@ -135,13 +142,17 @@ Route::middleware(['auth'])->group(function () {
     Route::post('proveedor/update', [ProveedorController::class, 'update']);
     Route::get('proveedor/busqueda', [ProveedorController::class, 'busqueda']);
 
-    //Notas de ventas
+    //Notas de compras
     Route::get('notascompras', [NotaCompraController::class, 'index']);
+    Route::get('reportescompras', [NotaCompraController::class, 'index_reporte']);
     Route::get('notacompra/create', [NotaCompraController::class, 'create']);
     Route::post('notacompra/store', [NotaCompraController::class, 'store']);
     Route::get('notacompra/ver/{id}', [NotaCompraController::class, 'ver']);
+    Route::get('notacompra/ver_reporte/{id}', [NotaCompraController::class, 'ver_reporte']);
     Route::post('notacompra/desactivar', [NotaCompraController::class, 'desactivar']);
     Route::get('notacompra/busqueda', [NotaCompraController::class, 'busqueda']);
+    Route::get('notacompra/busqueda_reporte', [NotaCompraController::class, 'busqueda_reporte']);
+    Route::get('notacompra/excel/{year}', [NotaCompraController::class, 'excel']);
 
     //Bitacora
     Route::get('bitacoras', [BitacoraController::class, 'index']);

@@ -6,7 +6,7 @@
                 <div>&nbsp;</div>
             </li>
             <li>
-                <a href="#">
+                <a href="{{url('dashboard')}}">
                     <i class="tim-icons icon-chart-pie-36"></i>
                     <p>Escritorio</p>
                 </a>
@@ -127,6 +127,29 @@
                             <a href="{{url('notassalidas')}}">
                                 <i class="tim-icons icon-paper"></i>
                                 <p>Nota de Salida</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a data-toggle="collapse" data-target="#desplegar4" aria-expanded="false" aria-controls="desplegar4">
+                    <i class="tim-icons icon-attach-87"></i>
+                    <span class="nav-link-text">Reportes</span>
+                    <b class="caret mt-1"></b>
+                </a>
+                <div class="collapse" id="desplegar4">
+                    <ul class="nav pl-4">
+                        <li>
+                            <a href="{{url('reportescompras')}}">
+                                <i class="tim-icons icon-pin"></i>
+                                <p>Reporte de compras</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{url('reportesventas')}}">
+                                <i class="tim-icons icon-single-copy-04"></i>
+                                <p>Reporte de ventas</p>
                             </a>
                         </li>
                     </ul>
