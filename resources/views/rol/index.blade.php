@@ -6,8 +6,11 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
                                 <h4 class="text-primary" class="card-title">Roles</h4>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 text-right">
+                                <a href="{{url('rol/create')}}" class="btn btn-sm btn-primary">Agregar</a>
                             </div>
                         </div>
                     </div>

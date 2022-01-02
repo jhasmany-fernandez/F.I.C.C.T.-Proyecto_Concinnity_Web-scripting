@@ -21,22 +21,31 @@ class Tallaproducto extends Model
     }
 
     public static function updateTallaProducto(Request $request){
-        $tallas = $request->tallas;
-        $tallas_sin_tiquear = Talla::whereNotIn('id', $tallas)->get();
-        if($tallas){
-            foreach ($tallas as $talla) {
-                $tallaproducto = Tallaproducto::where('idproducto', $request->idproducto)
-                ->where('idtalla', $talla)
-                ->first();
-                $tallaproducto->condicion = 1;
-                $tallaproducto->update();
+        if(isset($request->tallas)){
+            $tallas = $request->tallas;
+            $tallas_sin_tiquear = Talla::whereNotIn('id', $tallas)->get();
+            if($tallas){
+                foreach ($tallas as $talla) {
+                    $tallaproducto = Tallaproducto::where('idproducto', $request->idproducto)
+                    ->where('idtalla', $talla)
+                    ->first();
+                    $tallaproducto->condicion = 1;
+                    $tallaproducto->update();
+                }
             }
-        }
-        if($tallas_sin_tiquear){
-            foreach ($tallas_sin_tiquear as $talla) {
-                $tallaproducto = Tallaproducto::where('idproducto', $request->idproducto)
-                ->where('idtalla', $talla->id)
-                ->first();
+            if($tallas_sin_tiquear){
+                foreach ($tallas_sin_tiquear as $talla) {
+                    $tallaproducto = Tallaproducto::where('idproducto', $request->idproducto)
+                    ->where('idtalla', $talla->id)
+                    ->first();
+                    $tallaproducto->condicion = 0;
+                    $tallaproducto->update();
+                }
+            }
+        }else{
+            $tallas_productos = Tallaproducto::where('idproducto', $request->idproducto)->get();
+            foreach ($tallas_productos as $item) {
+                $tallaproducto = Tallaproducto::find($item->id);
                 $tallaproducto->condicion = 0;
                 $tallaproducto->update();
             }

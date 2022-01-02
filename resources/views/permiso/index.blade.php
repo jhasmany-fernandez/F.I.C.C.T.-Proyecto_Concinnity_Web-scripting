@@ -7,38 +7,26 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-                                <h4 class="text-primary" class="card-title">Reporte de las compras</h4>
+                                <h4 class="text-primary" class="card-title">Permiso</h4>
                             </div>
-                            <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 text-right">
-                                <label class="text-info">Gestión: </label>
-                            </div>
-                            <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                                <input name="year" id="year" class="form-control" min="0" max="9999" type="number" value="0">
-                            </div>
-                            <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 text-right">
-                                <a onclick="descargarExcel()" class="btn btn-sm btn-success">Excel</a>
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 text-right">
+                                <a href="{{url('permiso/create')}}" class="btn btn-sm btn-primary">Agregar</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                                <input type="date" id="desde" name="desde" class="form-control" value="{{Carbon\Carbon::now()->format('Y-m-d')}}">
-                            </div>
-                            <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                                <input type="date" id="hasta" name="hasta" class="form-control" value="{{Carbon\Carbon::now()->format('Y-m-d')}}">
-                            </div>
-                            <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                                 <select class="form-control" id="opcion" name="opcion">
-                                    <option class="text-dark" value="proveedor">Proveedor</option>
+                                    <option class="text-dark" value="nombre">Nombre</option>
                                 </select>
                             </div>
-                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                            <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
                                 <input type="text" id="texto" name="texto" class="form-control" placeholder="Texto a buscar">
                             </div>
                         </div>
                         <div id="tabla">
-                            @include('reportendc.datos')
+                            @include('permiso.datos')
                         </div>
                     </div>
                 </div>
@@ -48,9 +36,49 @@
 @endsection
 @push('scripts')
     <script>
-        function descargarExcel(){
-            var year= $('#year').val();
-            window.open("{{url('notacompra/excel')}}" + "/" + year, '_blank');
+        function eliminar(permiso_id){
+            Swal.fire({
+                title: 'Estas seguro de eliminar el permiso?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, elimínalo!',
+                allowOutsideClick: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{url('permiso/eliminar')}}",
+                        data: {
+                            id: producto_id
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        dataType: 'JSON',
+                        success: function (response) {
+                            console.log(response);
+                            Swal.fire({
+                                title: 'Eliminado!',
+                                text: response.mensaje,
+                                icon: 'success',
+                                showCancelButton: false,
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'Ok',
+                                allowOutsideClick: false,
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location = "/permisos";
+                                }
+                            });
+                        },
+                        error: function (jqXHR, textStatus, errorThrown ) {
+                            console.log(jqXHR.responseJSON.mensaje);
+                        }
+                    });
+                }
+            });
         }
 
         jQuery(document).ready(function () {
@@ -65,16 +93,10 @@
             function paginar(page){
                 var texto = $('#texto').val();
                 var opcion = $('#opcion').val();
-                let desde= $('#desde').val();
-                let hasta= $('#hasta').val();
-                console.log('A '+texto);
-                console.log('B ' +opcion);
                 $.ajax({
                     type: "GET",
-                    url: "{{url('notacompra/busqueda_reporte')}}" + '?page=' + page,
+                    url: "{{url('permiso/busqueda')}}" + '?page=' + page,
                     data: {
-                        desde: desde,
-                        hasta: hasta,
                         texto: texto,
                         opcion: opcion
                     },
@@ -96,15 +118,10 @@
             $("#texto").keyup(function() {
                 let texto = $("#texto").val();
                 let opcion = $("#opcion").val();
-                let desde= $('#desde').val();
-                let hasta= $('#hasta').val();
-                console.log(texto, opcion);
                 $.ajax({
                     type: "GET",
-                    url: "{{url('notacompra/busqueda_reporte')}}",
+                    url: "{{url('permiso/busqueda')}}",
                     data: {
-                        desde: desde,
-                        hasta: hasta,
                         texto: texto,
                         opcion: opcion
                     },

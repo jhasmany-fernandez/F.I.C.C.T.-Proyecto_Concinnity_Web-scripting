@@ -37,17 +37,17 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @if(count($tallasproductos) == 0)
+                                                <tr>
+                                                    <td>No existe productos con bajo stock</td>
+                                                </tr>
+                                            @else
                                             @foreach ($tallasproductos as $item)
-                                                @if(count($tallasproductos) == 0)
-                                                    <tr>
-                                                        <td>No existe productos con bajo stock</td>
-                                                    </tr>
-                                                @else
-                                                    <tr>
-                                                        <td>{{$item->producto->nombre}} {{$item->talla->nombre}} con stock: {{$item->stock}}</td>
-                                                    </tr>
-                                                @endif
+                                                <tr>
+                                                    <td style="padding-bottom: 20px; padding-top: 20px">{{$item->producto->nombre}} {{$item->talla->nombre}} con stock: {{$item->stock}}</td>
+                                                </tr>
                                             @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>

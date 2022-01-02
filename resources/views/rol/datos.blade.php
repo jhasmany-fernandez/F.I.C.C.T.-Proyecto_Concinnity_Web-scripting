@@ -20,6 +20,12 @@
                                 <i class="tim-icons icon-check-2"></i>
                             </button>
                         @endif
+                        <a type="button" title="Editar información del Rol" class="btn btn-primary btn-sm" href="{{url('rol/edit/'.$rol->id)}}">
+                            <i class="tim-icons icon-pencil"></i>
+                        </a>
+                        <a type="button" title="Ver Permisos del Rol" class="btn btn-success btn-sm" href="{{url('rol/ver/'.$rol->id)}}">
+                            <i class="tim-icons icon-tap-02"></i>
+                        </a>
                     </td>
                     <td>{{$rol->nombre}}</td>
                     <td>

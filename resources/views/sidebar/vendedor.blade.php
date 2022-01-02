@@ -6,7 +6,7 @@
                 <div>&nbsp;</div>
             </li>
             <li>
-                <a href="#">
+                <a href="{{url('dashboard')}}">
                     <i class="tim-icons icon-chart-pie-36"></i>
                     <p>Escritorio</p>
                 </a>

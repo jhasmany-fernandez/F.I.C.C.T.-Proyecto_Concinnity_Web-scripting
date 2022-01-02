@@ -16,12 +16,18 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                            <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                                <input type="date" id="desde" name="desde" class="form-control" value="{{Carbon\Carbon::now()->format('Y-m-d')}}">
+                            </div>
+                            <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                                <input type="date" id="hasta" name="hasta" class="form-control" value="{{Carbon\Carbon::now()->format('Y-m-d')}}">
+                            </div>
+                            <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                                 <select class="form-control" id="opcion" name="opcion">
                                     <option class="text-dark" value="cliente">Cliente</option>
                                 </select>
                             </div>
-                            <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                                 <input type="text" id="texto" name="texto" class="form-control" placeholder="Texto a buscar">
                             </div>
                         </div>
@@ -93,10 +99,14 @@
             function paginar(page){
                 var texto = $('#texto').val();
                 var opcion = $('#opcion').val();
+                let desde= $('#desde').val();
+                let hasta= $('#hasta').val();
                 $.ajax({
                     type: "GET",
                     url: "{{url('notaventa/busqueda')}}" + '?page=' + page,
                     data: {
+                        desde: desde,
+                        hasta: hasta,
                         texto: texto,
                         opcion: opcion
                     },
@@ -118,10 +128,14 @@
             $("#texto").keyup(function() {
                 let texto = $("#texto").val();
                 let opcion = $("#opcion").val();
+                let desde= $('#desde').val();
+                let hasta= $('#hasta').val();
                 $.ajax({
                     type: "GET",
                     url: "{{url('notaventa/busqueda')}}",
                     data: {
+                        desde: desde,
+                        hasta: hasta,
                         texto: texto,
                         opcion: opcion
                     },

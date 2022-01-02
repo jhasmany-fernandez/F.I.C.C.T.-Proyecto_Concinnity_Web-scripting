@@ -65,10 +65,14 @@
             function paginar(page){
                 var texto = $('#texto').val();
                 var opcion = $('#opcion').val();
+                let desde= $('#desde').val();
+                let hasta= $('#hasta').val();
                 $.ajax({
                     type: "GET",
                     url: "{{url('notaventa/busqueda_reporte')}}" + '?page=' + page,
                     data: {
+                        desde: desde,
+                        hasta: hasta,
                         texto: texto,
                         opcion: opcion
                     },

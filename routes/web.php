@@ -13,6 +13,7 @@ use App\Http\Controllers\NotaCompraController;
 use App\Http\Controllers\NotaVentaController;
 use App\Http\Controllers\NotaSalidaController;
 use App\Http\Controllers\TallaController;
+use App\Http\Controllers\PermisoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\TallaProductoController;
@@ -43,8 +44,16 @@ Route::middleware(['auth'])->group(function () {
 
    //Roles
     Route::get('roles', [RolController::class, 'index']);
+    Route::get('rol/create', [RolController::class, 'create']);
+    Route::post('rol/create', [RolController::class, 'store']);
     Route::post('rol/desactivar', [RolController::class, 'desactivar']);
     Route::post('rol/activar', [RolController::class, 'activar']);
+    Route::get('rol/edit/{id}', [RolController::class, 'edit']);
+    Route::post('rol/update', [RolController::class, 'update']);
+    Route::get('rol/ver/{id}', [RolController::class, 'ver']);
+
+    //Roles_permisos
+    Route::post('rol_permiso/update', [RolController::class, 'updateRolPermiso']);
 
     //Users
     Route::get('users', [UserController::class, 'index']);
@@ -153,6 +162,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('notacompra/busqueda', [NotaCompraController::class, 'busqueda']);
     Route::get('notacompra/busqueda_reporte', [NotaCompraController::class, 'busqueda_reporte']);
     Route::get('notacompra/excel/{year}', [NotaCompraController::class, 'excel']);
+
+    //Permisos
+    Route::get('permisos', [PermisoController::class, 'index']);
+    Route::get('permiso/create', [PermisoController::class, 'create']);
+    Route::post('permiso/create', [PermisoController::class, 'store']);
+    Route::get('permiso/edit/{id}', [PermisoController::class, 'edit']);
+    Route::post('permiso/update', [PermisoController::class, 'update']);
+    Route::get('permiso/busqueda', [PermisoController::class, 'busqueda']);
+    Route::post('permiso/eliminar', [PermisoController::class, 'eliminar']);
 
     //Bitacora
     Route::get('bitacoras', [BitacoraController::class, 'index']);

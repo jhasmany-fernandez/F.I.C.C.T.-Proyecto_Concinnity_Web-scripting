@@ -32,6 +32,12 @@
                             </a>
                         </li>
                         <li >
+                            <a href="{{url('permisos')}}">
+                                <i class="tim-icons icon-settings-gear-63"></i>
+                                <p>Permiso</p>
+                            </a>
+                        </li>
+                        <li >
                             <a href="{{url('bitacoras')}}">
                                 <i class="tim-icons icon-link-72"></i>
                                 <p>Bitácora</p>

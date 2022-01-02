@@ -178,7 +178,7 @@ class ProductoController extends Controller
             DB::beginTransaction();
             Tallaproducto::updateTallaProducto($request);
             DB::commit();
-            return redirect()->to('producto/ver/'.$request->idproducto)->with('message', 'Producto actualizado exitosamente');
+            return redirect()->to('producto/ver/'.$request->idproducto)->with('message', 'Talla Producto actualizado exitosamente');
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->to('producto/ver/'.$request->idproducto)->with('error', $e->getMessage());
