@@ -16,6 +16,9 @@ F.I.C.C.T. | Materia: Sistemas de Informacion I | Docente: Angelica Garzon Cuell
 ## GOOGLE CLOUD PLATFORM.
 ![logo-google-cloud-platform](https://user-images.githubusercontent.com/36086876/146684279-68949dfc-04a1-4ba2-9d38-a2b923571dff.png)
 
+## GIT.
+![git-github](https://user-images.githubusercontent.com/36086876/147296810-eb9c8bad-ea53-4182-8821-c36d4405778f.png)
+
 ## INSTALADORES:
 >  RECURSOS LARAVEL - INSTALADORES:
 >> [+ XAMPP](https://www.apachefriends.org/es/download.html) <br>
@@ -52,16 +55,23 @@ Password: 12345
 >📲 Descargar Concinity apk: <a href="https://github.com/jhasmany-jhunnior/F.I.C.C.T.-Proyecto_Concinnity_App-Dart/tree/main/Recursos" target="_blank">Click Aqui</a> 
 
 ## COMANDOS REPOSITORIO LOCAL:
-> 1. Instalar dependencias con Composer
->> composer install
-> 2. Crear un nuevo archivo .env
->> cp .env.example .env
-> 3. Generamos una key nueva
->> php artisan key:generate
-> 4. Corremos las migraciones
->> php artisan migrate
-> 6. Agregamos los seed
->> php artisan db:seed
+>> 1. Instalar dependencias con Composer
+>>> composer install
+>
+>> 2. Crear un nuevo archivo .env
+>>> cp .env.example .env
+>
+>> 3. Generamos una key nueva
+>>> php artisan key:generate
+>
+>> 4. Corremos las migraciones
+>>> php artisan migrate
+>
+>> 6. Agregamos los seed
+>>> php artisan db:seed
+>
+>> 7. Actualizar las tablas 
+>>> php artisan migrate:fresh --seed
 
 ##  PROYECTO AYUDA:
 >> [+ PROYECTO ROMOTO AYUDA ] (http://ventas-online-ficct.herokuapp.com/)
