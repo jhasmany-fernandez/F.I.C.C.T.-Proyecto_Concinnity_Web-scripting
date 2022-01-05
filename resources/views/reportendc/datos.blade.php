@@ -15,9 +15,11 @@
             @foreach ($notascompras as $notacompra)
                 <tr>
                     <td class="text-left">
-                        <a type="button" title="Ver detalles de la nota de compra" class="btn btn-success btn-sm" href="{{url('notacompra/ver_reporte/'.$notacompra->id)}}">
-                            <i class="tim-icons icon-tap-02"></i>
-                        </a>
+                        @if ($ver)
+                            <a type="button" title="Ver detalles de la nota de compra" class="btn btn-success btn-sm" href="{{url('notacompra/ver_reporte/'.$notacompra->id)}}">
+                                <i class="tim-icons icon-tap-02"></i>
+                            </a>
+                        @endif
                     </td>
                     <td>{{$notacompra->created_at}}</td>
                     <td>{{$notacompra->impuesto}}</td>

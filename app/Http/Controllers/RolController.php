@@ -2,17 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\Permiso;
 use App\Models\Rol;
 use App\Models\Rol_permiso;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class RolController extends Controller
 {
     public function index(){
         $roles = Rol::get();
-        return view('rol.index', ['roles' => $roles]);
+        $permisos_de_este_rol = Rol_permiso::where('idrol', Auth::user()->idrol)->whereIn('idpermiso', [47, 48, 49, 50, 51])->where('condicion', 1)->get();
+        $crear = false;
+        $listar = false;
+        $cambiarEstado = false;
+        $editar = false;
+        $verPermiso = false;
+        foreach ($permisos_de_este_rol as $item) {
+            if($item->idpermiso == 47){
+                $crear = true;
+            }
+            if($item->idpermiso == 48){
+                $listar = true;
+            }
+            if($item->idpermiso == 49){
+                $cambiarEstado = true;
+            }
+            if($item->idpermiso == 50){
+                $editar = true;
+            }
+            if($item->idpermiso == 51){
+                $verPermiso = true;
+            }
+        }
+        // dd(json_decode(json_encode($permisos_de_este_rol)));
+        return view('rol.index', ['roles' => $roles], compact('crear', 'listar', 'cambiarEstado', 'editar', 'verPermiso'));
     }
 
     public function create(){
@@ -26,6 +52,14 @@ class RolController extends Controller
             $rol = Rol::findOrFail($request->input('id'));
             $rol->condicion = 0;
             $rol->update();
+
+            $bitacora = new Bitacora();
+            $bitacora->accion = 'Desactivar';
+            $bitacora->tabla = 'Rol';
+            $bitacora->nombre_implicado = $rol->nombre;
+            $bitacora->idusuario = Auth::user()->id;
+            $bitacora->save();
+
             DB::commit();
             return  response()->json(['mensaje' => 'Rol desactivado...'], 200);
         } catch (\Exception $e) {
@@ -41,6 +75,14 @@ class RolController extends Controller
             $rol = Rol::findOrFail($request->input('id'));
             $rol->condicion = 1;
             $rol->update();
+
+            $bitacora = new Bitacora();
+            $bitacora->accion = 'Activar';
+            $bitacora->tabla = 'Rol';
+            $bitacora->nombre_implicado = $rol->nombre;
+            $bitacora->idusuario = Auth::user()->id;
+            $bitacora->save();
+
             DB::commit();
             return  response()->json(['mensaje' => 'Rol activado...'], 200);
         } catch (\Exception $e) {

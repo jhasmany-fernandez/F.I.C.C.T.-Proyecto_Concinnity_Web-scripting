@@ -11,9 +11,11 @@
             @foreach ($tallas as $talla)
                 <tr>
                     <td class="text-left">
-                        <a type="button" title="Editar información del Cliente" class="btn btn-primary btn-sm" href="{{url('talla/edit/'.$talla->id)}}">
-                            <i class="tim-icons icon-pencil"></i>
-                        </a>
+                        @if ($editar)
+                            <a type="button" title="Editar información de la Talla" class="btn btn-primary btn-sm" href="{{url('talla/edit/'.$talla->id)}}">
+                                <i class="tim-icons icon-pencil"></i>
+                            </a>
+                        @endif
                     </td>
                     <td>{{$talla->nombre}}</td>
                     <td>

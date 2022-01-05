@@ -14,9 +14,11 @@
             @foreach ($proveedores as $proveedor)
                 <tr>
                     <td class="text-left">
-                        <a type="button" title="Editar información del Proveedor" class="btn btn-primary btn-sm" href="{{url('proveedor/edit/'.$proveedor->id)}}">
-                            <i class="tim-icons icon-pencil"></i>
-                        </a>
+                        @if ($editar)
+                            <a type="button" title="Editar información del Proveedor" class="btn btn-primary btn-sm" href="{{url('proveedor/edit/'.$proveedor->id)}}">
+                                <i class="tim-icons icon-pencil"></i>
+                            </a>
+                        @endif
                     </td>
                     <td>{{$proveedor->nombre}}</td>
                     <td>{{$proveedor->direccion}}</td>

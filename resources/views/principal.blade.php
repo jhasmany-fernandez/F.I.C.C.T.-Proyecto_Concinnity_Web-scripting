@@ -42,23 +42,13 @@
         <div class="wrapper">
 
             @if (Auth::check())
-                @if (Auth::user()->idrol == 1)
-                    @include('sidebar.administrador')
-                @else
-                    @include('sidebar.vendedor')
-                @endif
-
+                @include('sidebar.administrador')
             @endif
 
 
             <div class="main-panel">
                 @if (Auth::check())
-                    @if (Auth::user()->idrol == 1)
-                        @include('header.administrador')
-                    @else
-                        @include('header.vendedor')
-                    @endif
-
+                    @include('header.administrador')
                 @endif
 
                 <!--Contenido principal-->

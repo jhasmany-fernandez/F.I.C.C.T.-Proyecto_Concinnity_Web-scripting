@@ -13,14 +13,18 @@
             @foreach ($notassalidas as $notasalida)
                 <tr>
                     <td class="text-left">
-                        @if ($notasalida->condicion == 1)
-                            <button type="button" title="Devolver o Eliminar Producto" class="btn btn-danger btn-sm" onclick="desactivar({{$notasalida->id}})">
-                                <i class="tim-icons icon-trash-simple"></i>
-                            </button>
+                        @if ($cambiarEstado)
+                            @if ($notasalida->condicion == 1)
+                                <button type="button" title="Devolver o Eliminar Producto" class="btn btn-danger btn-sm" onclick="desactivar({{$notasalida->id}})">
+                                    <i class="tim-icons icon-trash-simple"></i>
+                                </button>
+                            @endif
                         @endif
-                        <a type="button" title="Ver detalles de la nota de salida" class="btn btn-success btn-sm" href="{{url('notasalida/ver/'.$notasalida->id)}}">
-                            <i class="tim-icons icon-tap-02"></i>
-                        </a>
+                        @if ($ver)
+                            <a type="button" title="Ver detalles de la nota de salida" class="btn btn-success btn-sm" href="{{url('notasalida/ver/'.$notasalida->id)}}">
+                                <i class="tim-icons icon-tap-02"></i>
+                            </a>
+                        @endif
                     </td>
                     <td>{{$notasalida->created_at}}</td>
                     <td>{{$notasalida->perdida_total}}</td>

@@ -21,9 +21,14 @@
                         <form action="{{url('rol/create')}}" method="POST">
                             @csrf
                             <div class="form-group row">
-                                <div class="col-md-6 col-sm-6">
+                                <div class="col-md-12 col-sm-12">
                                     <label class="text-info">Nombre: </label>
                                     <input name="nombre" class="form-control" maxlength="30" type="text" placeholder="Nombre..." required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
                                 </div>
                             </div>
                         </form>

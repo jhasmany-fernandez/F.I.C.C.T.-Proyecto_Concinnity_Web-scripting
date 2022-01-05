@@ -13,9 +13,11 @@
             @foreach ($clientes as $cliente)
                 <tr>
                     <td class="text-left">
-                        <a type="button" title="Editar información del Cliente" class="btn btn-primary btn-sm" href="{{url('cliente/edit/'.$cliente->id)}}">
-                            <i class="tim-icons icon-pencil"></i>
-                        </a>
+                        @if ($editar)
+                            <a type="button" title="Editar información del Cliente" class="btn btn-primary btn-sm" href="{{url('cliente/edit/'.$cliente->id)}}">
+                                <i class="tim-icons icon-pencil"></i>
+                            </a>
+                        @endif
                     </td>
                     <td>{{$cliente->nombre}}</td>
                     <td>{{$cliente->telefono}}</td>

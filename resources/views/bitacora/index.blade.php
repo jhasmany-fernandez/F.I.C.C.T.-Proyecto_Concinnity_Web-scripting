@@ -11,23 +11,25 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                                <select class="form-control" id="opcion" name="opcion">
-                                    <option class="text-dark" value="created_at">Fecha y Hora</option>
-                                    <option class="text-dark" value="user">Usuario</option>
-                                    <option class="text-dark" value="accion">Acción</option>
-                                </select>
+                    @if ($listar)
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                                    <select class="form-control" id="opcion" name="opcion">
+                                        <option class="text-dark" value="created_at">Fecha y Hora</option>
+                                        <option class="text-dark" value="user">Usuario</option>
+                                        <option class="text-dark" value="accion">Acción</option>
+                                    </select>
+                                </div>
+                                <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+                                    <input type="text" id="texto" name="texto" class="form-control" placeholder="Texto a buscar">
+                                </div>
                             </div>
-                            <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-                                <input type="text" id="texto" name="texto" class="form-control" placeholder="Texto a buscar">
+                            <div id="tabla">
+                                @include('bitacora.datos')
                             </div>
                         </div>
-                        <div id="tabla">
-                            @include('bitacora.datos')
-                        </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>

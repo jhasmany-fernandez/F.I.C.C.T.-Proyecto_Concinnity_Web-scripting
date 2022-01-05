@@ -6,29 +6,28 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                 <h4 class="text-primary" class="card-title">Permiso</h4>
                             </div>
-                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 text-right">
-                                <a href="{{url('permiso/create')}}" class="btn btn-sm btn-primary">Agregar</a>
-                            </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                                <select class="form-control" id="opcion" name="opcion">
-                                    <option class="text-dark" value="nombre">Nombre</option>
-                                </select>
+                    @if ($listar)
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                                    <select class="form-control" id="opcion" name="opcion">
+                                        <option class="text-dark" value="nombre">Nombre</option>
+                                    </select>
+                                </div>
+                                <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+                                    <input type="text" id="texto" name="texto" class="form-control" placeholder="Texto a buscar">
+                                </div>
                             </div>
-                            <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-                                <input type="text" id="texto" name="texto" class="form-control" placeholder="Texto a buscar">
+                            <div id="tabla">
+                                @include('permiso.datos')
                             </div>
                         </div>
-                        <div id="tabla">
-                            @include('permiso.datos')
-                        </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -51,7 +50,7 @@
                         type: "POST",
                         url: "{{url('permiso/eliminar')}}",
                         data: {
-                            id: producto_id
+                            id: permiso_id
                         },
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

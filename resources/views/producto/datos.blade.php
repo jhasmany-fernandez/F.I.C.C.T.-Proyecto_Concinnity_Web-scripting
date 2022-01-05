@@ -19,21 +19,27 @@
             @foreach ($productos as $producto)
                 <tr>
                     <td class="text-left">
-                        @if ($producto->condicion == 1)
-                            <button type="button" title="Deshabilitar Producto" class="btn btn-danger btn-sm" onclick="desactivar({{$producto->id}})">
-                                <i class="tim-icons icon-trash-simple"></i>
-                            </button>
-                        @else
-                            <button type="button" title="Habilitar Producto" class="btn btn-info btn-sm" onclick="activar({{$producto->id}})">
-                                <i class="tim-icons icon-check-2"></i>
-                            </button>
+                        @if ($cambiarEstado)
+                            @if ($producto->condicion == 1)
+                                <button type="button" title="Deshabilitar Producto" class="btn btn-danger btn-sm" onclick="desactivar({{$producto->id}})">
+                                    <i class="tim-icons icon-trash-simple"></i>
+                                </button>
+                            @else
+                                <button type="button" title="Habilitar Producto" class="btn btn-info btn-sm" onclick="activar({{$producto->id}})">
+                                    <i class="tim-icons icon-check-2"></i>
+                                </button>
+                            @endif
                         @endif
-                        <a type="button" title="Editar información del Producto" class="btn btn-primary btn-sm" href="{{url('producto/edit/'.$producto->id)}}">
-                            <i class="tim-icons icon-pencil"></i>
-                        </a>
+                        @if ($editar)
+                            <a type="button" title="Editar información del Producto" class="btn btn-primary btn-sm" href="{{url('producto/edit/'.$producto->id)}}">
+                                <i class="tim-icons icon-pencil"></i>
+                            </a>
+                        @endif
+                        @if ($verStock)
                         <a type="button" title="Ver stock del Producto" class="btn btn-success btn-sm" href="{{url('producto/ver/'.$producto->id)}}">
                             <i class="tim-icons icon-tap-02"></i>
                         </a>
+                        @endif
                     </td>
                     <td>{{$producto->nombre}}</td>
                     <td>{{$producto->precio}}</td>

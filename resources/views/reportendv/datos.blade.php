@@ -16,12 +16,16 @@
             @foreach ($notasventas as $notaventa)
                 <tr>
                     <td class="text-left">
-                        <a type="button" title="Imprimir recibo" class="btn btn-info btn-sm" href="{{url('notaventa/pdf/'.$notaventa->id)}}">
-                            <i class="tim-icons icon-cloud-download-93"></i>
-                        </a>
-                        <a type="button" title="Ver detalles de la nota de venta" class="btn btn-warning btn-sm" href="{{url('notaventa/ver_reporte/'.$notaventa->id)}}">
-                            <i class="tim-icons icon-tap-02"></i>
-                        </a>
+                        @if ($generar_Recibo)
+                            <a type="button" title="Imprimir recibo" class="btn btn-info btn-sm" href="{{url('notaventa/pdf/'.$notaventa->id)}}">
+                                <i class="tim-icons icon-cloud-download-93"></i>
+                            </a>
+                        @endif
+                        @if ($ver)
+                            <a type="button" title="Ver detalles de la nota de venta" class="btn btn-warning btn-sm" href="{{url('notaventa/ver_reporte/'.$notaventa->id)}}">
+                                <i class="tim-icons icon-tap-02"></i>
+                            </a>
+                        @endif
                     </td>
                     <td>{{$notaventa->created_at}}</td>
                     <td>{{$notaventa->monto_pago}}</td>

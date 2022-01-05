@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Bitacora;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -28,7 +30,11 @@ class LoginController extends Controller
             $bitacora->idusuario = Auth::user()->id;
             $bitacora->save();
 
-            return redirect()->intended('dashboard');
+            if (Auth::user()->idrol == 1){
+                return redirect()->intended('dashboard');
+            }else{
+                return redirect()->intended('dashboard2');
+            }
         }
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
@@ -47,4 +53,21 @@ class LoginController extends Controller
 
         return redirect('/');
     }
+
+    public function olvidar_contraseña(){
+        $users = User::select('users.email', 'users.password')->where('id')->get();
+        return view('olvidar_contraseña', ['users' => $users]);
+    }
+
+    // public function nueva_contraseña(Request $request){
+    //     try {
+    //         DB::beginTransaction();
+    //         Cliente::actualizar($request);
+    //         DB::commit();
+    //         return redirect()->to('clientes')->with('message', 'Cliente actualizado exitosamente');
+    //     } catch (\Exception $e) {
+    //         DB::rollBack();
+    //         return redirect('clientes')->with('error', $e->getMessage());
+    //     }
+    // }
 }

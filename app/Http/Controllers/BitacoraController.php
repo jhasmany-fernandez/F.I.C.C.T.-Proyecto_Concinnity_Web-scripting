@@ -3,17 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bitacora;
+use App\Models\Rol_permiso;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BitacoraController extends Controller
 {
     public function index(){
         $bitacoras = Bitacora::with('user')->orderBy('id', 'DESC')->paginate(10);
-        return view('bitacora.index', ['bitacoras' => $bitacoras]);
+        $permisos_de_este_rol = Rol_permiso::where('idrol', Auth::user()->idrol)->whereIn('idpermiso', [58])->where('condicion', 1)->get();
+        $listar = false;
+        foreach ($permisos_de_este_rol as $item) {
+            if($item->idpermiso == 58){
+                $listar = true;
+            }
+        }
+        return view('bitacora.index', ['bitacoras' => $bitacoras], compact('listar'));
     }
 
     public function busqueda(Request $request){
         try {
+            $permisos_de_este_rol = Rol_permiso::where('idrol', Auth::user()->idrol)->whereIn('idpermiso', [58])->where('condicion', 1)->get();
+            $listar = false;
+            foreach ($permisos_de_este_rol as $item) {
+                if($item->idpermiso == 58){
+                    $listar = true;
+                }
+            }
             if($request->input('opcion') == 'created_at'){
                 $bitacoras = Bitacora::select('bitacora.id')
                 ->where('bitacora.created_at', 'LIKE', '%'.$request->input('texto').'%')
@@ -40,7 +56,7 @@ class BitacoraController extends Controller
             $bitacoras = Bitacora::whereIn('id', $ids_bitacoras)->with('user')->orderBy('id', 'DESC')
             ->paginate(10);
 
-            $view = view('bitacora.datos', compact('bitacoras'))->render();
+            $view = view('bitacora.datos', compact('bitacoras', 'listar'))->render();
             return response()->json(['view' => $view], 200);
         } catch (\Exception $e) {
             return response()->json(['mensaje' => $e->getMessage()], 500);

@@ -9,7 +9,7 @@
                             <div class="card-header ">
                                 <div class="row">
                                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                        <h4 class="text-primary" class="card-title">Lista de productos con bajo stock</h4>
+                                        <h4 class="text-primary" class="card-title">Lista de productos</h4>
                                     </div>
                                 </div>
                             </div>
@@ -18,21 +18,21 @@
                                     <table class="table">
                                         <thead class="text-primary" class="blockquote blockquote-primary">
                                             <tr>
-                                                <th class="text-info" scope="col">Nombre y Stock</th>
+                                                <th class="text-info" scope="col">Nombre</th>
                                             </tr>
                                         </thead>
-                                        {{-- <tbody>
-                                            @foreach ($tallasproductos as $item)
-                                                @if(count($tallasproductos) == 0)
-                                                    <tr>
-                                                        <td>No existe productos con bajo stock</td>
-                                                    </tr>
-                                                @else
-                                                    <tr>
-                                                        <td>{{$item->producto->nombre}} {{$item->talla->nombre}} con stock: {{$item->stock}}</td>
-                                                    </tr>
-                                                @endif
-                                            @endforeach --}}
+                                        <tbody>
+                                            @if(count($producto) == 0)
+                                                <tr>
+                                                    <td>No existe productos</td>
+                                                </tr>
+                                            @else
+                                            @foreach ($producto as $item2)
+                                                <tr>
+                                                    <td style="padding-bottom: 20px; padding-top: 20px">{{$item2->nombre}}</td>
+                                                </tr>
+                                            @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>
@@ -64,7 +64,7 @@
                                             @else
                                             @foreach ($productos as $item)
                                                 <tr>
-                                                    <td>{{$item->nombre}} con oferta: {{$item->oferta}}</td>
+                                                    <td style="padding-bottom: 20px; padding-top: 20px">{{$item->nombre}} con oferta: {{$item->oferta}}</td>
                                                 </tr>
                                             @endforeach
                                             @endif

@@ -39,7 +39,10 @@ Route::post('login', [LoginController::class, 'login']);
 Route::middleware(['auth'])->group(function () {
 
     Route::get('logout', [LoginController::class, 'logout']);
+    Route::get('login/olvidar_contraseña', [LoginController::class, 'olvidar_contraseña']);
+    // Route::post('login/nueva_contraseña', [LoginController::class, 'nueva_contraseña']);
     Route::get('dashboard', [DashboardController::class, 'index']);
+    Route::get('dashboard2', [DashboardController::class, 'index2']);
     Route::get('chartjs', [DashboardController::class, 'chartjs'])->name('chartjs.index');
 
    //Roles
@@ -165,12 +168,9 @@ Route::middleware(['auth'])->group(function () {
 
     //Permisos
     Route::get('permisos', [PermisoController::class, 'index']);
-    Route::get('permiso/create', [PermisoController::class, 'create']);
-    Route::post('permiso/create', [PermisoController::class, 'store']);
     Route::get('permiso/edit/{id}', [PermisoController::class, 'edit']);
     Route::post('permiso/update', [PermisoController::class, 'update']);
     Route::get('permiso/busqueda', [PermisoController::class, 'busqueda']);
-    Route::post('permiso/eliminar', [PermisoController::class, 'eliminar']);
 
     //Bitacora
     Route::get('bitacoras', [BitacoraController::class, 'index']);

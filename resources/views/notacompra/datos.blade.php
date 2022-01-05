@@ -15,14 +15,18 @@
             @foreach ($notascompras as $notacompra)
                 <tr>
                     <td class="text-left">
-                        @if ($notacompra->condicion == 1)
-                            <button type="button" title="Retirar Producto" class="btn btn-danger btn-sm" onclick="desactivar({{$notacompra->id}})">
-                                <i class="tim-icons icon-trash-simple"></i>
-                            </button>
+                        @if ($cambiarEstado)
+                            @if ($notacompra->condicion == 1)
+                                <button type="button" title="Retirar Producto" class="btn btn-danger btn-sm" onclick="desactivar({{$notacompra->id}})">
+                                    <i class="tim-icons icon-trash-simple"></i>
+                                </button>
+                            @endif
                         @endif
-                        <a type="button" title="Ver detalles de la nota de compra" class="btn btn-success btn-sm" href="{{url('notacompra/ver/'.$notacompra->id)}}">
-                            <i class="tim-icons icon-tap-02"></i>
-                        </a>
+                        @if ($ver)
+                            <a type="button" title="Ver detalles de la nota de compra" class="btn btn-success btn-sm" href="{{url('notacompra/ver/'.$notacompra->id)}}">
+                                <i class="tim-icons icon-tap-02"></i>
+                            </a>
+                        @endif
                     </td>
                     <td>{{$notacompra->created_at}}</td>
                     <td>{{$notacompra->impuesto}}</td>

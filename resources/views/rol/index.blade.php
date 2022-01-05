@@ -9,14 +9,18 @@
                             <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
                                 <h4 class="text-primary" class="card-title">Roles</h4>
                             </div>
-                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 text-right">
-                                <a href="{{url('rol/create')}}" class="btn btn-sm btn-primary">Agregar</a>
-                            </div>
+                            @if ($crear)
+                                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 text-right">
+                                    <a href="{{url('rol/create')}}" class="btn btn-sm btn-primary">Agregar</a>
+                                </div>
+                            @endif
                         </div>
                     </div>
+                    @if ($listar)
                     <div class="card-body">
                         @include('rol.datos')
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

@@ -18,18 +18,22 @@
             @foreach ($users as $user)
                 <tr>
                     <td class="text-left">
-                        @if ($user->condicion == 1)
-                            <button type="button" title="Deshabilitar Usuario" class="btn btn-danger btn-sm" onclick="desactivar({{$user->id}})">
-                                <i class="tim-icons icon-trash-simple"></i>
-                            </button>
-                        @else
-                            <button type="button" title="Habilitar Usuario" class="btn btn-info btn-sm" onclick="activar({{$user->id}})">
-                                <i class="tim-icons icon-check-2"></i>
-                            </button>
+                        @if ($cambiarEstado)
+                            @if ($user->condicion == 1)
+                                <button type="button" title="Deshabilitar Usuario" class="btn btn-danger btn-sm" onclick="desactivar({{$user->id}})">
+                                    <i class="tim-icons icon-trash-simple"></i>
+                                </button>
+                            @else
+                                <button type="button" title="Habilitar Usuario" class="btn btn-info btn-sm" onclick="activar({{$user->id}})">
+                                    <i class="tim-icons icon-check-2"></i>
+                                </button>
+                            @endif
                         @endif
-                        <a type="button" title="Editar información del Usuario" class="btn btn-primary btn-sm" href="{{url('user/edit/'.$user->id)}}">
-                            <i class="tim-icons icon-pencil"></i>
-                        </a>
+                        @if ($editar)
+                            <a type="button" title="Editar información del Usuario" class="btn btn-primary btn-sm" href="{{url('user/edit/'.$user->id)}}">
+                                <i class="tim-icons icon-pencil"></i>
+                            </a>
+                        @endif
                     </td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->ci}}</td>

@@ -16,17 +16,23 @@
             @foreach ($notasventas as $notaventa)
                 <tr>
                     <td class="text-left">
-                        @if ($notaventa->condicion == 1)
-                            <button type="button" title="Devolver o Eliminar Producto" class="btn btn-danger btn-sm" onclick="desactivar({{$notaventa->id}})">
-                                <i class="tim-icons icon-trash-simple"></i>
-                            </button>
+                        @if ($cambiarEstado)
+                            @if ($notaventa->condicion == 1)
+                                <button type="button" title="Devolver o Eliminar Producto" class="btn btn-danger btn-sm" onclick="desactivar({{$notaventa->id}})">
+                                    <i class="tim-icons icon-trash-simple"></i>
+                                </button>
+                            @endif
                         @endif
-                        <a type="button" title="Imprimir recibo" class="btn btn-info btn-sm" href="{{url('notaventa/pdf/'.$notaventa->id)}}">
-                            <i class="tim-icons icon-cloud-download-93"></i>
-                        </a>
-                        <a type="button" title="Ver detalles de la nota de venta" class="btn btn-success btn-sm" href="{{url('notaventa/ver/'.$notaventa->id)}}">
-                            <i class="tim-icons icon-tap-02"></i>
-                        </a>
+                        @if ($generar)
+                            <a type="button" title="Imprimir recibo" class="btn btn-info btn-sm" href="{{url('notaventa/pdf/'.$notaventa->id)}}">
+                                <i class="tim-icons icon-cloud-download-93"></i>
+                            </a>
+                        @endif
+                        @if ($ver)
+                            <a type="button" title="Ver detalles de la nota de venta" class="btn btn-success btn-sm" href="{{url('notaventa/ver/'.$notaventa->id)}}">
+                                <i class="tim-icons icon-tap-02"></i>
+                            </a>
+                        @endif
                     </td>
                     <td>{{$notaventa->created_at}}</td>
                     <td>{{$notaventa->monto_pago}}</td>

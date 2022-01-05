@@ -12,19 +12,56 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Exports\NotacompraExport;
+use App\Models\Rol_permiso;
 
 class NotaCompraController extends Controller
 {
     public function index(){
         $notascompras = Notacompra::with('proveedor')->with('user')->paginate(4);
         // dd(json_decode(json_encode($notascompras)));
-        return view('notacompra.index', ['notascompras' => $notascompras]);
+        $permisos_de_este_rol = Rol_permiso::where('idrol', Auth::user()->idrol)->whereIn('idpermiso', [24, 25, 26, 27])->where('condicion', 1)->get();
+        $crear = false;
+        $listar = false;
+        $cambiarEstado = false;
+        $ver = false;
+        foreach ($permisos_de_este_rol as $item) {
+            if($item->idpermiso == 24){
+                $crear = true;
+            }
+            if($item->idpermiso == 25){
+                $listar = true;
+            }
+            if($item->idpermiso == 27){
+                $cambiarEstado = true;
+            }
+            if($item->idpermiso == 26){
+                $ver = true;
+            }
+        }
+        // dd(json_decode(json_encode($permisos_de_este_rol)));
+        return view('notacompra.index', ['notascompras' => $notascompras], compact('crear', 'listar', 'cambiarEstado', 'ver'));
     }
 
     public function index_reporte(){
         $notascompras = Notacompra::with('proveedor')->with('user')->paginate(4);
         // dd(json_decode(json_encode($notascompras)));
-        return view('reportendc.index', ['notascompras' => $notascompras]);
+        $permisos_de_este_rol = Rol_permiso::where('idrol', Auth::user()->idrol)->whereIn('idpermiso', [40, 41, 42])->where('condicion', 1)->get();
+        $listar = false;
+        $generar = false;
+        $ver = false;
+        foreach ($permisos_de_este_rol as $item) {
+            if($item->idpermiso == 40){
+                $listar = true;
+            }
+            if($item->idpermiso == 42){
+                $generar = true;
+            }
+            if($item->idpermiso == 41){
+                $ver = true;
+            }
+        }
+        // dd(json_decode(json_encode($permisos_de_este_rol)));
+        return view('reportendc.index', ['notascompras' => $notascompras], compact('listar', 'generar', 'ver'));
     }
 
     public function create(){
@@ -38,7 +75,27 @@ class NotaCompraController extends Controller
     public function busqueda(Request $request){
         try {
             if($request->input('opcion') == 'proveedor'){
+                $permisos_de_este_rol = Rol_permiso::where('idrol', Auth::user()->idrol)->whereIn('idpermiso', [24, 25, 26, 27])->where('condicion', 1)->get();
+                $crear = false;
+                $listar = false;
+                $cambiarEstado = false;
+                $ver = false;
+                foreach ($permisos_de_este_rol as $item) {
+                    if($item->idpermiso == 24){
+                        $crear = true;
+                    }
+                    if($item->idpermiso == 25){
+                        $listar = true;
+                    }
+                    if($item->idpermiso == 27){
+                        $cambiarEstado = true;
+                    }
+                    if($item->idpermiso == 26){
+                        $ver = true;
+                    }
+                }
                 $notascompras = Notacompra::join('proveedor', 'notacompra.idproveedor', 'proveedor.id')->where('proveedor.nombre', 'LIKE', '%'.$request->input('texto').'%')->get();
+                
                 $ids_proveedores = array();
                 foreach ($notascompras as $value) {
                     array_push($ids_proveedores, $value->idproveedor);
@@ -46,8 +103,8 @@ class NotaCompraController extends Controller
 
                 $notascompras = Notacompra::whereIn('idproveedor', $ids_proveedores)->with('proveedor')->with('user')
                 ->paginate(4);
-
-                $view = view('notacompra.datos', compact('notascompras'))->render();
+                //dd(json_decode(json_encode($notascompras)));
+                $view = view('notacompra.datos', compact('notascompras', 'crear', 'listar', 'cambiarEstado', 'ver'))->render();
                 return response()->json(['view' => $view], 200);
             }
         } catch (\Exception $e) {
@@ -58,6 +115,21 @@ class NotaCompraController extends Controller
     public function busqueda_reporte(Request $request){
         try {
             if($request->input('opcion') == 'proveedor'){
+                $permisos_de_este_rol = Rol_permiso::where('idrol', Auth::user()->idrol)->whereIn('idpermiso', [40, 41, 42])->where('condicion', 1)->get();
+                $listar = false;
+                $generar = false;
+                $ver = false;
+                foreach ($permisos_de_este_rol as $item) {
+                    if($item->idpermiso == 40){
+                        $listar = true;
+                    }
+                    if($item->idpermiso == 42){
+                        $generar = true;
+                    }
+                    if($item->idpermiso == 41){
+                        $ver = true;
+                    }
+                }
                 if($request->input('texto') == ''){
                     $notascompras = Notacompra::join('proveedor', 'notacompra.idproveedor', 'proveedor.id')->where('proveedor.nombre', 'LIKE', '%'.$request->input('texto').'%')->get();
                     $ids_proveedores = array();
@@ -68,7 +140,7 @@ class NotaCompraController extends Controller
                     $notascompras = Notacompra::whereIn('idproveedor', $ids_proveedores)->with('proveedor')->with('user')
                     ->paginate(4);
 
-                    $view = view('reportendc.datos', compact('notascompras'))->render();
+                    $view = view('reportendc.datos', compact('notascompras', 'listar', 'generar', 'ver'))->render();
                     return response()->json(['view' => $view], 200);
                 }else{
                     $notascompras = Notacompra::join('proveedor', 'notacompra.idproveedor', 'proveedor.id')->where('proveedor.nombre', 'LIKE', '%'.$request->input('texto').'%')->get();
@@ -80,7 +152,7 @@ class NotaCompraController extends Controller
                     $notascompras = Notacompra::whereIn('idproveedor', $ids_proveedores)->whereBetween('created_at', [$request->desde, $request->hasta])->with('proveedor')->with('user')
                     ->paginate(4);
 
-                    $view = view('reportendc.datos', compact('notascompras'))->render();
+                    $view = view('reportendc.datos', compact('notascompras', 'listar', 'generar', 'ver'))->render();
                     return response()->json(['view' => $view], 200);
                 }
             }
@@ -156,6 +228,12 @@ class NotaCompraController extends Controller
 
     public function excel($year){
         //return Excel::download(new NotaventaExport, 'lista_notaventa.xlsx');
+        $bitacora = new Bitacora();
+        $bitacora->accion = 'Generar Excel';
+        $bitacora->tabla = 'Nota de compra';
+        $bitacora->idusuario = Auth::user()->id;
+        $bitacora->save();
+
         return (new NotacompraExport)->forYear($year)->download('lista_notacompra_'.$year.'.xlsx');
     }
 }

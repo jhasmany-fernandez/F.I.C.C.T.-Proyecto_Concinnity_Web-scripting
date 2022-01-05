@@ -7,6 +7,7 @@ use App\Models\Bitacora;
 use App\Models\Detallenotasalida;
 use App\Models\Producto;
 use App\Models\Notasalida;
+use App\Models\Rol_permiso;
 use App\Models\Tallaproducto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,27 @@ class NotaSalidaController extends Controller
     public function index(){
         $notassalidas = NotaSalida::paginate(4);
         // dd(json_decode(json_encode($notasventas)));
-        return view('notasalida.index', ['notassalidas' => $notassalidas]);
+        $permisos_de_este_rol = Rol_permiso::where('idrol', Auth::user()->idrol)->whereIn('idpermiso', [36, 37, 38, 39])->where('condicion', 1)->get();
+        $crear = false;
+        $listar = false;
+        $cambiarEstado = false;
+        $ver = false;
+        foreach ($permisos_de_este_rol as $item) {
+            if($item->idpermiso == 36){
+                $crear = true;
+            }
+            if($item->idpermiso == 37){
+                $listar = true;
+            }
+            if($item->idpermiso == 38){
+                $cambiarEstado = true;
+            }
+            if($item->idpermiso == 39){
+                $ver = true;
+            }
+        }
+        // dd(json_decode(json_encode($permisos_de_este_rol)));
+        return view('notasalida.index', ['notassalidas' => $notassalidas], compact('crear', 'listar', 'cambiarEstado', 'ver'));
     }
 
     public function create(){
@@ -30,11 +51,30 @@ class NotaSalidaController extends Controller
     public function busqueda(Request $request){
         try {
             if($request->input('opcion') == 'created_at'){
+                $permisos_de_este_rol = Rol_permiso::where('idrol', Auth::user()->idrol)->whereIn('idpermiso', [36, 37, 38, 39])->where('condicion', 1)->get();
+                $crear = false;
+                $listar = false;
+                $cambiarEstado = false;
+                $ver = false;
+                foreach ($permisos_de_este_rol as $item) {
+                    if($item->idpermiso == 36){
+                        $crear = true;
+                    }
+                    if($item->idpermiso == 37){
+                        $listar = true;
+                    }
+                    if($item->idpermiso == 38){
+                        $cambiarEstado = true;
+                    }
+                    if($item->idpermiso == 39){
+                        $ver = true;
+                    }
+                }
                 $notassalidas = Notasalida::select('notasalida.id', 'notasalida.perdida_total', 'notasalida.descripcion', 'notasalida.created_at', 'notasalida.condicion')
                 ->where('notasalida.created_at', 'LIKE', '%'.$request->input('texto').'%')
                 ->paginate(4);
 
-                $view = view('notasalida.datos', compact('notassalidas'))->render();
+                $view = view('notasalida.datos', compact('notassalidas', 'crear', 'listar', 'cambiarEstado', 'ver'))->render();
                 return response()->json(['view' => $view], 200);
             }
         } catch (\Exception $e) {

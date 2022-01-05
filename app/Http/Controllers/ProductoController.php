@@ -7,6 +7,7 @@ use App\Models\Categoria;
 use App\Models\Material;
 use App\Models\Marca;
 use App\Models\Producto;
+use App\Models\Rol_permiso;
 use App\Models\Talla;
 use App\Models\Tallaproducto;
 use Illuminate\Http\Request;
@@ -24,7 +25,30 @@ class ProductoController extends Controller
 
         // $users2 = User::with('rol')->with('personal')->get();
         // dd(json_decode(json_encode($users)),json_decode(json_encode($users2)));
-        return view('producto.index', ['productos' => $productos]);
+        $permisos_de_este_rol = Rol_permiso::where('idrol', Auth::user()->idrol)->whereIn('idpermiso', [13, 14, 15, 16, 17])->where('condicion', 1)->get();
+        $crear = false;
+        $listar = false;
+        $cambiarEstado = false;
+        $editar = false;
+        $verStock = false;
+        foreach ($permisos_de_este_rol as $item) {
+            if($item->idpermiso == 13){
+                $crear = true;
+            }
+            if($item->idpermiso == 14){
+                $listar = true;
+            }
+            if($item->idpermiso == 16){
+                $cambiarEstado = true;
+            }
+            if($item->idpermiso == 15){
+                $editar = true;
+            }
+            if($item->idpermiso == 17){
+                $verStock = true;
+            }
+        }
+        return view('producto.index', ['productos' => $productos] , compact('crear', 'listar', 'cambiarEstado', 'editar', 'verStock'));
     }
 
     public function create(){
@@ -36,6 +60,29 @@ class ProductoController extends Controller
 
     public function busqueda(Request $request){
         try {
+            $permisos_de_este_rol = Rol_permiso::where('idrol', Auth::user()->idrol)->whereIn('idpermiso', [13, 14, 15, 16, 17])->where('condicion', 1)->get();
+            $crear = false;
+            $listar = false;
+            $cambiarEstado = false;
+            $editar = false;
+            $verStock = false;
+            foreach ($permisos_de_este_rol as $item) {
+                if($item->idpermiso == 13){
+                    $crear = true;
+                }
+                if($item->idpermiso == 14){
+                    $listar = true;
+                }
+                if($item->idpermiso == 16){
+                    $cambiarEstado = true;
+                }
+                if($item->idpermiso == 15){
+                    $editar = true;
+                }
+                if($item->idpermiso == 17){
+                    $verStock = true;
+                }
+            }
             if($request->input('opcion') == 'nombre'){
                 $productos = Producto::join('categoria', 'producto.idcategoria', 'categoria.id')
                 ->join('material', 'producto.idmaterial', 'material.id')
@@ -44,7 +91,7 @@ class ProductoController extends Controller
                 ->where('producto.nombre', 'LIKE', '%'.$request->input('texto').'%')
                 ->paginate(3);
 
-                $view = view('producto.datos', compact('productos'))->render();
+                $view = view('producto.datos', compact('productos', 'crear', 'listar', 'cambiarEstado', 'editar', 'verStock'))->render();
                 return response()->json(['view' => $view], 200);
             }
             if($request->input('opcion') == 'categoria'){
@@ -55,7 +102,7 @@ class ProductoController extends Controller
                 ->where('categoria.nombre', 'LIKE', '%'.$request->input('texto').'%')
                 ->paginate(3);
                 
-                $view = view('producto.datos', compact('productos'))->render();
+                $view = view('producto.datos', compact('productos', 'crear', 'listar', 'cambiarEstado', 'editar', 'verStock'))->render();
                 return response()->json(['view' => $view], 200);
             }
         } catch (\Exception $e) {

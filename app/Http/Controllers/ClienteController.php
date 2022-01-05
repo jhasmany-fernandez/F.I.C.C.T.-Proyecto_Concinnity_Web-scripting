@@ -4,22 +4,54 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\Rol_permiso;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ClienteController extends Controller
 {
     public function index(){
         $clientes = Cliente::paginate(4);
-        return view('cliente.index', ['clientes' => $clientes]);
+        $permisos_de_este_rol = Rol_permiso::where('idrol', Auth::user()->idrol)->whereIn('idpermiso', [28, 29, 30])->where('condicion', 1)->get();
+        $crear = false;
+        $listar = false;
+        $editar = false;
+        foreach ($permisos_de_este_rol as $item) {
+            if($item->idpermiso == 28){
+                $crear = true;
+            }
+            if($item->idpermiso == 29){
+                $listar = true;
+            }
+            if($item->idpermiso == 30){
+                $editar = true;
+            }
+        }
+        return view('cliente.index', ['clientes' => $clientes], compact('crear', 'listar', 'editar'));
     }
 
     public function busqueda(Request $request){
         try {
+            $permisos_de_este_rol = Rol_permiso::where('idrol', Auth::user()->idrol)->whereIn('idpermiso', [28, 29, 30])->where('condicion', 1)->get();
+            $crear = false;
+            $listar = false;
+            $editar = false;
+            foreach ($permisos_de_este_rol as $item) {
+                if($item->idpermiso == 28){
+                    $crear = true;
+                }
+                if($item->idpermiso == 29){
+                    $listar = true;
+                }
+                if($item->idpermiso == 30){
+                    $editar = true;
+                }
+            }
             if($request->input('opcion') == 'nombre'){
                 $clientes = Cliente::select('cliente.id', 'cliente.nombre', 'cliente.telefono', 'cliente.correo')
                 ->where('cliente.nombre', 'LIKE', '%'.$request->input('texto').'%')
                 ->paginate(4);
-                $view = view('cliente.datos', compact('clientes'))->render();
+                $view = view('cliente.datos', compact('clientes', 'crear', 'listar', 'editar'))->render();
                 return response()->json(['view' => $view], 200);
             }
             if($request->input('opcion') == 'telefono'){
@@ -27,7 +59,7 @@ class ClienteController extends Controller
                 ->where('cliente.telefono', 'LIKE', '%'.$request->input('texto').'%')
                 ->paginate(4);
 
-                $view = view('cliente.datos', compact('clientes'))->render();
+                $view = view('cliente.datos', compact('clientes', 'crear', 'listar', 'editar'))->render();
                 return response()->json(['view' => $view], 200);
             }
         } catch (\Exception $e) {

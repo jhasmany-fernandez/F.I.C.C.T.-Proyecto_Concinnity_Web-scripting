@@ -11,21 +11,27 @@
             @foreach ($roles as $rol)
                 <tr>
                     <td class="text-left">
-                        @if ($rol->condicion == 1)
-                            <button type="button" class="btn btn-danger btn-sm" onclick="desactivar({{$rol->id}})">
-                                <i class="tim-icons icon-trash-simple"></i>
-                            </button>
-                        @else
-                            <button type="button" class="btn btn-success btn-sm" onclick="activar({{$rol->id}})">
-                                <i class="tim-icons icon-check-2"></i>
-                            </button>
+                        @if ($cambiarEstado)
+                            @if ($rol->condicion == 1)
+                                <button type="button" class="btn btn-danger btn-sm" onclick="desactivar({{$rol->id}})">
+                                    <i class="tim-icons icon-trash-simple"></i>
+                                </button>
+                            @else
+                                <button type="button" class="btn btn-success btn-sm" onclick="activar({{$rol->id}})">
+                                    <i class="tim-icons icon-check-2"></i>
+                                </button>
+                            @endif
                         @endif
-                        <a type="button" title="Editar información del Rol" class="btn btn-primary btn-sm" href="{{url('rol/edit/'.$rol->id)}}">
-                            <i class="tim-icons icon-pencil"></i>
-                        </a>
+                        @if ($editar)
+                            <a type="button" title="Editar información del Rol" class="btn btn-primary btn-sm" href="{{url('rol/edit/'.$rol->id)}}">
+                                <i class="tim-icons icon-pencil"></i>
+                            </a>
+                        @endif
+                        @if ($verPermiso)
                         <a type="button" title="Ver Permisos del Rol" class="btn btn-success btn-sm" href="{{url('rol/ver/'.$rol->id)}}">
                             <i class="tim-icons icon-tap-02"></i>
                         </a>
+                        @endif
                     </td>
                     <td>{{$rol->nombre}}</td>
                     <td>

@@ -11,12 +11,11 @@
             @foreach ($permisos as $permiso)
                 <tr>
                     <td class="text-left">
-                        <button type="button" title="Eliminar Permiso" class="btn btn-danger btn-sm" onclick="eliminar({{$permiso->id}})">
-                            <i class="tim-icons icon-trash-simple"></i>
-                        </button>
-                        <a type="button" title="Editar información del Permiso" class="btn btn-primary btn-sm" href="{{url('permiso/edit/'.$permiso->id)}}">
-                            <i class="tim-icons icon-pencil"></i>
-                        </a>
+                        @if ($editar)
+                            <a type="button" title="Editar información del Permiso" class="btn btn-primary btn-sm" href="{{url('permiso/edit/'.$permiso->id)}}">
+                                <i class="tim-icons icon-pencil"></i>
+                            </a>
+                        @endif
                     </td>
                     <td>{{$permiso->nombre}}</td>
                     <td>

@@ -17,7 +17,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav ml-auto">
-                <li class="dropdown nav-item">
+                {{-- <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <span class="badge badge-pill badge-danger">5</span>
                         <i class="tim-icons icon-bell-55"></i>
@@ -31,7 +31,7 @@
                             <span class="badge badge-danger">2</span>
                         </a>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <div class="photo">
@@ -43,9 +43,6 @@
                     <ul class="dropdown-menu dropdown-navbar">
                         <li class="nav-link">
                             <a href="#" class="nav-item dropdown-item">{{ __('Perfil') }}</a>
-                        </li>
-                        <li class="nav-link">
-                            <a href="#" class="nav-item dropdown-item">{{ __('Configuración') }}</a>
                         </li>
                         <li class="dropdown-divider"></li>
                         <li class="nav-link">
