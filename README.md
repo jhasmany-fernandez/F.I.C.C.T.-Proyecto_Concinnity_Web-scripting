@@ -1,6 +1,9 @@
 # F.I.C.C.T.-Proyecto_Concinnity-scripting
 F.I.C.C.T. | Materia: Sistemas de Informacion I | Docente: Angelica Garzon Cuellar | Repositorio: Proyecto Concinnity |  Lenguaje: Scripting | Grupos: 2 y 10 | IDE: PhpStrom - VSCode
 
+## NUMERO DE VISITANTES.
+<img align="left" src = "https://profile-counter.glitch.me/F.I.C.C.T.-Proyecto_Concinnity_Web-scripting/count.svg" alt ="Loading"> <br>
+
 ## VISUAL STUDIO CODE.
 ![visual-studio-code-logo-png-transparent-github](https://user-images.githubusercontent.com/36086876/146683390-0213bd14-ac2e-4203-8ef5-02e287667309.png)
 
@@ -18,6 +21,9 @@ F.I.C.C.T. | Materia: Sistemas de Informacion I | Docente: Angelica Garzon Cuell
 
 ## GIT.
 ![git-github](https://user-images.githubusercontent.com/36086876/147296810-eb9c8bad-ea53-4182-8821-c36d4405778f.png)
+
+## INICIO SESION.
+![Inicio Sesion](https://user-images.githubusercontent.com/36086876/148542105-b4af6507-9387-4323-a15f-63de4929aff5.gif)
 
 ## INSTALADORES:
 >  RECURSOS LARAVEL - INSTALADORES:
