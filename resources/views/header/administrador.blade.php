@@ -42,7 +42,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-navbar">
                         <li class="nav-link">
-                            <a href="#" class="nav-item dropdown-item">{{ __('Perfil') }}</a>
+                            <a href="{{url('perfil/'.Auth::user()->id)}}" class="nav-item dropdown-item">{{ __('Editar Perfil') }}</a>
                         </li>
                         <li class="dropdown-divider"></li>
                         <li class="nav-link">

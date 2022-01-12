@@ -193,7 +193,7 @@
                 </div>
             </li>
             @endif
-            @if ($listarNotaSalida)
+            @if ($listarNotaSalida || $listarReporteSalida)
             <li>
                 <a data-toggle="collapse" data-target="#desplegar3" aria-expanded="false" aria-controls="desplegar3">
                     <i class="tim-icons icon-cart"></i>
@@ -207,6 +207,14 @@
                             <a href="{{url('notassalidas')}}">
                                 <i class="tim-icons icon-paper"></i>
                                 <p>Nota de Salida</p>
+                            </a>
+                        </li>
+                        @endif
+                        @if ($listarReporteSalida)
+                        <li>
+                            <a href="{{url('reportessalidas')}}">
+                                <i class="tim-icons icon-alert-circle-exc"></i>
+                                <p>Reporte de salidas</p>
                             </a>
                         </li>
                         @endif

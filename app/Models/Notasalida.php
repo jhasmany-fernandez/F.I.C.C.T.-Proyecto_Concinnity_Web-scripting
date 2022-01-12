@@ -11,8 +11,12 @@ class Notasalida extends Model
 {
     use HasFactory;
     protected $table = 'notasalida';
-    protected $fillable = ['perdida_total', 'descripcion','condicion','created_at'];
+    protected $fillable = ['perdida_total', 'descripcion','condicion','created_at', 'idusuario'];
     public $timestamps = true;
+
+    public function user(){
+        return $this->belongsTo('App\Models\User','idusuario','id')->with('personal');
+    }
 
     public static function store(Request $request){
         if(count(json_decode($request->detalles)) == 0){
@@ -21,6 +25,7 @@ class Notasalida extends Model
         $notasalida = new Notasalida();
         $notasalida->perdida_total = 0;
         $notasalida->descripcion = $request->descripcion;
+        $notasalida->idusuario = Auth::user()->id;
         $notasalida->save();
         // dd(json_decode($request->detalles));
         $total_de_detalles = 0;

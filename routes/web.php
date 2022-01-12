@@ -35,14 +35,18 @@ Route::get('/', function () {
 })->name('/');
 
 Route::post('login', [LoginController::class, 'login']);
+Route::get('login/olvidar_contraseña', [LoginController::class, 'olvidar_contraseña']);
+Route::post('login/nueva_contraseña', [LoginController::class, 'nueva_contraseña']);
 
 Route::middleware(['auth'])->group(function () {
 
     Route::get('logout', [LoginController::class, 'logout']);
-    Route::get('login/olvidar_contraseña', [LoginController::class, 'olvidar_contraseña']);
+    Route::get('perfil/{id}', [LoginController::class, 'editar_perfil']);
+    
     // Route::post('login/nueva_contraseña', [LoginController::class, 'nueva_contraseña']);
     Route::get('dashboard', [DashboardController::class, 'index']);
     Route::get('dashboard2', [DashboardController::class, 'index2']);
+    Route::get('dashboard/calcular', [DashboardController::class, 'calcular']);
     Route::get('chartjs', [DashboardController::class, 'chartjs'])->name('chartjs.index');
 
    //Roles
@@ -64,6 +68,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('user/create', [UserController::class, 'store']);
     Route::get('user/edit/{id}', [UserController::class, 'edit']);
     Route::post('user/update', [UserController::class, 'update']);
+    Route::post('user/updateperfil', [UserController::class, 'updateperfil']);
     Route::post('user/desactivar', [UserController::class, 'desactivar']);
     Route::post('user/activar', [UserController::class, 'activar']);
     Route::get('user/busqueda', [UserController::class, 'busqueda']);
@@ -145,6 +150,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('notasalida/ver/{id}', [NotaSalidaController::class, 'ver']);
     Route::post('notasalida/desactivar', [NotaSalidaController::class, 'desactivar']);
     Route::get('notasalida/busqueda', [NotaSalidaController::class, 'busqueda']);
+    Route::get('reportessalidas', [NotaSalidaController::class, 'index_reporte']);
+    Route::get('notasalida/ver_reporte/{id}', [NotaSalidaController::class, 'ver_reporte']);
+    Route::get('notasalida/busqueda_reporte', [NotaSalidaController::class, 'busqueda_reporte']);
+    Route::get('notasalida/excel/{year}', [NotaSalidaController::class, 'excel']);
 
     //Proveedores
     Route::get('proveedores', [ProveedorController::class, 'index']);

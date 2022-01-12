@@ -14,15 +14,8 @@
             @foreach ($notassalidas as $notasalida)
                 <tr>
                     <td class="text-left">
-                        @if ($cambiarEstado)
-                            @if ($notasalida->condicion == 1)
-                                <button type="button" title="Devolver o Eliminar Producto" class="btn btn-danger btn-sm" onclick="desactivar({{$notasalida->id}})">
-                                    <i class="tim-icons icon-trash-simple"></i>
-                                </button>
-                            @endif
-                        @endif
                         @if ($ver)
-                            <a type="button" title="Ver detalles de la nota de salida" class="btn btn-success btn-sm" href="{{url('notasalida/ver/'.$notasalida->id)}}">
+                            <a type="button" title="Ver detalles de la nota de salida" class="btn btn-success btn-sm" href="{{url('notasalida/ver_reporte/'.$notasalida->id)}}">
                                 <i class="tim-icons icon-tap-02"></i>
                             </a>
                         @endif

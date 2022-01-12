@@ -43,7 +43,7 @@
             @csrf
             <div class="card card-login card-white">
                 <div class="card-body">
-                    <p class="text-dark mb-2">Inicie sesion con el e-mail y la contraseña entregada</p>
+                    <p class="text-dark mb-2">Ingrese el e-mail y la nueva contraseña</p>
                     <div class="input-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -60,6 +60,9 @@
                         </div>
                         <input type="password" required placeholder="{{ __('Password') }}" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}">
                     </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block mb-3">{{ __('Cambiar Contraseña') }}</button>
                 </div>
             </div>
         </form>

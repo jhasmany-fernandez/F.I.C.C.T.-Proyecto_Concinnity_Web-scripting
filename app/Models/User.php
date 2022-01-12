@@ -46,6 +46,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Notacompra','idnotacompra','id');
     }
 
+    public function notasalida()
+    {
+        return $this->hasMany('App\Models\Notasalida','idnotasalida','id');
+    }
+
     public function bitacora()
     {
         return $this->hasMany('App\Models\Bitacora','idusuario','id');

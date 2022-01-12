@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         view()->composer('sidebar.administrador', function($view){
-            $roles_permisos_del_usuario = Rol_permiso::where('idrol', Auth::user()->idrol)->whereIn('idpermiso', [3, 6, 8, 11, 14, 22, 25, 29, 32, 37, 40, 43, 48, 55, 58, 59, 60, 62])->where('condicion', 1)->get();
+            $roles_permisos_del_usuario = Rol_permiso::where('idrol', Auth::user()->idrol)->whereIn('idpermiso', [3, 6, 8, 11, 14, 22, 25, 29, 32, 37, 40, 43, 48, 55, 58, 59, 60, 62, 65])->where('condicion', 1)->get();
             $listarMarca = false;
             $listarCategoria = false;
             $listarMaterial = false;
@@ -50,6 +50,7 @@ class AppServiceProvider extends ServiceProvider
             $listarEscritorio1 = false;
             $listarEscritorio2 = false;
             $listarPermiso = false;
+            $listarReporteSalida = false;
             foreach ($roles_permisos_del_usuario as $item) {
                 if($item->idpermiso == 3){
                     $listarMarca = true;
@@ -105,6 +106,9 @@ class AppServiceProvider extends ServiceProvider
                 if($item->idpermiso == 62){
                     $listarPermiso = true;
                 }
+                if($item->idpermiso == 65){
+                    $listarReporteSalida = true;
+                }
             }
             $view->with(['listarMarca' => $listarMarca, 'listarCategoria' => $listarCategoria, 
             'listarMaterial' => $listarMaterial, 'listarTalla' => $listarTalla, 'listarProducto' => $listarProducto, 
@@ -112,7 +116,7 @@ class AppServiceProvider extends ServiceProvider
             'listarNotaVenta' => $listarNotaVenta, 'listarNotaSalida' => $listarNotaSalida, 'listarReporteCompra' => $listarReporteCompra, 
             'listarReporteVenta' => $listarReporteVenta, 'listarRol' => $listarRol, 'listarUsuario' => $listarUsuario, 
             'listarBitacora' => $listarBitacora, 'listarEscritorio1' => $listarEscritorio1, 'listarEscritorio2' => $listarEscritorio2, 
-            'listarPermiso' => $listarPermiso]);
+            'listarPermiso' => $listarPermiso, 'listarReporteSalida' => $listarReporteSalida]);
         });
     }
 }

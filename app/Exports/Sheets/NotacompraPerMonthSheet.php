@@ -43,6 +43,7 @@ class NotacompraPerMonthSheet implements FromQuery, WithHeadings, WithTitle
             ->join('personal', 'users.idpersonal', 'personal.id')
             ->join('proveedor', 'notacompra.idproveedor', 'proveedor.id')
             ->select('notacompra.id', 'notacompra.impuesto', 'notacompra.monto_total', 'proveedor.nombre', 'personal.nombre as personalnombre', 'notacompra.condicion', DB::raw('DATE_FORMAT(notacompra.created_at, "%Y-%m-%d %H:%i:%S")'))
+            ->where('notacompra.condicion', 1)
             ->whereYear('notacompra.created_at', $this->year)
             ->whereMonth('notacompra.created_at', $this->month);
     }

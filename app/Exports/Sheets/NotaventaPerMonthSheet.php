@@ -43,6 +43,7 @@ class NotaventaPerMonthSheet implements FromQuery, WithHeadings, WithTitle
             ->join('personal', 'users.idpersonal', 'personal.id')
             ->join('cliente', 'notaventa.idcliente', 'cliente.id')
             ->select('notaventa.id', 'notaventa.monto_pago', 'notaventa.descuento', 'notaventa.monto_total', 'cliente.nombre', 'personal.nombre as personalnombre', 'notaventa.condicion', DB::raw('DATE_FORMAT(notaventa.created_at, "%Y-%m-%d %H:%i:%S")'))
+            ->where('notaventa.condicion', 1)
             ->whereYear('notaventa.created_at', $this->year)
             ->whereMonth('notaventa.created_at', $this->month);
     }

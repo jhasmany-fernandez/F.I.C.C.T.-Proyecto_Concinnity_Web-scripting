@@ -50,7 +50,7 @@ class NotaVentaController extends Controller
     }
 
     public function index_reporte(){
-        $notasventas = Notaventa::with('cliente')->with('user')->paginate(4);
+        $notasventas = Notaventa::with('cliente')->with('user')->where('condicion', 1)->paginate(4);
         // dd(json_decode(json_encode($notasventas)));
         $permisos_de_este_rol = Rol_permiso::where('idrol', Auth::user()->idrol)->whereIn('idpermiso', [43, 44, 45, 46])->where('condicion', 1)->get();
         $generar_Excel = false;
@@ -155,7 +155,7 @@ class NotaVentaController extends Controller
                         array_push($ids_clientes, $value->idcliente);
                     }
 
-                    $notasventas = Notaventa::whereIn('idcliente', $ids_clientes)->with('cliente')->with('user')
+                    $notasventas = Notaventa::whereIn('idcliente', $ids_clientes)->with('cliente')->with('user')->where('condicion', 1)
                     ->paginate(4);
 
                     $view = view('reportendv.datos', compact('notasventas', 'listar', 'generar_Excel', 'generar_Recibo', 'ver'))->render();
@@ -167,7 +167,7 @@ class NotaVentaController extends Controller
                         array_push($ids_clientes, $value->idcliente);
                     }
 
-                    $notasventas = Notaventa::whereIn('idcliente', $ids_clientes)->whereBetween('created_at', [$request->desde, $request->hasta])->with('cliente')->with('user')
+                    $notasventas = Notaventa::whereIn('idcliente', $ids_clientes)->whereBetween('created_at', [$request->desde, $request->hasta])->with('cliente')->with('user')->where('condicion', 1)
                     ->paginate(4);
 
                     //dd(json_decode(json_encode($notasventas)));
@@ -267,7 +267,7 @@ class NotaVentaController extends Controller
 
         $bitacora = new Bitacora();
         $bitacora->accion = 'Generar Excel';
-        $bitacora->tabla = 'Nota de Venta';
+        $bitacora->tabla = 'Reporte de Venta';
         $bitacora->idusuario = Auth::user()->id;
         $bitacora->save();
 

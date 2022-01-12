@@ -141,6 +141,24 @@ class UserController extends Controller
         }
     }
 
+    public function updateperfil(Request $request){
+        
+        try {
+            DB::beginTransaction();
+            User::actualizar($request);
+            DB::commit();
+            if (Auth::user()->idrol == 1){
+                return redirect()->to('dashboard')->with('message', 'Perfil actualizado exitosamente');
+            }else{
+                return redirect()->to('dashboard2')->with('message', 'Perfil actualizado exitosamente');
+            }
+            
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('users')->with('error', $e->getMessage());
+        }
+    }
+
     public function desactivar(Request $request){
         try {
             DB::beginTransaction();

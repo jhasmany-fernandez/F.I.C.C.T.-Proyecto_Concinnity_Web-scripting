@@ -71,7 +71,7 @@
                     <button type="submit" class="btn btn-primary btn-lg btn-block mb-3">{{ __('Comenzar') }}</button>
                     <div class="pull-right">
                         <h6>
-                            <a href="#" class="link footer-link">{{ __('¿OLVIDÓ SU CONTRASEÑA?') }}</a>
+                            <a href="{{url('login/olvidar_contraseña')}}" class="link footer-link">{{ __('¿OLVIDÓ SU CONTRASEÑA?') }}</a>
                         </h6>
                     </div>
                 </div>

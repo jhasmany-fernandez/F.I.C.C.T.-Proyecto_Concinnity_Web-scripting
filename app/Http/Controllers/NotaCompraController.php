@@ -43,7 +43,7 @@ class NotaCompraController extends Controller
     }
 
     public function index_reporte(){
-        $notascompras = Notacompra::with('proveedor')->with('user')->paginate(4);
+        $notascompras = Notacompra::with('proveedor')->with('user')->where('condicion', 1)->paginate(4);
         // dd(json_decode(json_encode($notascompras)));
         $permisos_de_este_rol = Rol_permiso::where('idrol', Auth::user()->idrol)->whereIn('idpermiso', [40, 41, 42])->where('condicion', 1)->get();
         $listar = false;
@@ -137,7 +137,7 @@ class NotaCompraController extends Controller
                         array_push($ids_proveedores, $value->idproveedor);
                     }
 
-                    $notascompras = Notacompra::whereIn('idproveedor', $ids_proveedores)->with('proveedor')->with('user')
+                    $notascompras = Notacompra::whereIn('idproveedor', $ids_proveedores)->with('proveedor')->with('user')->where('condicion', 1)
                     ->paginate(4);
 
                     $view = view('reportendc.datos', compact('notascompras', 'listar', 'generar', 'ver'))->render();
@@ -149,7 +149,7 @@ class NotaCompraController extends Controller
                         array_push($ids_proveedores, $value->idproveedor);
                     }
 
-                    $notascompras = Notacompra::whereIn('idproveedor', $ids_proveedores)->whereBetween('created_at', [$request->desde, $request->hasta])->with('proveedor')->with('user')
+                    $notascompras = Notacompra::whereIn('idproveedor', $ids_proveedores)->whereBetween('created_at', [$request->desde, $request->hasta])->with('proveedor')->with('user')->where('condicion', 1)
                     ->paginate(4);
 
                     $view = view('reportendc.datos', compact('notascompras', 'listar', 'generar', 'ver'))->render();
@@ -230,7 +230,7 @@ class NotaCompraController extends Controller
         //return Excel::download(new NotaventaExport, 'lista_notaventa.xlsx');
         $bitacora = new Bitacora();
         $bitacora->accion = 'Generar Excel';
-        $bitacora->tabla = 'Nota de compra';
+        $bitacora->tabla = 'Reporte de compra';
         $bitacora->idusuario = Auth::user()->id;
         $bitacora->save();
 
