@@ -12,8 +12,8 @@ class NotaventaExport implements WithMultipleSheets
     use Exportable;
 
     private $year;
-    
-    public function forYear($year)
+
+    public function forYear($year) //gestion
     {
         $this->year = $year;
 
@@ -26,7 +26,7 @@ class NotaventaExport implements WithMultipleSheets
     //     ]);
     // }
 
-    public function sheets(): array
+    public function sheets(): array // mes
     {
         $sheets = [];
 

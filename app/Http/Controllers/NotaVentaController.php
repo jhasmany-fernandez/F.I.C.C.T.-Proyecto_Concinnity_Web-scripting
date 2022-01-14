@@ -48,7 +48,7 @@ class NotaVentaController extends Controller
         // dd(json_decode(json_encode($permisos_de_este_rol)));
         return view('notaventa.index', ['notasventas' => $notasventas], compact('crear', 'listar', 'cambiarEstado', 'generar', 'ver'));
     }
-
+    // contiene el index del reporte
     public function index_reporte(){
         $notasventas = Notaventa::with('cliente')->with('user')->where('condicion', 1)->paginate(4);
         // dd(json_decode(json_encode($notasventas)));
@@ -57,7 +57,7 @@ class NotaVentaController extends Controller
         $generar_Recibo = false;
         $listar = false;
         $ver = false;
-        foreach ($permisos_de_este_rol as $item) {
+        foreach ($permisos_de_este_rol as $item) { //permisos estan habilitados.
             if($item->idpermiso == 43){
                 $listar = true;
             }
@@ -72,8 +72,8 @@ class NotaVentaController extends Controller
             }
         }
         // dd(json_decode(json_encode($permisos_de_este_rol)));
-        return view('reportendv.index', ['notasventas' => $notasventas], compact('listar', 'generar_Excel', 'generar_Recibo', 'ver'));
-    }
+        return view('reportendv.index', ['notasventas' => $notasventas], compact('listar', 'generar_Excel', 'generar_Recibo', 'ver')); // vista del reporte va mostrarndo la notas venta
+    }   //condicion
 
     public function create(){
         $tallasproductos = Tallaproducto::where('condicion', 1)->where('stock', '>', 0)->with('producto')->with('talla')->get();
@@ -82,7 +82,7 @@ class NotaVentaController extends Controller
         $clientes = Cliente::get();
         return view('notaventa.create', ['clientes' => $clientes, 'tallasproductos' => $tallasproductos]);
     }
-
+    // busqueda de reporte
     public function busqueda(Request $request){
         try {
             if($request->input('opcion') == 'cliente'){
@@ -92,7 +92,7 @@ class NotaVentaController extends Controller
                 $cambiarEstado = false;
                 $generar = false;
                 $ver = false;
-                foreach ($permisos_de_este_rol as $item) {
+                foreach ($permisos_de_este_rol as $item) { // tiene su permiso
                     if($item->idpermiso == 31){
                         $crear = true;
                     }
@@ -148,7 +148,7 @@ class NotaVentaController extends Controller
                         $ver = true;
                     }
                 }
-                if($request->input('texto') == ''){
+                if($request->input('texto') == ''){ // ingreso manual
                     $notasventas = Notaventa::join('cliente', 'notaventa.idcliente', 'cliente.id')->where('cliente.nombre', 'LIKE', '%'.$request->input('texto').'%')->get();
                     $ids_clientes = array();
                     foreach ($notasventas as $value) {
@@ -167,7 +167,7 @@ class NotaVentaController extends Controller
                         array_push($ids_clientes, $value->idcliente);
                     }
 
-                    $notasventas = Notaventa::whereIn('idcliente', $ids_clientes)->whereBetween('created_at', [$request->desde, $request->hasta])->with('cliente')->with('user')->where('condicion', 1)
+                    $notasventas = Notaventa::whereIn('idcliente', $ids_clientes)->whereBetween('created_at', [$request->desde, $request->hasta])->with('cliente')->with('user')->where('condicion', 1)// desde y hasta
                     ->paginate(4);
 
                     //dd(json_decode(json_encode($notasventas)));
@@ -214,13 +214,13 @@ class NotaVentaController extends Controller
         return view('reportendv.ver', ['clientes' => $clientes, 'detallesnotasventas' => $detallesnotasventas, 'notasventas' => $notasventas]);
     }
 
-    public function desactivar(Request $request){
+    public function desactivar(Request $request){  //triggers
         try {
             DB::beginTransaction();
             $notaventa = Notaventa::findOrFail($request->input('id'));
             $notaventa->condicion = 0;
             $notaventa->update();
-            
+
             $notasventas = Notaventa::find($notaventa->id);
             $detallesnotasventas = Detallenotaventa::where('idnotaventa', $notasventas->id)->get();
             //dd(json_decode(json_encode($detallesnotasventas)));
@@ -229,7 +229,7 @@ class NotaVentaController extends Controller
                 $obtener_tallaproducto_de_db->stock = $obtener_tallaproducto_de_db->stock + $detalle->cantidad;
                 $obtener_tallaproducto_de_db->update();
             }
-            
+
             $bitacora = new Bitacora();
             $bitacora->accion = 'Desactivar';
             $bitacora->tabla = 'Nota de venta';
@@ -242,9 +242,9 @@ class NotaVentaController extends Controller
             DB::rollback();
             return response()->json(['mensaje' => $e->getMessage()], 500);
         }
-        
-    }
 
+    }
+// funcion pdf.
     public function pdf($idnotaventa){
         $notaventa = Notaventa::with('cliente')->with('user')
         ->where('notaventa.id',$idnotaventa)->first();
@@ -259,7 +259,7 @@ class NotaVentaController extends Controller
         $bitacora->idusuario = Auth::user()->id;
         $bitacora->save();
 
-        return $pdf->download('venta-'.$notaventa->id.'.pdf');
+        return $pdf->download('venta-'.$notaventa->id.'.pdf'); // descargar nombre y extencion
     }
 
     public function excel($year){
