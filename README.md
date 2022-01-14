@@ -4,15 +4,15 @@ F.I.C.C.T. | Materia: Sistemas de Informacion I | Docente: Angelica Garzon Cuell
 <p align="center"><img src="https://user-images.githubusercontent.com/36086876/146686931-7454e35d-a44b-422f-84c6-c3645d235ad3.png" width="162"></p>
 <p align="center"><img src="https://user-images.githubusercontent.com/36086876/148548585-d4259cff-b909-48de-8d48-c41a7ba2cab3.png" width="292"></p>
 
+## NUMERO DE VISITANTES.
+<img align="left" src = "https://profile-counter.glitch.me/F.I.C.C.T.-Proyecto_Concinnity_Web-scripting/count.svg" alt ="Loading"> <br>
+
 ## INTEGRANTES:
 > + Characayo Villegas Pedro Enrique (SC) <br>
 > + Fernandez Ortega Jhasmany Jhunnior (SC) <br>
 > + Chile Laime Jose (SA) <br>
 > + Quiroga Gutierrez Natalia (SA) <br>
 > + Yupanqui Larico Melanie Daisy (SA) <br>
-
-## NUMERO DE VISITANTES.
-<img align="left" src = "https://profile-counter.glitch.me/F.I.C.C.T.-Proyecto_Concinnity_Web-scripting/count.svg" alt ="Loading"> <br>
 
 ## VISUAL STUDIO CODE.
 ![visual-studio-code-logo-png-transparent-github](https://user-images.githubusercontent.com/36086876/146683390-0213bd14-ac2e-4203-8ef5-02e287667309.png)
