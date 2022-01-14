@@ -1,6 +1,13 @@
 # F.I.C.C.T.-Proyecto_Concinnity-scripting
 F.I.C.C.T. | Materia: Sistemas de Informacion I | Docente: Angelica Garzon Cuellar | Repositorio: Proyecto Concinnity |  Lenguaje: Scripting | Grupos: 2 y 10 | IDE: PhpStrom - VSCode
 
+## INTEGRANTES:
+> + Characayo Villegas Pedro Enrique (SC) <br>
+> + Fernandez Ortega Jhasmany Jhunnior (SC) <br>
+> + Chile Laime Jose (SA) <br>
+> + Quiroga Gutierrez Natalia (SA) <br>
+> + Yupanqui Larico Melanie Daisy (SA) <br>
+
 ## NUMERO DE VISITANTES.
 <img align="left" src = "https://profile-counter.glitch.me/F.I.C.C.T.-Proyecto_Concinnity_Web-scripting/count.svg" alt ="Loading"> <br>
 
@@ -22,8 +29,48 @@ F.I.C.C.T. | Materia: Sistemas de Informacion I | Docente: Angelica Garzon Cuell
 ## GIT.
 ![git-github](https://user-images.githubusercontent.com/36086876/147296810-eb9c8bad-ea53-4182-8821-c36d4405778f.png)
 
-## INICIO SESION.
-![Inicio Sesion](https://user-images.githubusercontent.com/36086876/148542105-b4af6507-9387-4323-a15f-63de4929aff5.gif)
+## SISTEMA WEB CONCINNITY.
+
+### ADMINISTRACIÓN:
+#### INICIO SESION.
+![Incio Sesion Contrasenia](https://user-images.githubusercontent.com/36086876/149428219-c888040a-8519-4443-8ca1-b12c3ff2748e.gif)
+
+#### REGISTRAR USUARIO.
+![Crear Usuario](https://user-images.githubusercontent.com/36086876/149418707-3f201c1f-f1bd-49f2-8db3-61a9da475bc4.gif)
+
+#### ROLES.
+![Roles](https://user-images.githubusercontent.com/36086876/149419846-074a421f-a96d-4003-8822-6d676bdf2175.gif)
+
+#### PERMISOS.
+![Permiso](https://user-images.githubusercontent.com/36086876/149420185-4a3d8e35-267f-4351-8e1d-0c5b52c4ff0e.gif)
+
+#### BITACORA.
+![Bitacora](https://user-images.githubusercontent.com/36086876/149420573-156e2727-990b-4f32-a42f-99bcbda7d129.gif)
+
+### INVENTARIO:
+#### CATEGORIA | MARCA | MATERIAL | TALLA.
+![Inventario](https://user-images.githubusercontent.com/36086876/149422351-77ffd9e5-5627-4c35-a14f-628139b131f0.gif)
+
+#### PRODUCTO.
+![Producto](https://user-images.githubusercontent.com/36086876/149422835-0757be81-afa7-4194-97f2-a5ea6013af4a.gif)
+
+### COMPRA:
+#### PROVEEDOR | NOTA DE COMPRA.
+![Compra](https://user-images.githubusercontent.com/36086876/149423549-8390f379-499f-46a8-a2a6-6bdac3d35254.gif)
+
+#### REPORTE DE LAS COMPRAS.
+![Reporte de las compras](https://user-images.githubusercontent.com/36086876/149424611-a63b8bbd-306c-4fa3-8300-7c6b79502860.gif)
+
+### VENTA:
+#### REPORTE DE VENTAS.
+![Reporte de las ventas](https://user-images.githubusercontent.com/36086876/149425721-21fe3215-3561-4b0b-9c4d-2b91b4796be5.gif)
+
+### SALIDA:
+#### NOTA DE SALIDA.
+![Nota de Salida](https://user-images.githubusercontent.com/36086876/149427217-bc01a554-0840-4cf2-9732-b876fff4ea12.gif)
+
+#### REPORTE DE SALIDA.
+![Reporte de salida](https://user-images.githubusercontent.com/36086876/149427887-ba62b637-fe0c-45b9-8299-36cc761f2b29.gif)
 
 ## INSTALADORES:
 >  RECURSOS LARAVEL - INSTALADORES:
@@ -60,7 +107,7 @@ Password: 12345
 
 >📲 Descargar Concinity apk: <a href="https://github.com/jhasmany-jhunnior/F.I.C.C.T.-Proyecto_Concinnity_App-Dart/tree/main/Recursos" target="_blank">Click Aqui</a> 
 
-## COMANDOS REPOSITORIO LOCAL:
+## COMANDOS REPOSITORIO LOCAL (powershell):
 >> 1. Instalar dependencias con Composer
 >>> composer install
 >
