@@ -1,6 +1,9 @@
 # F.I.C.C.T.-Proyecto_Concinnity-scripting
 F.I.C.C.T. | Materia: Sistemas de Informacion I | Docente: Angelica Garzon Cuellar | Repositorio: Proyecto Concinnity |  Lenguaje: Scripting | Grupos: 2 y 10 | IDE: PhpStrom - VSCode
 
+<p align="center"><img src="https://user-images.githubusercontent.com/36086876/146686931-7454e35d-a44b-422f-84c6-c3645d235ad3.png" width="162"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/36086876/148548585-d4259cff-b909-48de-8d48-c41a7ba2cab3.png" width="292"></p>
+
 ## INTEGRANTES:
 > + Characayo Villegas Pedro Enrique (SC) <br>
 > + Fernandez Ortega Jhasmany Jhunnior (SC) <br>
@@ -32,7 +35,7 @@ F.I.C.C.T. | Materia: Sistemas de Informacion I | Docente: Angelica Garzon Cuell
 ## SISTEMA WEB CONCINNITY.
 
 ### ADMINISTRACIÓN:
-#### INICIO SESION.
+#### INICIO SESION Y CAMBIO DE CONTRASENIA.
 ![Incio Sesion Contrasenia](https://user-images.githubusercontent.com/36086876/149428219-c888040a-8519-4443-8ca1-b12c3ff2748e.gif)
 
 #### REGISTRAR USUARIO.
